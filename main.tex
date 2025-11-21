@@ -1,0 +1,201 @@
+\documentclass{book}
+
+% Pacchetti simboli
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+
+% Pacchetti grafica
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{quiver}
+
+% Pacchetti numerazione
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{csquotes}
+
+
+
+% Numerazione ambienti
+\newcounter{myenum}
+
+% Ambiente proof
+\renewcommand{\proofname}{Dimostrazione}
+\newenvironment{myproof}[1][\proofname]{%
+	\begin{proof}[#1]$ $\par\nobreak\ignorespaces
+	}{%
+	\end{proof}
+}
+\newenvironment{innerproof}
+{\renewcommand{\qedsymbol}{}\proof}
+{\endproof}
+
+
+% Ambiente teoremi
+\newtheoremstyle{teoremi}
+{1.3em}{1.3em}
+{\itshape}{}
+{\bfseries}{}
+{0pt}
+{\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ (#3)}}}
+
+% Ambiente definizioni
+\newtheoremstyle{definizioni}
+{1.3em}{1.3em}
+{\rmfamily}{}
+{\bfseries}{}
+{0pt}
+{\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ (#3)}}}
+
+% Ambiente osservazioni
+\newtheoremstyle{osservazioni}
+{1.3em}{1.3em}
+{\rmfamily}{}
+{\itshape}{}
+{0pt}
+{\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ (#3)}}}
+
+% Ambiente esempi
+\newtheoremstyle{esempi}
+{1.3em}{1.3em}
+{\rmfamily}{}
+{\itshape}{}
+{0pt}
+{\thmname{#1}\thmnumber{ #2}\textnormal{\thmnote{ (#3)}}}
+
+% Numerazione distinta
+\theoremstyle{teoremi}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corol}{Corollario}[section]
+\newtheorem{prop}{Proposizione}[section]
+
+\theoremstyle{definizioni}
+\newtheorem{definition}{Definizione}[section]
+
+\theoremstyle{esempi}
+\newtheorem{example}{Esempio}[section]
+\newtheorem{exercise}{Esercizio}[section]
+
+\theoremstyle{osservazioni}
+\newtheorem{oss}{Osservazione}[section]
+\newtheorem{nota}{Nota}[section]
+
+
+% LETTERE
+\newcommand{\N }{\mathbb N}
+\newcommand{\Z }{\mathbb Z}
+\newcommand{\Q }{\mathbb Q}
+\newcommand{\R }{\mathbb R}
+\newcommand{\C }{\mathbb C}
+\newcommand{\K }{\mathbb K}
+\newcommand{\A }{\mathbb A}
+\newcommand{\T }{\mathbb T}
+\newcommand{\eps}{\varepsilon}
+
+% SIMBOLI
+\renewcommand{\emptyset}{\varnothing}
+\newcommand{\del}{\partial}
+
+% DEFINIZIONI
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+
+% SUCCESSIONI
+\newcommand{\ennu}[2]{#1_1,\dots,#1_{#2}}
+\newcommand{\suc}[3]{\left\{#1_#2\right\}_{#2 \in #3}}
+
+% NORMA E VALORE ASSOLUTO
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+% FLOOR E CEILING
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+% BRAKET
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+
+% Prodotto scalare
+\DeclarePairedDelimiterX\scal[2]{\langle}{\rangle}{#1\,,\,#2}
+
+% MAGGIORE E MINORE
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+
+% RESTRIZIONE DI UNA FUNZIONE A UN INSIEME
+\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
+\newcommand\restr[2]{{
+		\left.\kern-\nulldelimiterspace
+		#1
+		\littletaller
+		\right|_{#2}
+}}
+
+% SOTTOINSIEMI CON TESTO A SINISTRA
+\newcommand{\subsettext}[1]{\leftindex_{\textup{#1}}{\subseteq}}
+\newcommand{\supsettext}[1]{\leftindex_{\textup{#1}}{\supseteq}}
+
+% VIRGOLETTE
+\newcommand{\virg}[1]{``#1''}
+
+% LIMITE DI SUCCESSIONE 
+\newcommand{\limfty}[1]{\lim\limits_{#1\to\infty}}
+
+% FUNZIONE CARATTERISTICA
+\DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[2]{\raisebox{+1.7pt}{$#1\chi$}}
+
+
+
+
+\title{Istituzioni di Analisi Matematica}
+\author{Leonardi Isabella, Vitiello Giuseppe}
+\date{a.a. 2025--2026}
+
+\begin{document}
+	
+	\frontmatter
+	\maketitle
+	\tableofcontents
+	
+	\mainmatter
+	
+	\chapter*{Introduzione}
+	
+	\chapter{Misura astratta}
+	
+	
+	
+	
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
