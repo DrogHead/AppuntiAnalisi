@@ -1,0 +1,154 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	
+	
+	\begin{prop}
+		Se $X$ è uno spazio metrico completo e $f_n(x)$ è una successione di funzioni continue convergenti puntualmente a una funzione $f(x)$ in $X$, allora l'insieme dove $f$ è continua è generico (il suo complemento è di prima categoria, ossia unione numerabile di mai densi).
+	\end{prop}
+	\begin{proof}
+		Introduciamo la seguente notazione. Per ogni $x\in X$, per ogni $r>0$, definiamo
+		\begin{equation}
+			\omega(f)(r,x) = \sup_{y,z\in B_r(x)}\abs{f(y)-f(z)}
+		\end{equation}
+		$\omega$ è monotona crescente in $r$ e quindi esiste il suo limite per $r\to 0$. Chiamiamo tale limite \virg{oscillazione di $f$} e lo indichiamo con $\osc(f)$. Si nota immediataamente che $\osc(f)=0\iff f$ è continua. Definiamo l'insieme
+		\begin{equation}
+			E_\eps = \{x\in X \,\vert\, \osc(f)<\eps\}
+		\end{equation}
+		che è aperto per ogni $\eps>0$. Infatti, per ogni $x\in E_\eps$ esiste $r>0$ tale che l'estremo superiore $\omega(f)(r,x)$ è minore di $\eps$. Dunque, se consideriamo $x^*\in B_{\frac{r}2}(x)$ l'estremo superiore è ancora minore di $\eps$, e quindi $x^*\in E_\eps$.
+		
+		Per concludere, mostriamo che per ogni $\eps>0$ e per ogni $B\subset X$ esiste una palla $B_0\subset B$ tale che $\abs{f_n(x)-f(x)}<\eps$ in $B_0$ per qualche $n\in\N$. Consideriamo $\overline{B_1}\subset B$, che è uno spazio metrico completo (chiuso in uno spazio metrico completo), e definiamo
+		\begin{equation}
+			W_\ell = \{x\in\overline{B_1} \,\vert\, \sup_{j,k\geq\ell}\abs{f_j(x)-f_k(x)}\leq\eps \}
+		\end{equation}
+		che è chiuso per ogni $\ell$, e inoltre $\overline{B_1}=\bigcup_{\ell\in\N} W_\ell$. Per il lemma di Baire, esiste $m\in\N$ uno dei $W_m$ ha interno non vuoto, e quindi contiene una palla aperta $B_0$. Per costruzione, su $B_0$ l'estremo superiore definito in precedenza è $\leq\eps$. Nel limite per $k\to\infty$, la disuguaglianza diventa:
+		\begin{equation}
+			\abs{f_j(x)-f(x)}\leq\eps \quad\quad \forall j\geq m
+		\end{equation}
+		A patto di prendere $B_0$ di raggio sufficientemente piccolo, abbiamo che
+		\begin{equation}
+			\abs{f(x)-f(z)}\leq\abs{f(x)-f_m(x)}+\abs{f_m(x)-f_m(z)}+\abs{f_m(z)-f(z)}
+		\end{equation}
+		Il primo e il terzo termine sono $\leq\eps$, mentre per il termine centrale possiamo usare la continuità delle $f_m$ se $x,z\in B_0$ e maggiorarlo ancora una volta con $\eps$. Consideriamo ora gli insiemi
+		\begin{equation}
+			F_n=\Big\{x\in X \,\vert\, \osc(f)(x)\geq \frac1n \Big\}
+		\end{equation}
+		ossia $F_n=E_\eps^C$ per $\eps=\frac1n$. L'insieme delle discontinuità di $f$ è l'unione di questi $F_n$, che sono chiusi mai densi. Infatti, se $F_n$ contiene una palla $B$ aperta, scelto $\eps=\frac1{4n}$, esiste $B_0\subset B$ tale che:
+		\begin{equation}
+			\abs{f(y)-f(z)}\leq3\eps = \frac34 \frac1n < \frac1n
+		\end{equation}
+		contro la definizione di $F_n$.
+		
+	\end{proof}
+	
+	\begin{corol}
+		
+		Consideriamo lo spazio di Banach $C[a,b]$ delle funzioni continue in un intervallo chiuso e limitato. Il sottoinsieme delle funzioni $f$ continue e mai differenziabili è generico.
+		
+		Un esempio di funzione mai differenziabili è la funzione di Weierstrass:
+		\begin{equation}
+			f(x) = \sum_{n=0}^{+\infty} 2^{-n\alpha} e^{i2^n x} \quad\quad 0<\alpha<1
+		\end{equation}
+		
+		Questa serie converge uniformemente, ma la sua derivata, ottenuta derivando termine a termine
+		\begin{equation}
+			f(x) = \sum_{n=0}^{+\infty} i 2^{n(1-\alpha)} e^{i2^n x} \quad\quad 0<\alpha<1
+		\end{equation}
+		diverge in modulo per ogni $x$.
+		
+	\end{corol}
+	
+	\begin{lemma}
+		Mostriamo l'equivalenza che servirà dopo.
+	\end{lemma}
+	\begin{proof}
+		Sia $A$ aperto e sia $y_0\in\Lambda(A)$. Voglio dimostrare che esiste un $\eps>0$ tale che la palla $B_Y(y_0,\eps)\subseteq\Lambda(A)$. Per suriettività esiste sicuramente $x_0\in A$ tale che $y_0=\Lambda x_0$. Dal momento che $A$ è aperto, contiene una palla $B_X(x_0,\delta)$, e abbiamo, anche usando la linearità,
+		\begin{align}
+			&\Lambda B_X(0,\delta) \supseteq B_Y(0,r\delta) \\
+			\implies& \Lambda (x_0+ B_X(0,\delta)) = y_0+\Lambda B_X(0,\delta) \supseteq y_0+B_Y(0,r\delta) = B_Y(y_0,r\delta)
+		\end{align}
+	\end{proof}
+	
+	\begin{theorem}[Teorema dell'applicazione aperta]
+		Siano $X, Y$ spazi di Banach e sia $\Lambda : X\to Y$ operatore lineare. Se $\Lambda$ è continua e suriettiva, allora $\Lambda$ è aperta.
+	\end{theorem}
+	\begin{proof}
+		Faremo vedere un risultato equivalente, ossia mostriamo che esiste $r>0$ tale che $\Lambda(B_X(0,1))\supseteq B_Y(0,r)$.
+	
+		Per suriettività, $Y=\Lambda(X)=\bigcup_{n\in\N}\Lambda(B_X(0,n))$. Per il lemma di Baire, esiste un $n\in\N$ tale che $\overline{\Lambda(B_X(0,n))}$ ha interno non vuoto. Riscalando e usando la linearità, possiamo assumere $n=1$. Allora $\exists y_0\in Y$ tale che $B_Y(y_0,\eps)\subseteq\overline{\Lambda(B_X(0,1))}$ per qualche $\eps>0$. Allora, per ogni $y\in Y$ tale che $y\in B_Y(0,\eps)$, si ha che $y_0+y\in\overline{\Lambda(B_X(0,1))}$. Si trova quindi facilmente che $y=y_0+y-y_0\in\overline{\Lambda(B_X(0,2))}$. Per chiusura esiste una successione $\suc{x'}{n}{\N}\subset B(0,1)$ tale che $\Lambda x'_n \to y+y_0$, ed esiste un'altra successione $\suc{x''}{n}{\N}\subset B(0,1)$ tale che $\Lambda x''_n\to y_0$. Definita allora $\overline{x}_n=x''_n-x'_n$, si trova che $\overline{x}_n\in B_X(0,2)$ e $\Lambda\overline{x}_n\to y \in \overline{\Lambda(B_X(0,2))}$. Abbiamo mostrato che
+		\begin{equation}
+			B_Y(0,\eps) \subseteq \overline{\Lambda(B_X(0,2))} \iff B_Y(0,\frac{\eps}2)\subseteq\overline{\Lambda(B_X(0,1))}
+		\end{equation}
+		Come volevasi dimostrare. Inoltre, la disuguaglianza resta vera anche se moltiplichiamo per una costante. Quindi, per ogni $k\in\N$ si ha che
+		\begin{equation}
+			B_Y(0,2^{-k}r)\subseteq\overline{\Lambda(B_X(0,2^{-k}))}
+		\end{equation}
+		Scegliendo $k=1$ troviamo il raggio $\frac{r}2$, esiste $x_1\in B_X(0,\frac12)$ tale che
+		\begin{equation}
+			y-\Lambda x_1 \in B_Y(0,\frac{r}4)
+		\end{equation}
+		Proseguendo la costruzione, esiste $x_k\in B_X(0,2^{-k})$ tale che
+		\begin{equation}
+			y-\sum_{i=1}^k\Lambda x_i \in B_Y(0,2^{-(k+1)}r)
+		\end{equation}
+		La successione $\sum_{k=1}^k x_k$ è convergente a un $x\in B_X(0,1)$ e quindi:
+		\begin{equation}
+			\norm*{\Lambda\sum_{i=1}^k x_i - y} \leq \frac{r}{2^{-(k+1)}} \xrightarrow{k\to\infty} 0
+		\end{equation}
+		Ossia per definizione e per continuità $\Lambda \sum_{i=1}^k \to y$, che ci dà
+		\begin{equation}
+			B_Y(0,\frac{r}2) \subseteq \Lambda B_X(0,1)
+		\end{equation}
+	\end{proof}
+	
+	\begin{corol}
+		Se $\Lambda$ è anche biettiva, allora $\Lambda^{-1}$ è continua. Ancora, se $\Lambda$ è biettiva, esistono due costanti $c_1,c_2>0$ tali che:
+		\begin{equation}
+			c_1 \norm{x}_X \leq \norm{\Lambda x}_Y \leq c_2 \norm{x}_X
+		\end{equation}
+	\end{corol}
+	
+	\begin{corol}
+		Sia $X$ uno spazio di Banach con le norme $\norm{\cdot}_1$ e $\norm{\cdot}_2$. Allora è sufficiente che $\norm{\cdot}_2\leq c\norm{\cdot}_1$ per qualche $c\geq 0$ perché le due norme siano equivalenti.
+	\end{corol}
+	
+	\begin{theorem}[Teorema del grafico chiuso]
+		Se $X,Y$ sono spazi di Banach e $\Lambda : X\to Y$ è un operatore lineare. Allora $\Lambda$ è continua se e solo se è chiusa. 
+	\end{theorem}
+	
+	\begin{nota}
+		Ricordiamo che un'applicazione lineare si dice chiusa se il suo grafico $G_\Lambda=\{(x,y)\in X\times Y \,\vert\, y=\Lambda x\}$ è chiuso in $X\times Y$.
+	\end{nota}
+	
+	\begin{proof}
+		Osserviamo che l'implicazione $\implies$ è banale. Se $\Lambda$ è chiusa, allora il grafico $G_\Lambda$ è chiuso nella topologia di $X\times Y$ indotta dalla norma prodotto (somma delle due norme). Consideriamo quindi le proiezioni
+		\begin{align}
+			p_X : G_\Lambda \to X \quad&\quad p_X(x,y)=x \\
+			p_Y : G_\Lambda \to Y \quad&\quad p_Y(x,y)=y
+		\end{align}
+		Tali proiezioni sono continue e lineari, e sono anche chiuse. In particolare, stando sul grafico, sono anche biezioni, e si ha $\Lambda=p_Y\circ p_X^{-1}$. Composizione di funzioni continue è continua.
+	\end{proof}
+	
+	
+	
+	
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
