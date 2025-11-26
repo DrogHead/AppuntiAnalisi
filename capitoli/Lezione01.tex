@@ -1,5 +1,197 @@
 \documentclass[../main.tex]{subfiles}
 
 \begin{document}
-	Come ci si sente a essere un numero $\R$eale?
+
+		\begin{definition} [Topologia] Sia  $X\neq \emptyset $, sia $\tau$ una collezione di sottoinsiemi di X tale che : \\
+			\begin{enumerate}
+				\item $ X\in \tau,\quad  \emptyset\in \tau$;
+				\item $\{A_i\}_{i\in I} \in \tau  \implies \bigcup_{i\in I} A_i \in \tau$;
+				\item $ \{A_i\}_{i\in I_k} \in \tau\implies \bigcap_{i\in I_k} A_i \in \tau$
+			\end{enumerate}
+		\end{definition}
+		\begin{nota}
+			Quando non è necessario specificare $\tau$ si indica la topologia $(X,\tau)$ con X .
+		\end{nota}
+		\begin{definition} [Funzione continua]
+			Siano $(X, \tau)$ e $(Y,\gamma)$ spazi topologici, sia $f: X\to Y$, $f$ si dice continua se $\forall V\in \gamma \ \ f^{-1}(V)\in \tau.$ In particolare, $f$ si dice continua in $x_0$ se $ \forall V \in \gamma$ intorno di $f(x_0) \quad \exists U \in \tau $ intorno di $x_0$ tale che $ f(U) \subseteq V$.
+		\end{definition}
+		
+		\begin{definition} [$\sigma$-algebra]
+			Sia $X\neq \emptyset$, sia $\mathscr{M}$ collezione di sottoinsiemi di X tale che :
+			\begin{enumerate}
+				\item $X\in \mathscr{M}$;
+				\item $\mathscr{M}$ chiuso per completamento;
+				\item $\{A_i\}_{i\in I} \in \mathscr{M}  \implies \bigcup_{i\in I} A_i \in \mathscr{M}$
+			\end{enumerate}
+		\end{definition}
+		
+		\begin{nota}
+			È immediato dedurre che le $\sigma$-algebre contengono l'intersezione numerabile dei propri elementi dato che : $\bigcap_{i\in I} A_i = \big (\bigcup_{i\in I} A_i^C\big )^C $
+		\end{nota}
+		
+		\begin{definition}[Spazio e insieme misurabile]
+			Sia $X\neq \emptyset$, $\mathscr{M} \ \sigma$-algebra, $(X,\mathscr{M)}$ si dice spazio misurabile e gli insiemi di $\mathscr{M}$ si dicono insiemi misurabili in X.
+		\end{definition}
+		
+		\begin{definition} [Funzione misurabile]
+			Sia $X\neq \emptyset$, $(X,\mathscr{M})$ spazio misurabile , $(Y,\gamma)$ spazio topologico, $f: X \to Y$ si dice funzione misurabile se $\forall V\in \gamma \ \ f^{-1}(V)\in \mathscr{M}$
+		\end{definition}
+		
+		\begin{definition}[Spazio metrico]
+			Sia $X\neq \emptyset,\ d: X\times X \to \mathbb{R}^+ $ metrica, $(X,d)$ si dice spazio metrico se $\forall x,y \in X \ \ d(x,y)=d(y,x) \geq0, d(x,y)=0 \iff x=y,\ \forall x,y,z \in X \ \ d(x,y) \leq d(x,z)+d(z,y).$
+		\end{definition}
+		
+		\begin{nota}
+			A partire da uno spazio metrico si può sempre costruire uno spazio topologivo, basta definire gli aperti $B_\eps (x_0) = \{ x\in X | c d(x,x_0)<\eps\}$ $\forall \eps >0, \ \forall x_0 \in X$ e quindi dli aperti saranno quelli che posso definire come unione o intersezione di palle.
+		\end{nota}
+		
+		\begin{prop}
+			Una $\sigma$-algebra è finita o non numerabile.
+		\end{prop}
+		\begin{proof}
+			Sia $(X,\mathscr{M})$ una $\sigma$-algebra. Per assurdo $\mathscr{M}=\suc{A}{i}{\N}$ con $A_i\neq A_j$, $\forall x\in X$ si definisce $B_x= \bigcap _{i}A_{x i}$ dove $A_{x i}$ sono gli elementi di $\mathscr{M}$ che contengono $x$. Considerando $x,y \in X$ e quindi $B_x, B_y$, sono possibili i seguenti casi: 
+			\begin{enumerate}
+				\item $B_x \bigcap B_y = \emptyset$;
+				\item $B_x = B_y $;
+				\item $B_x\bigcap B_y=C$;
+			\end{enumerate}
+			È immediato osservare che il terzo caso in realtà si riconduce al secondo dato che $B_x $ e $ B_y$ sono i più piccoli insiemi contenenti $x$ e $y$. \\
+			$B_x $ e $ B_y$ formano banalmente un ricoprimento di X, ma dato che possono accadere solo quelle due condizioni, si tratta di una partizione. Inoltre, è possibile osservare che $\forall A_i \in \mathscr{M} \ \ A= \bigcup_{x\in A}B_x$. Dunque si hanno due possibilità: se $B_x=B_y$ i $B_i$ sono finiti di numero allora esisterà un numero finito di possibili combinazioni di $B_x$ per formare gli A, dunque $\mathscr{M}$ sarà finito , il che ci porta ad un assurdo. L'altra possibilità è che i $B_x$ siano tutti diversi tra loro, dunque si avrà un numero più che numerabile di possibili ricoprimenti, quindi assurdo.
+			
+		\end{proof}
+		
+		% DA QUI NON HO POTUTO STAMPARE NON SO COME VIENE
+		
+		
+		\begin{prop}[Composizione funzioni continue su spazi topologici]
+			Siano $ (X,\tau _X), (Y,\tau _Y)$ e $ (Z,\tau_Z)$ spazi topologici, e siano $f: X\to Y$ e $g:Y\to Z$ funzioni, se $f$ e $g$ sono continue allora $g \circ f$ è continua
+		\end{prop}
+		\begin{proof}
+			Sia $U\in \tau_Z$, si vuole mostrare  che $ (g \circ f)^(-1) (U) \in \tau_X$. Data la continuità di $g$ si ha che $g^(-1)(U) \in \tau_Y$, dunque per la continuità di $f$ si ha $f^(-1)(g^(-1)(U)) = (g \circ f)^(-1) (U) \in \tau_X$.
+		\end{proof}
+		
+		\begin{prop}[Composizione di funzioni su spazi topologici e misurabili]
+			Siano $ (X,\tau_X, \mathscr{M}_X) , (Y,\tau_Y, \mathscr{M}_Y), (Z,\tau_Z, \mathscr{M}_Z  ) $ spazi topologici misurabili, siano le funzioni  $f: X\to Y$ misurabile e $g:Y\to Z$ continua, allora $g \circ f$ è misurabile.
+		\end{prop}
+		\begin{proof}
+			Sia $U\in \tau_Z$, si vuole mostrare  che $ (g \circ f)^(-1) (U) \in \mathscr{M}_X$. Data la continuità di $g$ si ha che $g^(-1)(U) \in \tau_Y$, dunque per la misurabilità di $f$ si ha $f^(-1)(g^(-1)(U)) = (g \circ f)^(-1) (U) \in \mathscr{M}_X$.
+		\end{proof}
+		
+		\begin{prop} [Composizione di funzioni misurabili]
+			Siano $u,v: X \to \mathbb{R}$ funzioni reali misurabili, sia $\Phi: \mathbb{R}^2\to Y$ continua; allora $\Phi(u(x),v(x))$ è misurabile.
+		\end{prop}
+		
+		\begin{proof}
+			Per semplificare le notazioni si indica con $f: x\in X \to (u(x),v(x))\in \mathbb{R}^2$, dunque la tesi è mostrare la misurabilità di $\Phi ( f(x))$.\\
+			Si considera un sottoinsieme aperto di Y, $V \subseteq Y$ , $\Phi^(-1) (V) \coloneq W$ è un aperto di $\mathbb{R}^2$ data $\Phi$ continua, dunque è un unione numerabile di rettangoli aperti: $W= \bigcup_{i\in I} R_i $. Per mostrare che  $\Phi(u(x),v(x))$ è misurabile bisogna mostrare che l'antimagine di un aperto di Y è misurabile: $ (\Phi \circ f)^{-1} (V)= f^{-1}(\Phi^{-1}(V))=f^{-1}(W)=f^{-1}(\bigcup_{i\in I} R_i )=\bigcup_{i\in I} f^{-1}(R_i)\in \mathscr{M}$ dato che si tratta di antimmagini di intervalli aperti tramite $u$ e $v$ che sono misurabili per ipotesi.
+			
+		\end{proof}
+		
+		\begin{corol}[Corollario-osservazione]
+			La funzione $f:\mathbb{R}\in \mathbb{C} $ complessa,  è misurabile se e soltanto se la sua parte immaginaria e quella reale sono misurabili.
+		\end{corol}
+		\begin{proof}
+			Si dimostra prima da destra verso sinistra.\\
+			Si tratta di un caso particolare della proposizione precedente: infatti considerando le funzioni  $ u,v: \mathbb{R}\to \mathbb{R}$, si esprime $f: x\in \mathbb{R} \to u(x)+iv(x)\in \mathbb{C}.$. Ovviamente f è una funzione continua, dunque per la proposizione precedente ogni volta che la parte reale $u$ e la parte immaginaria $v$ sono misurabili, f è misurabile
+			Per mostrare l'altra implicazione basta osservare che data $f$ misurabile , se la compongo con la funzione continua che individua la sua parte reale $u$ o con quella che individua la sua parte immaginaria $v$, allora il risultato, che è la parte reale o immaginaria, risulta misurabile per una proposizione precedente.
+			
+		\end{proof}
+		
+		\begin{oss}
+			\begin{enumerate}
+				\item Il ragionamento fatto per la funzione complessa vale per la funzione valore assoluto: $|f|= \sqrt{u^2-v^2}$, il modulo è una funzione continua e se la compongo con f misurabile si ha che il modulo di f è misurabile.
+				\item La somma e il prodotto di $f,g$ funzioni complesse è misurabile, si mostra osservando che se sono misurabili lo sono anche le loro parti reali e immaginarie, e effettuando la somma e il prodotto tra $f $ e $g$ si sommano e moltiplicano le parti immaginarie tra loro e lo stesso per quelle reali, ciò produce funzioni misurabili .
+			\end{enumerate}
+		\end{oss}
+		
+		\begin{definition} [Funzione caratteristica]
+			Sia $E\subseteq X$, si dice funzione caratteristica$\chi_E(x)$= \begin{equation*}   
+				\left\{
+				\begin{aligned}
+					1 & \quad x\in E \\
+					0 & \quad x\ni E \\
+				\end{aligned}
+				\right.
+			\end{equation*}
+			
+		\end{definition}
+		\begin{oss}
+			Se l'insieme E è misurabile, allora la sua funzione caratteristica è misurabile.
+		\end{oss}
+		
+		\maketitle
+		$\sigma$ - Algebra generata
+		\begin{theorem}
+			Sia $X\neq \emptyset$ insieme e $\mathscr{F}$ una collezione di suoi sottoinsiemi, allora esiste la più piccola $\sigma$-algebra in X  contente  $\mathscr{F}$.
+		\end{theorem}
+		\begin{proof}
+			Sia U la famiglia di $\sigma$-algebre contenenti  $\mathscr{F}$, $U\neq \emptyset$ dato che la $\sigma$-algebra banale (tutti i sottoinsiemi di X) appartiene a U. Sia $\mathscr{M}^*=\bigcap_{\mathscr{M}\in U}\mathscr{M}$, l'obiettivo è mostrare che è una $\sigma$-algebra.
+			
+			\begin{itemize}
+				\item $\mathscr{M}^*$ è chiusa per completamento? Sia $A \in \mathscr{M} \implies A\in \mathscr{M}^* \forall \mathscr{M} \in U \implies A^C \in \mathscr{M} \forall \mathscr{M} \in U \implies A^C \in \bigcap_{\mathscr{M}\in U} \mathscr{M}= \mathscr{M}^*$.
+				\item $\mathscr{M}$ è chiusa per uninione numerabile? Sia $\{A_i \}_{i\in \mathbb{N} \in \\mathscr{M}^* \implies A_i \in \mathscr{M} \forall \mathscr{M}\in U \forall i\in \mathbb{N} \implies \bigcup_{i\in\mathbb{N}}A_i \in \bigcap_{\mathscr{M}\in U } \mathscr{M}= \mathscr{M}^* .$
+					\item $X \in \mathscr{M}\in U$ ? Ovvio.
+				\end{itemize}
+			\end{proof}
+			
+			La $\sigma$- algebra la cui esistenza è appena stata provata prende il nome di $\sigma$-algebra generata.
+			\begin{definition}[ $\sigma$-algebra generata]
+				Sia $X\neq \emptyset$ insieme e $\mathscr{F}$ una collezione di suoi sottoinsiemi, la più piccola $\sigma$-algebra in X  contente  $\mathscr{F}$ si dice $\sigma$-algebra generata da $\mathscr{F}$.
+			\end{definition}
+			
+			\begin{definition}
+				Sia $(X,\tau)$ uno spazio topologico , la $\sigma$-algebra generata da $\tau$ si dice $\sigma$-algebra di Borel, $(X,\mathscr{B})$, e i suoi elementi si dicono boreliani.
+			\end{definition}
+			
+			\paragraph{NOTA}In $\mathbb{R}$ tutti i boreliani sono i misurabili seconod Lebesgue, anche se  i misurabili secondo Lebesgue sono tutti un boreliano a meno di insiemi di misura nulla.\\
+			I boreliani contengono tutti gli aperti, tutti i chiusi , ma anche l'unione numerabile di chiusi ( detti \textit{f-sigma}) e l'intersezione di numerabile di aperti (detti \textit{g-delta}).\\
+			
+			\begin{prop}
+				Sia $(X,\mathscr{B})$ uno spazio misurabile, con $\mathscr{B} $ generato dalla topologia $\tau$ e sia $ (Y,\tau)$ uno spazio topologico, sia $f:X \to Y$ continua, allora $f$ è misurabile.
+			\end{prop}
+			\begin{proof}
+				L'antimmagine di un aperto è un aperto, quindi un boreliano, quindi misurabile.
+			\end{proof}
+			
+			\begin{prop}
+				Siano $(X,\mathscr{M})$ spazio misurabile, $(Y,\tau)$ spazio topologico e $f:X \to Y$ funzione, si ha che:
+				\begin{enumerate}
+					\item La collezione di tutti i  sottoinsiemi $E\subseteq Y | f^{-1} (E) \in \mathscr{M}$ è una $\sigma$-algebra in Y.
+					\item Se f è misurabile e E è di Borel in Y , si ha che $f^{-1} \in \mathscr{M}$;
+					\item Sia $Y=[-\infty,\infty]$ , f è misurabile $ \forall a\in \mathbb{R} f^{-1}([a,\infty])\in \mathscr{M}$;
+				\end{enumerate}
+			\end{prop}
+			\begin{proof}
+				\begin{itemize}
+					\item Sia U la collezione dei sottoinsiemi, si verifica dunque  la definizione di $\sigma$-algebra: $Y\in U$ dato che $f^{-1}(Y)=X$\\
+					Sia $E\subseteq Y $ , se $E\in U$ l'obiettivo è mostrare che $f^{-1}(E^C) \in U$: dato che $f^{-1}(E)\in \mathscr{M} \implies X/ f^{-1}(E)=f^{-1}(Y/E)=E^XC\in \mathscr{M}$.\\
+					Sia $E_i \in U \forall i \in \mathbb{N}$ l'obiettivo è mostrare che $\bigcup_{i\in \mathbb{N}}E_i \in U$. ma dato che  $ f^{-1}(E_i)\in \mathscr{M} \forall i \in \mathbb{N} \implies \bigcup_{i\in \mathbb{N}}E_i \in \mathscr{M} \implies f^{-1}( \bigcup_{i\in \mathbb{N}}E_i )\in \mathscr{M}. $\\
+					
+					\item SI consideri U la collezione definita nel punto precendete, la misurabilità di $f$ implica che U contiene tutti gli aperti di $\tau$, ma dato che U è anche una $\sigma$-algebra per il punto precendere, si ha che deve necessariamente contenere la $\sigma$-algebra di Borel. Quindi dato un boreliano, questo verifica la tesi in quento appartente ad U.
+					
+					\item Sia U una collezione dei sottoinsiemi $ E \subseteq [-\infty,\infty]$ tali che $f^{-1}(E)\in \mathscr{M} $. Sia $a\in \mathbb{R}$, considero $\{a-\frac{1}{n} \}_n \to a $ successione. Dato che $[-\infty,a]=\bigcup_n]-\infty,a_n] = \bigcup_n [a_n, \infty[^C$ si ha	$] a-\frac{1}{n},\infty[\in U \ \forall n$. Dunque si può dedurre che questi intervalli aperti possono generare la $\sigma$-algebra dei boreliani: per ogni intervallo $(\alpha, \beta) = ]-\infty,\beta] \cap ]\alpha, \infty[$.
+					%% HO COSì DIMOSTRATO DA SX VERSO DX, IL VICEVERSA è OVVIO , LUI HA PERSINO ENU]NCIATO DIVERSO
+				\end{itemize}
+			\end{proof}
+			
+			
+			
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 \end{document}
