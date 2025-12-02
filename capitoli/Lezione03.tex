@@ -2,5 +2,23 @@
 
 \begin{document}
 	
-	3 capitolo
+	\begin{theorem }
+		Sia $(X,\mathscr(M), \mu)$ uno spazio di misura, sia $f_n$ una successione di funzioni tale che $f_n : X \to [0,\infty]$ misurabili $ \forall n \in \N$, allora $ \sum_{n=1}^\infty \int_X f_n(x) \ d\mu = \int_X  \sum_{n=1}^\infty f_n(x) \ d\mu  $  .
+	\end{theorem }
+	
+	\begin{proof}
+		L'asserto è immediata conseguenza del teorema di convergenza monotona: considero $s_n (x) \coloneq \sum_{k=1}^n f_k(x)$ successione misurabile e monotona rispetto a n, applicando il teorema di convergenza monotona $\lim_n \int_X  \sum_{k=1}^n f_k(x) \ d\mu = \lim_n \int_X s_n(x) \ d\mu = \int_X lim_n s_n(x) \ d\mu = \int_X  \sum_{n=1}^\infty \int_X f_n(x) $.
+	\end{proof}
+	
+	\begin{theorem} [Lemma di Fatou]
+		Sia $(X,\mathscr(M), \mu)$ uno spazio di misura, sia $f_n$ una successione di funzioni tale che $f_n : X \to [0,\infty]$ misurabili $ \forall n \in \N$, allora $\lim inf_n \int_X f_n(x) \ d\mu \geq \int_X lim inf_n f_n(x) \ d\mu  $.
+	\end{theorem}
+	
+	\begin{proof}
+		Sia $ g_n(x) = inf_{k\geq n} f_k(x)$, dunque $ g_n (x) \leq f_n(x) $, si ha che $\lim_n inf f_n(x)= \lim_n g_n(x)= sup_n g_n(x)$ dato che $g_n(x) \geq 0 $ crescente in n . Quindi, per il teorema di convergenza monotona si ha che: $ \lim_n \int_X g_n (x) \ d\mu = \int_X \lim_n g_n (x) \ d\mu $, ma da una parte $\int_X g_n(x) \ d\mu = \int_X \lim inf_n f_n(x) \ d\mu $, mentre d'altra parte( dato che se il limite di una successione esiste coincide con il lim inf ) $ \lim_n \int_X g_n(x) \ d\mu =  \lim inf_n \int_X g_n(x \ d\mu ) \geq \lim_n inf \int_X f_n (x) \ d\mu $.
+	\end{proof}
+	
+	
+	
+	
 \end{document}
