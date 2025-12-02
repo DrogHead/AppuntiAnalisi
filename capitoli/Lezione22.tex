@@ -1,0 +1,94 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	\begin{theorem}[Hahn--Banach]
+		Sia $V$ uno spazio vettoriale normato, $U\subseteq V$ un sottospazio vettoriale, e sia $\varphi : U \to \R$ un funzionale lineare limitato. Allora esiste un'estensione $\psi :V \to V$ di $\varphi$ (ossia $\psi$ funzionale lineare limitato, e $\restr{\psi}{U}=\varphi$) che ne preserva la norma.
+	\end{theorem}
+	
+	Per la dimostrazione abbiamo bisogno del seguente lemma di estensione.
+	
+	\begin{lemma}
+		Sia $V$ uno spazio vettoriale normato, $U\subseteq V$ un sottospazio vettoriale, e sia $\psi : U \to \R$ un funzionale lineare limitato. Se $h\in V\setminus U$, allora si può estendere $\psi$ preservando la norma sul sottospazio vettoriale
+		\begin{equation*}
+			U_h = \{u+\beta h \,\vert\, u\in U, \beta\in\R \}
+		\end{equation*}
+	\end{lemma}
+	\begin{proof}
+		Per definire un'estensione $\varphi$ di $\psi$ è sufficiente definire $\varphi(h)$ e poi procedere per linearità. Scegliamo quindi $\varphi(h)=c$ in modo da preservare la norma, ossia in modo tale che $\abs{\varphi(w)}\leq\norm{\psi}\norm{w}$ per ogni $w\in U_h$, ossia:
+		\begin{equation*}
+			\abs{\varphi(w)} = \abs{\psi(u+\alpha h)} \leq \norm{\psi} \norm{u+\alpha h}
+		\end{equation*}
+		scegliendo $\alpha = 1$ si trova:
+		\begin{equation*}
+			\abs{\varphi(u+h)} = \abs{\psi(u)+c} \leq \norm{\psi} \norm{u+h}			
+		\end{equation*}
+		ed esplicitando il valore assoluto:
+		\begin{equation*}
+			-\psi(u) - \norm{\psi} \norm{u+h} \leq c \leq -\psi(u) + \norm{\psi} \norm{u+h}
+		\end{equation*}
+		Vogliamo far vedere che per ogni scelta di $u\in U$ riusciamo a trovare $c$, la tesi si ottiene passando all'estremo superiore al primo membro e all'estremo inferiore al secondo membro:
+		\begin{align*}
+			-\psi(v) - \norm{\psi}\norm{v+h} &= -\psi(u) - \psi(v-u) - \norm{\psi}\norm{v+h}\\
+			&\leq -\psi(u) + \norm{\psi}\norm{v-u} - \norm{\psi}\norm{v+h} \\
+			&\leq -\psi(u) + \norm{\psi}\norm{v+h} + \norm{\psi}\norm{u+h} - \norm{\psi}\norm{v+h} \\
+			&= -\psi(u) + \norm{\psi}\norm{g+h}
+		\end{align*}
+	\end{proof}
+	
+	Il problema di applicare questo lemma è che non si può utilizzare, da solo, in spazi con base di Hamel numerabile. Ci aiutiamo quindi con il lemma di Zorn.
+	
+	\begin{oss}
+		Siano $V,W$ spazi normati e $T :V\to W$ un operatore. Dal teorema del grafico chiuso si trovano le seguenti:
+		\begin{enumerate}
+			\item $T$ è lineare se e solo se $g(T)\subseteq V\times W$ è un sottospazio vettoriale
+			\item se $U\subseteq V$ sottospazio e $S : U\to W$ operatore, $T$ estensione di $S$ se e solo se $g(S)\subseteq g(T)$
+			\item se $T$ è lineare, $\norm{T}\leq c$ se e solo se $\norm{w}\leq c\norm{u}  \forall(u,w)\in g(T)$
+		\end{enumerate}
+	\end{oss}
+	
+	\begin{proof}[Dimostrazione del Teorema di Hahn--Banach]
+		Sia $\mathcal{A}$ la famiglia di tutti i sottoinsiemi $E\subseteq V\times\R$ tali che $E=g(\varphi)$ per qualche funzionale lineare $\varphi$ definito su un sottospazio di $V$, che $g(\psi)\subseteq g(\varphi)=E$, e che $\abs{\alpha}\leq\norm{\psi}\norm{u}$ per ogni $(u,\alpha)\in E$. Possiamo usare il lemma di Zorn su $\mathcal{A}$ per ottenere un elemento massimale. Applicando eventualmente il lemma di estensione si trova che il massimale coincide con tutto lo spazio.
+		
+		Se $\psi : U\to \C$, allora possiamo prendere la parte reale e la parte immaginaria, che già ne preservano la norma, ed entrambi rientrano nel caso reale quindi possiamo estenderli.
+		\begin{equation*}
+			\psi(f) = \Re\psi(f) + i\Im\psi(f) = \psi_1(f)+i\Im(i\psi(-if)) = \psi_1(f) - i\Re(\psi(if))
+		\end{equation*}
+		Quindi
+		\begin{equation*}
+			\psi(f)=\psi_1(f)-i\psi_1(if)
+		\end{equation*}
+		Estendiamo questo a $\varphi$ e troviamo la norma:
+		\begin{align*}
+			\abs{\varphi(f)}^2 &= \varphi(f)\overline{\varphi(f)} \\
+			&= \varphi(\overline{\varphi(f)}f) \\
+			&= \Re\varphi(\overline{\varphi(f)}f) \\
+			&= \varphi_1(\overline{\varphi(f)}f) \\
+			&\leq \norm{\psi}\norm{\overline{\varphi(f)}f}\\
+			&= \norm{\psi}\norm{f}\abs{\overline{\varphi(f)}}
+		\end{align*}
+		Semplificando e passando al sup si trova la tesi.
+	\end{proof}
+	
+	\begin{oss}
+		Esistono funzionali non limitati anche su spazi di Banach. Consideriamo una base di Hamel $\suc{u}{\alpha}{A}$ e ne prendiamo un sottoinsieme numerabile determinato dalla successione $\alpha_n$. Definiamo $\psi$ in modo che $\psi(u_{\alpha_n}) = n$ e che faccia $0$ sui restanti elementi. L'estremo superiore è in questo caso $+\infty$.
+	\end{oss}
+	
+	\begin{oss}
+		Nello spazio delle funzioni continue in $[0,1]$ derivabili in $0$, possiamo definire il funzionale $\varphi : f \mapsto f'(0)$ che non è limitato.
+	\end{oss}
+	
+	\begin{oss}
+		Nello spazio $\ell^\infty(\N)$ delle successioni limitate abbiamo il sottospazio $c_0(\N)$ delle successioni infinitesime. Se due successioni differiscono per un'infinitesima le diciamo equivalenti, e il quoziente $\ell^\infty/c_0$ è ancora di Banach, ma non sono noti funzionali lineari limitati.
+	\end{oss}
+	
+	\begin{oss}
+		Esempi con la delta di Dirac e con il limite.
+	\end{oss}
+	
+\end{document}
+
+
+
+
+

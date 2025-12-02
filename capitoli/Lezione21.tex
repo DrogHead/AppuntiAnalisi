@@ -23,13 +23,13 @@
 	\end{exercise}
 	\begin{proof}
 		Se p.a. esiste una famiglia $\suc{U}{n}{\N}$ di aperti di $\R$ tali che $\bigcap_{n\in\N}U_n=\Q$, consideriamo i loro complementi $A_n=U_n^C$, che sono chiusi. Allora
-		\begin{equation}
+		\begin{equation*}
 			\R\setminus\Q = \bigg(\bigcap_{n\in\N}U_n\bigg)^C = \bigcup_{n\in\N}U_n^C = \bigcup_{n\in\N}A_n
-		\end{equation}
+		\end{equation*}
 		Inoltre, l'interno di ogni $A_n$ è vuoto, dal momento che $\interno(A_n)\subseteq\interno(\R\setminus\Q)=\varnothing$. Sia $S\subseteq\R$ e consideriamo l'insieme $\R\setminus\overline{S}$, che riscriviamo come
-		\begin{equation}
+		\begin{equation*}
 			\R\setminus\overline{S} = \bigg( \bigcap_{C\supseteq_{\textup{chiuso}}S} C \bigg)^C = \bigcup_{C\supseteq_{\textup{chiuso}}S} C^C = \bigcap_{A\subseteq_{\textup{aperto}}S} A = \interno(\R\setminus S)
-		\end{equation}
+		\end{equation*}
 		Dal momento che $\overline{\Q}=\R$, troviamo che $\interno{(\R\setminus\Q)}=\R\setminus\overline{\Q}=\R\setminus\R=\varnothing$. Scriviamo quindi $\R$ come unione di $\Q=\{q_n\}_{n\in\N}$ e degli $A_n$, tutti con interno vuoto. Per il lemma di Baire, $\R$ avrebbe quindi parte interna vuota, che è assurdo.
 	\end{proof}
 	
@@ -45,12 +45,12 @@
 		Per assurdo, sia $X$ uno spazio di Banach a dimensione infinita con una base di Hamel numerabile $\suc{e}{n}{\N}$. Valgono le seguenti due proprietà
 		\begin{enumerate}
 			\item Se $Y$ è un sottospazio di $X$ a dimensione finita, allora $Y$ è chiuso
-			\item Se $Y$ è un sottospazio proprio di $X$, allora $\interno{(Y)}=$
+			\item Se $Y$ è un sottospazio proprio di $X$, allora $\interno{(Y)}=\varnothing$
 		\end{enumerate}
 		La prima è lasciata per esercizio. Vediamo la seconda. Se p.a. esiste $B_{\eps}(x_0)\subseteq Y$ allora per traslazione anche $B_{\eps}(0)\subseteq Y$. Quindi, per ogni $x\in X$, si ha
-		\begin{equation}
+		\begin{equation*}
 			\frac{\eps x}{2\abs{x}}\in Y
-		\end{equation}
+		\end{equation*}
 		e per linearità si troverebbe $x\in Y$, ossia che $X=Y$, assurdo. Definiamo ora gli insiemi chiusi a parte interna vuota $X_n=\linspan(e_1\dots e_n)$ da cui abbiamo $X=\bigcup_{n\in\N}X_n$. Allora $X$ dovrebbe avere parte interna vuota, che è assurdo.
 	\end{proof}
 	
@@ -66,9 +66,9 @@
 	\end{theorem}
 	\begin{proof}
 		Per $f\in L^1$ sappiamo che
-		\begin{equation}
+		\begin{equation*}
 			\widehat{f}(n) = \frac1{2\pi}\int_{-\pi}^{\pi}f(t)e^{-int}dt \,,
-		\end{equation}
+		\end{equation*}
 		quindi ritroviamo banalmente la linearità dalle proprietà dell'integrale. Proviamo la limitatezza:
 		\begin{align*}
 			\norm{\Phi f} 
@@ -83,9 +83,9 @@
 			\int_{-\pi}^{\pi} f(t) \sum_{\abs{n}\leq N} c_n e^{-int} dt = 0 \,,
 		\end{equation}
 		e per densità si estende questa uguaglianza dai polinomi trigonometrici alle funzioni continue. Per il teorema di Lusin, se $g\in L^1$ e il suo modulo è minore o uguale a $1$, allora $g$ è limite puntuale quasi ovunque di funzioni $g_n\in C_c$ con modulo minore o uguale a $1$. Possiamo quindi estendere l'uguaglianza anche alle funzioni caratteristiche (che hanno modulo $\leq 1$). Allora, per ogni insieme $E$ misurabile si ha
-		\begin{equation}
+		\begin{equation*}
 			\int_E f = 0 \,,
-		\end{equation}
+		\end{equation*}
 		ossia $f=0$ quasi ovunque, che è lo zero dello spazio $L^1$ (ricordiamo che è quozientato rispetto alla relazione di equivalenza q.o.). Se $\Phi$ fosse suriettiva allora sarebbe biettiva, e quindi esisterebbe $\delta>0$ tale che, per ogni $f\in L^1$, si ha $\norm{\Phi f}\geq \delta\norm{f}$. Consideriamo i nuclei di Dirichlet $D_n(t)=\sum_{\abs{n}\leq N} e^{int}$, per cui vale $norm{D_n}_1 = 2n+1$, e $\norm{\widehat{D_n}}_\infty = 1$. Per $n\to\infty$ si troverebbe quindi che $1\geq\delta(+\infty)$ che ovviamente è assurdo.
 	\end{proof}
 	
