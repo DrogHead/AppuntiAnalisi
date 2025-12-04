@@ -1,0 +1,92 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	
+	\begin{oss}
+		Scriviamo due versioni equivalenti del lemma di Baire:
+		\begin{enumerate}
+			\item Sia $X$ uno spazio metrico completo e $\suc{X}{n}{\N}$ una famiglia numerabile di aperti densi in $X$. Allora $\bigcap_{n\in\N} X_n$ è denso in $X$.
+			\item Sia $X$ uno spazio metrico completo e $\suc{X}{n}{\N}$ una famiglia numerabile di chiusi a interno vuoto. Allora $\bigcup_{n\in\N} X_n$ ha interno vuoto.
+		\end{enumerate}
+	\end{oss}
+	
+	\begin{exercise}
+		Sia $(X,d)$ uno spazio metrico completo numerabile. Si dimostri che $X$ ha almeno un punto isolato.
+	\end{exercise}
+	\begin{proof}
+		Possiamo scrivere $X$ come unione dei suoi singoletti $\{x_n\}$. Questi sono insiemi chiusi, e hanno parte interna vuota. Tuttavia, essendo $X$ aperto, la sua parte interna è $X$ stesso. Quindi non siamo nelle ipotesi del lemma di Baire, ossia esiste $\{x_n\}$ a parte interna non vuota, ossia che contiene un aperto non vuoto. Allora $A=\{x_n\}$ e quindi questo è un punto isolato.
+	\end{proof}
+	
+	\begin{exercise}
+		L'insieme dei razionali $\Q$ non si può scrivere come intersezione numerabile di aperti di $\R$. 
+	\end{exercise}
+	\begin{proof}
+		Se p.a. esiste una famiglia $\suc{U}{n}{\N}$ di aperti di $\R$ tali che $\bigcap_{n\in\N}U_n=\Q$, consideriamo i loro complementi $A_n=U_n^C$, che sono chiusi. Allora
+		\begin{equation*}
+			\R\setminus\Q = \bigg(\bigcap_{n\in\N}U_n\bigg)^C = \bigcup_{n\in\N}U_n^C = \bigcup_{n\in\N}A_n
+		\end{equation*}
+		Inoltre, l'interno di ogni $A_n$ è vuoto, dal momento che $\interno(A_n)\subseteq\interno(\R\setminus\Q)=\varnothing$. Sia $S\subseteq\R$ e consideriamo l'insieme $\R\setminus\overline{S}$, che riscriviamo come
+		\begin{equation*}
+			\R\setminus\overline{S} = \bigg( \bigcap_{C\supseteq_{\textup{chiuso}}S} C \bigg)^C = \bigcup_{C\supseteq_{\textup{chiuso}}S} C^C = \bigcap_{A\subseteq_{\textup{aperto}}S} A = \interno(\R\setminus S)
+		\end{equation*}
+		Dal momento che $\overline{\Q}=\R$, troviamo che $\interno{(\R\setminus\Q)}=\R\setminus\overline{\Q}=\R\setminus\R=\varnothing$. Scriviamo quindi $\R$ come unione di $\Q=\{q_n\}_{n\in\N}$ e degli $A_n$, tutti con interno vuoto. Per il lemma di Baire, $\R$ avrebbe quindi parte interna vuota, che è assurdo.
+	\end{proof}
+	
+	\begin{exercise}
+		Dato uno spazio di Banach $X$, o ha dimensione finita oppure ammette una base di Hamel non numerabile.
+	\end{exercise}
+	
+	\begin{nota}
+		Ricordiamo la definizione: dato uno spazio di Banach $X$, si dice base di Hamel un sottoinsieme $B\subseteq X$ linearmente indipendente che genera tutto lo spazio, ossia tale che $\forall v\in X \,\, \exists x_1\dots x_n\in B \,, \alpha_1\dots \alpha_n\in\R$ tali che $v=\alpha_1x_1+\cdots+\alpha_n x_n$.
+	\end{nota}
+	
+	\begin{proof}
+		Per assurdo, sia $X$ uno spazio di Banach a dimensione infinita con una base di Hamel numerabile $\suc{e}{n}{\N}$. Valgono le seguenti due proprietà
+		\begin{enumerate}
+			\item Se $Y$ è un sottospazio di $X$ a dimensione finita, allora $Y$ è chiuso
+			\item Se $Y$ è un sottospazio proprio di $X$, allora $\interno{(Y)}=\varnothing$
+		\end{enumerate}
+		La prima è lasciata per esercizio. Vediamo la seconda. Se p.a. esiste $B_{\eps}(x_0)\subseteq Y$ allora per traslazione anche $B_{\eps}(0)\subseteq Y$. Quindi, per ogni $x\in X$, si ha
+		\begin{equation*}
+			\frac{\eps x}{2\abs{x}}\in Y
+		\end{equation*}
+		e per linearità si troverebbe $x\in Y$, ossia che $X=Y$, assurdo. Definiamo ora gli insiemi chiusi a parte interna vuota $X_n=\linspan(e_1\dots e_n)$ da cui abbiamo $X=\bigcup_{n\in\N}X_n$. Allora $X$ dovrebbe avere parte interna vuota, che è assurdo.
+	\end{proof}
+	
+	\begin{exercise}
+		Non esiste alcuna norma nello spazio dei polinomi su un intervallo $(a,b)$ che possa renderlo completo.
+	\end{exercise}
+	\begin{proof}
+		Sia $\mathcal{P}$ lo spazio dei polinomi su $(a,b)$, che non è finito--dimensionale. Il sottoinsieme $B=\{x^n \,\vert\, n\in\N\}$ è una base di Hamel numerabile, quindi per l'esercizio precedente $\mathcal{P}$ non può essere uno spazio di Banach.
+	\end{proof}
+	
+	\begin{theorem}
+		L'operatore lineare e limitato $\Phi : f\in L^1_T \mapsto \widehat{f} \in c_0$ è iniettivo ma non suriettivo.
+	\end{theorem}
+	\begin{proof}
+		Per $f\in L^1$ sappiamo che
+		\begin{equation*}
+			\widehat{f}(n) = \frac1{2\pi}\int_{-\pi}^{\pi}f(t)e^{-int}dt \,,
+		\end{equation*}
+		quindi ritroviamo banalmente la linearità dalle proprietà dell'integrale. Proviamo la limitatezza:
+		\begin{align*}
+			\norm{\Phi f} 
+			&= \sup_{n\in\N} \abs{\widehat{f}(n)} \\
+			&= \sup_{n\in\N} \bigg\vert \frac1{2\pi}\int_{-\pi}^{\pi}f(t)e^{-int}dt \bigg\vert \\
+			&\leq \sup_{n\in\N} \frac1{2\pi} \int_{-\pi}^{\pi} \abs{f(t)} dt \\
+			&= \sup_{n\in\N} \frac1{2\pi} \norm{f}_1 \\
+			&= \frac1{2\pi} \norm{f}_1 \,.
+		\end{align*}
+		Per l'iniettività andiamo a studiare il nucleo $\ker{\Phi}$. Se $\Phi f = 0$, allora per ogni polinomio trigonometrico $g$ si ha
+		\begin{equation}
+			\int_{-\pi}^{\pi} f(t) \sum_{\abs{n}\leq N} c_n e^{-int} dt = 0 \,,
+		\end{equation}
+		e per densità si estende questa uguaglianza dai polinomi trigonometrici alle funzioni continue. Per il teorema di Lusin, se $g\in L^1$ e il suo modulo è minore o uguale a $1$, allora $g$ è limite puntuale quasi ovunque di funzioni $g_n\in C_c$ con modulo minore o uguale a $1$. Possiamo quindi estendere l'uguaglianza anche alle funzioni caratteristiche (che hanno modulo $\leq 1$). Allora, per ogni insieme $E$ misurabile si ha
+		\begin{equation*}
+			\int_E f = 0 \,,
+		\end{equation*}
+		ossia $f=0$ quasi ovunque, che è lo zero dello spazio $L^1$ (ricordiamo che è quozientato rispetto alla relazione di equivalenza q.o.). Se $\Phi$ fosse suriettiva allora sarebbe biettiva, e quindi esisterebbe $\delta>0$ tale che, per ogni $f\in L^1$, si ha $\norm{\Phi f}\geq \delta\norm{f}$. Consideriamo i nuclei di Dirichlet $D_n(t)=\sum_{\abs{n}\leq N} e^{int}$, per cui vale $norm{D_n}_1 = 2n+1$, e $\norm{\widehat{D_n}}_\infty = 1$. Per $n\to\infty$ si troverebbe quindi che $1\geq\delta(+\infty)$ che ovviamente è assurdo.
+	\end{proof}
+	
+\end{document}

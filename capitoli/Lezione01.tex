@@ -67,7 +67,7 @@
 			Siano $ (X,\tau _X), (Y,\tau _Y)$ e $ (Z,\tau_Z)$ spazi topologici, e siano $f: X\to Y$ e $g:Y\to Z$ funzioni, se $f$ e $g$ sono continue allora $g \circ f$ è continua
 		\end{prop}
 		\begin{proof}
-			Sia $U\in \tau_Z$, si vuole mostrare  che $ (g \circ f)^(-1) (U) \in \tau_X$. Data la continuità di $g$ si ha che $g^(-1)(U) \in \tau_Y$, dunque per la continuità di $f$ si ha $f^(-1)(g^(-1)(U)) = (g \circ f)^(-1) (U) \in \tau_X$.
+			Sia $U\in \tau_Z$, si vuole mostrare  che $ (g \circ f)^{-1} (U) \in \tau_X$. Data la continuità di $g$ si ha che $g^{-1}(U) \in \tau_Y$, dunque per la continuità di $f$ si ha $f^{-1}(g^{-1}(U)) = (g \circ f)^{-1} (U) \in \tau_X$.
 		\end{proof}
 		
 		\begin{prop}[Composizione di funzioni su spazi topologici e misurabili]
@@ -129,7 +129,7 @@
 			
 			\begin{itemize}
 				\item $\mathscr{M}^*$ è chiusa per completamento? Sia $A \in \mathscr{M} \implies A\in \mathscr{M}^* \forall \mathscr{M} \in U \implies A^C \in \mathscr{M} \forall \mathscr{M} \in U \implies A^C \in \bigcap_{\mathscr{M}\in U} \mathscr{M}= \mathscr{M}^*$.
-				\item $\mathscr{M}$ è chiusa per uninione numerabile? Sia $\{A_i \}_{i\in \mathbb{N} \in \\mathscr{M}^* \implies A_i \in \mathscr{M} \forall \mathscr{M}\in U \forall i\in \mathbb{N} \implies \bigcup_{i\in\mathbb{N}}A_i \in \bigcap_{\mathscr{M}\in U } \mathscr{M}= \mathscr{M}^* .$
+				\item $\mathscr{M}$ è chiusa per uninione numerabile? Sia $\{A_i \}_{i\in \mathbb{N}} \in \mathscr{M}^* \implies A_i \in \mathscr{M} \forall \mathscr{M}\in U \forall i\in \mathbb{N} \implies \bigcup_{i\in\mathbb{N}}A_i \in \bigcap_{\mathscr{M}\in U } \mathscr{M}= \mathscr{M}^*$
 					\item $X \in \mathscr{M}\in U$ ? Ovvio.
 				\end{itemize}
 			\end{proof}
