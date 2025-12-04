@@ -74,21 +74,21 @@
 
 % Numerazione distinta
 \theoremstyle{teoremi}
-\newtheorem{theorem}{Teorema}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{corol}{Corollario}[section]
-\newtheorem{prop}{Proposizione}[section]
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corol}{Corollario}[chapter]
+\newtheorem{prop}{Proposizione}[chapter]
 
 \theoremstyle{definizioni}
-\newtheorem{definition}{Definizione}[section]
+\newtheorem{definition}{Definizione}[chapter]
 
 \theoremstyle{esempi}
-\newtheorem{example}{Esempio}[section]
-\newtheorem{exercise}{Esercizio}[section]
+\newtheorem{example}{Esempio}[chapter]
+\newtheorem{exercise}{Esercizio}[chapter]
 
 \theoremstyle{osservazioni}
-\newtheorem{oss}{Osservazione}[section]
-\newtheorem{nota}{Nota}[section]
+\newtheorem{oss}{Osservazione}[chapter]
+\newtheorem{nota}{Nota}[chapter]
 
 
 % LETTERE
@@ -163,6 +163,10 @@
 % INTERNO
 \DeclareMathOperator{\interno}{int}
 \DeclareMathOperator{\linspan}{span}
+
+% DUALE
+\newcommand{\dual}[1]{{#1}^{\star}}
+\newcommand{\ddual}[1]{{#1}^{\star\star}}
 
 
 \title{Istituzioni di Analisi Matematica}
