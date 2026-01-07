@@ -1,0 +1,69 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	\begin{theorem}
+		Ad ogni funzionale lineare limitato di $C_0(X)$, con $X$ spazio di Hausdorff localmente compatto, corrisponde una e una sola misura di Borel regolare $\mu$ tale che
+		\begin{equation}
+			\phi(f) = \int_X f d\mu
+		\end{equation}
+		per ogni $f$. Inoltre, $\norm{\phi}=\abs{\mu}(X)$.
+	\end{theorem}
+	\begin{proof}
+		Mostriamo prima l'unicità. Siano $\mu_1$, $\mu_2$ misure che verificano la tesi. Detto $\mu=\mu_1-\mu_2$ si ha che per ogni $f$
+		\begin{equation}
+			\int_X f d\mu = \int_X f d\mu_1 - \int_X f d\mu_2 = 0
+		\end{equation}
+		Per il teorema di Radon--Nikodym esiste $h$ boreliana, a modulo quasi ovunque unitario, tale che $d\mu=hd\abs{\mu}$. Sia $\suc{f}{n}{\N}$ in $C_0(X)$. Mostriamo che
+		\begin{equation}
+			\int_X(\overline{h}-f_n)h d\abs{\mu} = \int_X \abs{h}^2-f_nhd\mu = \mu(X)-\int_X f_n d\mu = \abs{\mu}(X)
+		\end{equation}
+		Per Cauchy--Schwarz abbiamo
+		\begin{equation}
+			\abs{\mu}(X) \leq \int_X(\overline{h}-f_n) d\abs{\mu}
+		\end{equation}
+		Per la densità delle continue a supporto compatto in $L^1$ scelgo $f_n$ tale che il secondo membro è infinitesimo, da cui $\abs{\mu}(X)=0$, ossia $\mu=0$.
+		
+		Dimostriamo il teorema. Sia $\phi$ un funzionale lineare limitato di $C_0(X)$, di norma $1$. Vogliamo costruire un altro funzionale positivo $\Lambda$ sulle gunzioni di $C_c$ tale che $\abs{\phi f}\leq \Lambda\abs{f} \leq \norm{f}$. Per il teorema di Riesz associamo a $\Lambda$ una misura di Borel $\lambda$, che è regolare se $\lambda(X)<+\infty$.
+		\begin{equation}
+			\lambda(X) = \sup\{\Lambda f \,\vert\, 0<f\leq 1, f\in C_c\}
+		\end{equation}
+		Per definizione di $\Lambda$, si ha $\abs{\Lambda f}\leq 1$ se $\norm{f}\leq 1$, e quindi si trova $\lambda(X)\leq 1$. Sempre per definizione di $\Lambda$ abbiamo che
+		\begin{equation}
+			\abs{\phi(f)} \leq \Lambda(\abs{f}) = \int_X \abs{f} d\lambda = \norm{f}_{L^1(\lambda)}
+		\end{equation}
+		Allora abbiamo un funzionale lineare in $C_c$ rispetto alla norma $L^1(\lambda)$ con norma $\leq{1}$. Allora esiste un'estensione si $\phi$ che mantiene la norma ad un funzionale lineare di $L^1(\lambda)$, ossia esiste una $g$ boreliana a modulo quasi ovunque minore di $1$ e tale che:
+		\begin{equation}
+			\phi(f)=\int_X fgd\lambda
+		\end{equation}
+		per densità si estende anche alle $f\in C_0$. Inoltre
+		\begin{equation}
+			\phi(f) = \int_X fgd\lambda \implies \abs{\phi(f)} \leq \int_X \abs{f}\abs{g}d\lambda \leq \int_X \abs{g}d\lambda \leq \int_X d\lambda = \lambda(X)
+		\end{equation}
+		??? $\lambda(X)\geq 1$ ??? e quindi $\lambda(X)=1$ e $\abs{g}=1$. Concludiamo che $d\abs{\mu}=\abs{g}d\lambda = d\lambda$ e come conseguenza di Radon--Nikodym abbiamo $\abs{\mu}(X)=\lambda(X)=1=\norm{\phi}$.
+		
+		Resta mostrare che esiste quella $\Lambda$ che abbiamo usato. Sia $f\in C_c^+(X)$ e definiamo:
+		\begin{equation}
+			\Lambda f=\sup\{\abs{\phi(h)} \,\vert\, h\in C_c(X), \abs{h}\leq f\}
+		\end{equation}
+		Da cui troviamo che $\Lambda f\geq 0$, monotona crescente e trasparente agli scalari. Inoltre $\Lambda$ è lineare. Fissati $f,g\in C_c^+$ trovo $h_1,h_2$ con norma minore uguale rispettivamente di $f$ e di $g$ con $\Lambda f\leq \abs{\phi(h_1)}+\eps$ e $\Lambda g \leq \abs{\phi(h_2)} + \eps$ da cui
+		\begin{align}
+			\Lambda f + \Lambda g &\leq \abs{\phi(h_1)} + \abs{\phi(h_2)} + 2\eps \\
+			&= \abs{\phi(\alpha_1 h_1) + \phi(\alpha_2 h_2)} + 2\eps \\
+			&\leq \Lambda(\abs{h_1} + \abs{h_2}) + 2\eps \\
+			&\leq \Lambda(f+g) + 2\eps
+		\end{align}
+		Per l'altra scegliamo $h$ tale che $\abs{h}\leq f+g$ e chiamiamo $V$ l'insieme in cui $f+g>0$. Definiamo $h_1,h_2$ su $V$ come
+		\begin{equation}
+			h_1 = \frac{fh}{f+g} \qquad h_2 = \frac{gh}{f+g}
+		\end{equation}
+		e fuori da $V$ fanno $0$ entrambe. Si vede poi che $h=h_1+h_2$ e che $h_1,h_2\in C_c$ perché il loro supporto è contenuto in quello di $h$. Allora:
+		\begin{equation}
+			\abs{\phi(h)} = \abs{\phi(h_1) + \phi(h_2)} \leq \abs{\phi(h_1)} + \abs{\phi(h_2)} \leq \Lambda f + \Lambda g
+		\end{equation}
+		Manca solo da estendere il risultato a tutto $C_c$, che in realtà viene dal fatto che $f=f^+ - f^-$ e di conseguenza $2f^+ =\abs{f}+f$ e $2f^-=\abs{f}-f$ e quindi usare il risultato precedente, da cui $\Lambda f=\Lambda f^+ - \Lambda f^-$.  
+		
+		
+	\end{proof}
+	
+\end{document}

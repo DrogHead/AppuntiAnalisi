@@ -2,21 +2,20 @@
 
 \begin{document}
 	% lezione del 18/09
-	\begin{oss} Considerando una successione $\{a_n\}_{n\in \N}\subset \R $ si ha  che $lim\ sup a_n = lim_n \ sup_{k\geq n} a_k = inf_n sup_{k\geq n} a_k = inf_n g_n$ fissando la successione decrescente $ g_n \coloneq sup_{k\geq n} a_k$.\\
-	Analogamente $ lim \ inf_n \ a_n= lim_n inf_{k \geq n} a_n = sup inf_{k \geq n} a_n = sup g_n $ fissando la successione crescente $g_n \coloneq inf_{k \geq n} a_n$.
+	\begin{oss}
+		Considerando una successione $\{a_n\}_{n\in \N}\subset \R $ si ha  che $lim\ sup a_n = lim_n \ sup_{k\geq n} a_k = inf_n sup_{k\geq n} a_k = inf_n g_n$ fissando la successione decrescente $ g_n \coloneq sup_{k\geq n} a_k$.\\
+		Analogamente $ lim \ inf_n \ a_n= lim_n inf_{k \geq n} a_n = sup inf_{k \geq n} a_n = sup g_n $ fissando la successione crescente $g_n \coloneq inf_{k \geq n} a_n$.
 	\end{oss}
 	
-	\begin{prop} [Misurabilità di lim inf e lim sup]
+	\begin{prop}[Misurabilità di lim inf e lim sup]
 		Sia $(X,\mathscr{M}) $ spazio misurabile e	$\{f_n\}_{n\in \N}$ un successione di funzioni misurabili $f_n(x): X \to [-\infty. \infty]$. Allora $lim \ sup_n f_n(x)$ e  $lim \ inf_n f_n(x)$ sono misurabili.
 	\end{prop}
-	
 	\begin{proof}
 		Si dimostra prima per il lim sup , l'idea è che sfruttando l'osservazione preliminare si ha che $lim_n sup_{k \geq n} f_n(x) = inf_n \ sup _{k\geq n} f_k(x) $, dunque se si dimostra che l'inf e il sup di successioni misurabili sono misurabili si ottiene l'asserto, in particolare  dato il punto 3 dell'ultima porposizione della lezione precedente, bisogna mostrare che l'antimmagine di $(a, \infty)$ è misurabile . \\
-		Prima di tutto biogna verificare che $ z(x ) \coloneq sup_n f_n(x)$  è misurabile, quindi  che $z^{-1}([a, \infty]) \in \mathscr{M}$ : $ z^{-1} ([a,\infty])= z^{-1 }(\{  x \in (a,\infty) \})= \{ x\ in \R | z(x) \in (a,\infty)\}= \bigcup_n f^{-1}_n ((a,\infty))$ ma essendo la successione misurabile per ipotesi si ha che è misurabile l'antimmagine di $f$, e l'unione di misurabili è misurabile. \\
+		Prima di tutto biogna verificare che $ z(x ) \coloneq sup_n f_n(x)$  è misurabile, quindi  che $z^{-1}([a, \infty]) \in \mathscr{M}$ : $ z^{-1} ([a,\infty])= z^{-1}(\{  x \in (a,\infty) \})= \{ x\ in \R | z(x) \in (a,\infty)\}= \bigcup_n f^{-1}_n ((a,\infty))$ ma essendo la successione misurabile per ipotesi si ha che è misurabile l'antimmagine di $f$, e l'unione di misurabili è misurabile. \\
 		Per quanto riguarda l'inf, analogamnete a come fatto prima bisogna verificare che, fissata $z(x) \coloneq inf_n \ f(_n (x)) $, si ha $ z^{-1}((a,\infty)) \in \mathscr{M}$: con gli stessi passaggi di prima si ottiene $z^{-1}((a,\infty))=  \{ x \in \R | z(x) \in (a, \infty)\}=  \bigcup_n f^{-1}_n ((a,\infty))$  che è misurabile. \\
 		Così si ottiene l'asserto $lim \ sup_n f_n(x)$ .\\
 		Per quanto riguarda il $lim \ inf_n f_n(x)$, data l'osservazione precedente si ha che  $lim \ inf_n f_n(x)= sup_n \ inf_{k\geq n} f_n(x)$ , ma è appena stato dimostrato che l'inf e il sup di successioni misurabili è misurabile, dunque l'asserto è immedato.
-		
 	\end{proof}
 	
 	\begin{corol}
@@ -26,30 +25,28 @@
 		Dato che esiste il limite questo è uguale al lim inf e al lim sup , che sono misurabili per la proposizione precedente.
 	\end{proof}
 	
-	\paragraph{Esercizio } Sia $\{f_n(x)\}_{n\in \N}$ una successione di funzioni misurabili, sia $A \subseteq X$  l'insieme di convergenza $\implies \ A \in \mathscr{M}$.
+	\begin{exercise}
+		Sia $\{f_n(x)\}_{n\in \N}$ una successione di funzioni misurabili, sia $A \subseteq X$  l'insieme di convergenza $\implies \ A \in \mathscr{M}$.
+	\end{exercise}
 	
 	\begin{oss}
 		Nel corso considereremo vero, anche se non lo dimostriamo, che somma e prodotto di funzioni misurabili è misurabile e massimo e minimo di funzioni misurabili è misurabile. Ne è immediata conseguenza che $ f^+ = max \{f,0\}$ e $f^-= min \{-f,0\}$ sono  misurabili , e che quindi lo è anche $\abs{f} = f^+ +f^- $.\\
 		Ma se $|\abs{f}$ è misurabile, allora lo è anche $f$? In generale no, ad esempio se $ \exists A \subset X $ non misurabile , allora $X / A $ è non misurabile, dunque se $f=\rchi_A -\rchi_{A^C}$ non è misurabile, mentre $\abs{f} =1$ ed è misurabile.
-		
 	\end{oss}	
 	
 	
 	\section{Funzioni semplici}
-	 \begin{definition}[Funzione semplice]
-	 	Sia $(X,\mathscr{M})$ e sia $s(x)$ una funzione, si dice semplice se $\exists \alpha_1, \dots , \alpha_n \in \R$ e in $ A_1, \dots , A_n \mathscr{M} | A_i \cap A_j = \emptyset \forall i\neq j$ tali che $ s(x)= \sum^n_{i=1} \alpha_i \ \rchi_{A_i}(x)$.
-	 \end{definition}
+	
+	\begin{definition}[Funzione semplice]
+		Sia $(X,\mathscr{M})$ e sia $s(x)$ una funzione, si dice semplice se $\exists \alpha_1, \dots , \alpha_n \in \R$ e in $ A_1, \dots , A_n \mathscr{M} | A_i \cap A_j = \emptyset \forall i\neq j$ tali che $ s(x)= \sum^n_{i=1} \alpha_i \ \rchi_{A_i}(x)$.
+	\end{definition}
 	
 	
 	\begin{theorem}
-		Sia $(X,\mathscr{M)$ e $f: X \to [0,\infty)$ funzione misurabile, allora $\exists \{f_n(x)\} $ successione monotona crescente di funzioni semplici positive tali che $f_n(x) \xrightarrow{n\to \infty}f(x)$ .
+		Sia $(X,\mathscr{M})$ e $f: X \to [0,\infty)$ funzione misurabile, allora $\exists \{f_n(x)\}$ successione monotona crescente di funzioni semplici positive tali che $f_n(x) \to f(x)$.
 	\end{theorem}
-	
 	\begin{proof}
-		Dividiamo in step la dimostrazione . 
-		
-		%%  DIMOSTRAZIONE DA RUBARE AD AN.MA. III
-		
+		Dividiamo in step la dimostrazione.
 	\end{proof}
 	
 	\begin{definition}[Misura]
@@ -74,8 +71,7 @@
 		\begin{enumerate}
 			\item Sia E un insieme misurabile , $ \mu (E) = \mu ( E\cup \emptyset )= \mu (E) + \mu (emptyset)\ \implies \mu( \emptyset )= 0$.
 			\item Siano gli insiemi A e B tali che $A\subseteq B$, si ha che $B = A \cup (B/ A)$ dunque applicando al misura $\mu(B)=\mu(A)+\mu(B/A)\geq \mu (A)$.
-			\item Dato che $A_i \subset \bigcup_{i=1}^infty $ , applicando il punto precendete è immediato l'asserto. \\
-					Considerando la successione $ C_1= A_1, \  C_2 = A_2/A_1, \dots , C_n= A_n /A_{n-1} $ tale che $C_i \cap C_j = \empty \ forall i\ni j $ e si ha che $ \bicap_i A_i = \bigcap_i C_i$. Dunque $\mu(\bigcap_{i=1}^\infty A_i) = \mu (\bigcap_{i=1}^\infty C_i) = \sum_{i=1}^\infty _i  = lim_n \sum_{i=1}^n \mu(C_i)= lim_n \mu (\bigcap_{i=1}^n C_i) = lim_n \mu (\bigcap_{i=1}^n A_i)$.
+			\item Dato che $A_i \subset \bigcup_{i=1}^\infty $ , applicando il punto precedente è immediato l'asserto. Considerando la successione $ C_1= A_1, \  C_2 = A_2\setminus A_1, \dots , C_n= A_n \setminus A_{n-1} $ tale che $C_i \cap C_j = \empty \forall i\ne j $ e si ha che $ \bigcap_i A_i = \bigcap_i C_i$. Dunque $\mu(\bigcap_{i=1}^\infty A_i) = \mu (\bigcap_{i=1}^\infty C_i) = \sum_{i=1}^\infty  = lim_n \sum_{i=1}^n \mu(C_i)= lim_n \mu (\bigcap_{i=1}^n C_i) = lim_n \mu (\bigcap_{i=1}^n A_i)$.
 			\item La dimostrazione è analoga alla precedente . %% VORREI 		FARLA
 		\end{enumerate}
 	\end{proof}
@@ -85,7 +81,7 @@
 	\end{oss}
 	
 	\begin{definition} [Integrale di funzione semplice]
-		SIa $f(x)= \sum_{i=1}^N \alpha_i \rchi_A_i $ una funzione semplice positiva  (con $\alpha_i \geq 0 \ \forall i \in I_N$) , si definisce l'integrale $\int_X f d\mu =  \sum_{i=1}^N \alpha_i \mu(A_i) \quad \forall A \in \mathscr(M)$.
+		SIa $f(x)= \sum_{i=1}^N \alpha_i \rchi_{A_i} $ una funzione semplice positiva  (con $\alpha_i \geq 0 \ \forall i \in I_N$) , si definisce l'integrale $\int_X f d\mu =  \sum_{i=1}^N \alpha_i \mu(A_i) \quad \forall A \in \mathscr(M)$.
 	\end{definition}
 	
 	\begin{oss}
@@ -96,14 +92,16 @@
 		Sia $(X,\mathscr(M), \mu)$ uno spazio di misura, sia $f: X 	\to [0, \infty ]$ funzione misurabile, si definisce $\int_A f d\mu  = sup \{ \int_A s d\mu | s \text{ funzione semplice } f>s>0  \}$;
 	\end{definition}
 	
-	\begin{prop} [Proprietà dell'integrale]
+	\begin{prop}[Proprietà dell'integrale]
 		L'integrale di funzioni misurabili su domini misurabili gode delle seguenti proprietà:
-		\item L'integrale gode della proprietà di monotonia rispetto alle funzioni;
-		\item L'integrale gode della proprietà di monotonia rispetto al dominio di integrazione;
-		\item Sia $f>\geq$ e sia $\infty>c\geq0$ una costante , allora $\int_A c d d\mu = c \int_A d\mu  \quad \forall A \in \mathscr{M]$;
-		\item Sia $f(x)=0 \ \forall x \in A$, allora $ \int_A f  d\mu = 0 $. 
-		\item Se $\mu (E)=0 $ con  $ E \in \mathscr(E) $, allora $\int_E f d\mu = 0 \ \forall f$ ;
-		\item Sia $f\geq 0 $ allora si ha che $ \int_E f d\mu = \int_X f \rchi_A$.
+		\begin{enumerate}
+			\item L'integrale gode della proprietà di monotonia rispetto alle funzioni;
+			\item L'integrale gode della proprietà di monotonia rispetto al dominio di integrazione;
+			\item Sia $f>\geq$ e sia $\infty>c\geq0$ una costante , allora $\int_A c d\mu = c \int_A d\mu  \quad \forall A \in \mathscr{M}$;
+			\item Sia $f(x)=0 \ \forall x \in A$, allora $ \int_A f  d\mu = 0 $. 
+			\item Se $\mu (E)=0 $ con  $ E \in \mathscr(E) $, allora $\int_E f d\mu = 0 \ \forall f$ ;
+			\item Sia $f\geq 0 $ allora si ha che $ \int_E f d\mu = \int_X f \rchi_A$.
+		\end{enumerate}
 	\end{prop}
 	
 	\begin{definition} [Densità di misura]
@@ -126,9 +124,9 @@
 		Inoltre si ha che, dato che $\lim_m f_m \geq f_n \ \ forall n \in \N$, il $\lim_n \int_X f_n \ d\mu \leq \int_X \lim_n f_n \ d\mu $ dunque è necessario dimostrare solo l'altro verso.  A tale scopo studio diversi casi, partendo dal più semplice, per arrivare a generalizzare il risultato. \\
 		Se $\lim_n f_n \ d\mu = \infty $, si avrà che data la disuguaglianza appena dimostrata dovranno necessariamente coincidere. \\
 		Se $\lim_n f_n \ d\mu =L < \infty $, allora si ha che $\int_X f \ d\mu \geq L$, dunque considerando una funzione semplice $0<s<f$ e una costante $0<c<1$, si può definire la successione di insiemi $E_n = \{ x \in X | f_n(x) \geq c s(x)  \}$. Si ha che tale successione di insiemi è monotona crescente e per $n\to \infty$ forma un ricoprimento di X, dunque $X= \bigcup_n E_n $. 
-		Quindi: $	\int_X f(x) \ d\mu > \int_E_n f_n(x) \ d\mu \geq \int_E_n c s(x) \ d\mu = c \int_E_n s(x) \  d\mu  	$
-		Sia $	\nu(A) \coloneq \int_A s(x) \ d\mu 	$ una misura ( osservazione precedente ), riprendendo il passaggio precedente si ha $	\int_X f(x) \ d\mu >c \int_E_n s(x) \  d\mu	= c \nu(E_n )$ ; ma si ha che, per monotonia dell'integrale, $\nu(X) = \nu (\lim_n E_n )= \lim_n \nu(E_n )= \lim_n \int_E_n s(x) \ d\mu $. 
-		Passando al limite si ha $\lim_n \int_X f_n (x) \ \d\mu \geq c \lim_n \nu(E_n) = c \int_X  s(x) \ d\mu $, e infine passando al sup di s , si ha che : $	 \sup_s \lim_n \int_X f_n (x) \ \d\mu = \lim_n \int_X f_n (x) \ \d\mu \geq \sup_s c \int_X s(x) \ d\mu	= \int_X f(x) \ d\mu  $ passando al massimo su c, che è $c=1$, e portando dentro l'integrale il sup. 
+		Quindi: $	\int_X f(x) \ d\mu > \int_{E_n} f_n(x) \ d\mu \geq \int_{E_n} c s(x) \ d\mu = c \int_{E_n} s(x) \  d\mu  	$
+		Sia $	\nu(A) \coloneq \int_A s(x) \ d\mu 	$ una misura ( osservazione precedente ), riprendendo il passaggio precedente si ha $	\int_X f(x) \ d\mu >c \int_{E_n} s(x) \  d\mu	= c \nu(E_n )$ ; ma si ha che, per monotonia dell'integrale, $\nu(X) = \nu (\lim_n E_n )= \lim_n \nu(E_n )= \lim_n \int_{E_n} s(x) \ d\mu $. 
+		Passando al limite si ha $\lim_n \int_X f_n (x) d\mu \geq c \lim_n \nu(E_n) = c \int_X  s(x) d\mu $, e infine passando al sup di s , si ha che : $	 \sup_s \lim_n \int_X f_n (x) d\mu = \lim_n \int_X f_n (x) d\mu \geq \sup_s c \int_X s(x) \ d\mu	= \int_X f(x) \ d\mu  $ passando al massimo su c, che è $c=1$, e portando dentro l'integrale il sup. 
 	\end{proof}
 	
 	

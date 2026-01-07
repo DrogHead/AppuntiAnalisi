@@ -1,0 +1,50 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	Studiamo il duale di $L^p(\mu)$. Nel caso $p=1$, supponiamo che $\mu$ sia una misura $\sigma$--finita.
+	
+	\begin{theorem}
+		Per ogni funzionale lineare e continuo $\phi$ su $L^p(\mu)$ esiste un unico $h\in L^{p'}(\mu)$ tale che $\phi(f)=\int_X hf\,d\mu$ e che $\norm{\phi}=\norm{h}_{p'}$, dove $p'$ è il coniugato di $p$ mediante H\"older.
+	\end{theorem}
+	
+	\begin{proof}
+		Iniziamo supponendo che $\mu$ sia una misura finita. Definiamo allora una funzione di insieme
+		\begin{equation}
+			\nu : E \in \mathcal{M} \mapsto \phi(\rchi_E) \in \R
+		\end{equation}
+		che è una misura. Infatti $\nu(\varnothing)=0$ e
+		\begin{equation}
+			\nu(\bigcup_i E_i) = \phi(\rchi_{\bigcup_i E_i}) = \phi(\sum_i \rchi_{E_i}) = \sum_i \phi(\rchi_{E_i}) = \sum_i \nu(E_i)
+		\end{equation}
+		In particolare, $\nu$ è una misura complessa ed è assolutamente continua rispetto a $\mu$. Per il teorema di Radon--Nikodym esiste unica $h\in L^1(\mu)$ tale che $d\nu=hd\mu$, ossia
+		\begin{equation}
+			\phi(\rchi_E) = \nu(E) = \int_X h\rchi_E d\mu = \int_E hd\mu
+		\end{equation}
+		Si passa facilmente dalle funzioni caratteristiche alle funzioni semplici. Se $f$ è misurabile limitata allora esiste una successione di $f_n$ semplici uniformemente convergente ad essa, quindi si estende ancora il risultato. Considero allora:
+		\begin{equation}
+			f_k(x) = 
+			\begin{cases}
+				\abs{h}^{p'-2}h & \textup{se } x\in E_k \\
+				0 & \textup{altrimenti.}
+			\end{cases}
+		\end{equation}
+		Dove $E_k=\{x\in X \,\vert\, \abs{h}\leq x \}$. Per $p=1$ invece prendiamo $f=\rchi_A$. Allora
+		
+		\begin{equation}
+			\abs*{\int_X hf_k d\mu} = \abs*{\int_{E_k} \abs{h}^{p'} d\mu} = \abs{\phi(f_k)} \leq \norm{\phi} \norm{f_k}_p = \norm{\phi} \Big( \int_X \abs{h}^{p'} \Big)^{\frac1p}
+		\end{equation}
+		
+		Da cui
+		
+		\begin{equation}
+			\norm{h \rchi_E}_{p'} = \Big( \int_E \abs{h}^{p'} \Big)^{1-\frac1p} \leq \norm{\phi}
+		\end{equation}
+		
+		Ossia la media di $h$ è minore di $\norm{\phi}$ indipendentemente dall'insieme misurabile scelto, quindi anche $h$ è minore di $\norm{\phi}$.
+		
+	\end{proof}
+	
+	[RECUPERA]	
+	
+\end{document}

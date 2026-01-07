@@ -74,21 +74,21 @@
 
 % Numerazione distinta
 \theoremstyle{teoremi}
-\newtheorem{theorem}{Teorema}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{corol}{Corollario}[section]
-\newtheorem{prop}{Proposizione}[section]
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corol}{Corollario}[chapter]
+\newtheorem{prop}{Proposizione}[chapter]
 
 \theoremstyle{definizioni}
-\newtheorem{definition}{Definizione}[section]
+\newtheorem{definition}{Definizione}[chapter]
 
 \theoremstyle{esempi}
-\newtheorem{example}{Esempio}[section]
-\newtheorem{exercise}{Esercizio}[section]
+\newtheorem{example}{Esempio}[chapter]
+\newtheorem{exercise}{Esercizio}[chapter]
 
 \theoremstyle{osservazioni}
-\newtheorem{oss}{Osservazione}[section]
-\newtheorem{nota}{Nota}[section]
+\newtheorem{oss}{Osservazione}[chapter]
+\newtheorem{nota}{Nota}[chapter]
 
 
 % LETTERE
@@ -164,6 +164,10 @@
 \DeclareMathOperator{\interno}{int}
 \DeclareMathOperator{\linspan}{span}
 
+% DUALE
+\newcommand{\dual}[1]{{#1}^{\star}}
+\newcommand{\ddual}[1]{{#1}^{\star\star}}
+
 
 \title{Istituzioni di Analisi Matematica}
 \author{Leonardi Isabella, Vitiello Giuseppe}
@@ -182,6 +186,16 @@
 	\chapter{Misura astratta}
 	\subfile{capitoli/Lezione01}
 	\subfile{capitoli/Lezione02}
+	\subfile{capitoli/Lezione03}
+	\subfile{capitoli/Lezione04}
+	
+	
+	\subfile{capitoli/Lezione20}
+	\subfile{capitoli/Lezione21}
+	\subfile{capitoli/Lezione22}
+	\subfile{capitoli/Lezione23}
+	\subfile{capitoli/Lezione24}
+	\subfile{capitoli/Lezione25}
 	
 \end{document}
 

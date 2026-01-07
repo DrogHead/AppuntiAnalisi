@@ -1,0 +1,91 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	\begin{prop}
+		Sia $V$ uno spazio vettoriale normato e sia $\dual{V}$ l'insieme dei suoi funzionali lineari e limitati a valori in $\R$. Anche questo spazio è normato. Allora
+		\begin{equation*}
+			\norm{f} = \max\{\abs{\varphi(f)} \,\vert\, \varphi\in\dual{V}\,, \norm{\varphi}=1\}
+		\end{equation*}
+	\end{prop}
+	\begin{proof}
+		Sia $U=\linspan{f}$, che è un sottospazio vettoriale di dimensione 1 di $V$. Sia $\psi\in\dual{U}$ tale che $\psi(\alpha f)=\alpha\norm{f}$. È evidente che la norma di $\psi$ è $1$. Usando il teorema di Hahn--Banach estendiamo $\psi$ a un funzionale $\varphi$ definito su tutto $V$, tale che $\norm{\varphi}=1$ e tale che $\abs{\varphi(f)}=\norm{f}$, che è la tesi.
+	\end{proof}
+	
+	\begin{corol}
+		Per ogni $g\in V$ esiste $\varphi\in\dual{V}$ tale che $\norm{\varphi}=1$ e $\varphi(g)=\norm{g}$
+	\end{corol}
+	
+	\begin{exercise}
+		Se $V$ è uno spazio normato e $\varphi : V \to \C$ funzionale lineare non identicamente nullo, allora $\varphi$ è limitato se e solo se $\overline{\ker\varphi}\ne V$.
+	\end{exercise}
+	\begin{proof}
+		Se per assurdo $\overline{\ker\varphi}=V$ allora $\varphi$ non è limitato perché altrimenti sarebbe continuo, ma tutte le successioni di $\ker\varphi$ hanno limite nello stesso $\ker\varphi$, da cui tutto il nucleo è $V$, ossia $\varphi$ è identicamente nullo.
+		
+		Se per assurdo $\varphi$ non è limitata, allora esiste una successione $x_k$ tali che $\norm{x_k}\leq 1$ ma $\abs{\varphi(x_k)}>1$. Consideriamo il vettore:
+		\begin{equation*}
+			y_k = x - \varphi(x) \frac{x_k}{\varphi(x_k)}
+		\end{equation*}
+		con $x\notin\ker\varphi$, si vede che si trova nel nucleo di $\varphi$. Allora abbiamo
+		\begin{equation*}
+			\norm*{\frac{x_k}{\varphi(x_k)}} \to 0
+		\end{equation*}
+		e quindi la successione $y_k$ di elementi di $\ker\varphi$ raggiunge un elemento generico di $V$. Concludiamo $\overline{\ker\varphi}=V$ che è assurdo.
+	\end{proof}
+	
+	\begin{prop}
+		Se $U$ è un sottospazio di $V$ e $h\in V$ allora $h\in\overline{U}$ se e solo se $\varphi(h)=0$ per ogni $\varphi\in\dual{V}$ tale che $\restr{\varphi}{U}=0$.
+	\end{prop}
+	\begin{proof}
+		Ovviamente, se $h\in\overline{U}$, esiste una successione $h_n$ definita in $U$ che converge ad $h$, si ha $\varphi(h_n)\to\varphi(h)=0$.
+		
+		Per il viceversa, se per assurdo $h\notin\overline{U}$, definiamo $\psi : [U,h]\to \C$ tale che $\psi(f+\alpha h)=\alpha$ per ogni $f\in U\,,\alpha\in\R$. Allora $\psi$ è lineare, vale 1 su $h$, e $U = \ker\psi$. Per l'esercizio precedente $\psi$ è limitato e quindi per Hahn--Banach si estende a un funzionale $\varphi$ definito su tutto V. Allora $\psi$ è zero su $U$, ma $\psi(h)\ne 0$
+	\end{proof}
+	
+	\begin{theorem}
+		Sia $V$ uno spazio vettoriale normato. Allora $\dual{V}$ è uno spazio di Banach.
+	\end{theorem}
+	\begin{proof}
+		Data una successione $\suc{\varphi}{n}{\N}\subset\dual{V}$ di Cauchy, allora per ogni $x\in V$ si ha
+		\begin{equation*}
+			\abs{\varphi_n(x) - \varphi_k(x)} \leq \norm{\varphi_n-\varphi_k}\norm{x} < \eps \norm{x}
+		\end{equation*}
+		Quindi $\varphi_n(x)$ converge a qualcosa per ogni $x$ fissato, che chiamiamo $\varphi(x)$. Mostriamo che questa $\varphi$ è lineare, limitata, e vale il limite in norma. Per la limitatezza:
+		\begin{equation}
+			\abs{\varphi(x)} \leq \sup_k\abs{\varphi_k(x)} \leq \sup_k\norm{\varphi_k}\norm{x}
+		\end{equation}
+		Per la convergenza in norma:
+		\begin{equation*}
+			\abs{\varphi_n(x)-\varphi_k(x)} < \eps\norm{x} \implies \abs{\varphi_n(x)-\varphi(x)} \leq \eps\norm{x} \implies \frac{\abs{\varphi_n(x)-\varphi(x)}}{\norm{x}}\leq\eps
+		\end{equation*}
+		Quindi la norma $\norm{\varphi_n-\varphi}$ tende a 0.
+	\end{proof}
+	
+	\begin{corol}
+		Siano $x_1\ne x_2\in V$. Allora esiste $\varphi\in\dual{V}$ tale che $\varphi(x_1)\ne\varphi(x_2)$.
+	\end{corol}
+	\begin{proof}
+		Sia $x=x_1-x_2$, che ha norma non nulla. Allora esiste $\varphi\in\dual{V}$ tale che $\varphi(x)\ne 0$ e quindi $\varphi(x_1)\ne\varphi(x_2)$.
+	\end{proof}
+	
+	\begin{definition}
+		Sul duale $\dual{V}$ possiamo definire una nuova topologia. In questa topologia $x_n$ converge a $x$, si dice debolmente, se e solo se per ogni funzionale $\varphi\in\dual{V}$ si ha $\lim_n\varphi(x_n)=\varphi(x)$. Si denota questa convergenza con $x_n\rightharpoonup x$. Si vede subito che la convergenza forte implica la convergenza debole, ma non sempre è vero il viceversa.
+	\end{definition}
+	
+	\begin{definition}[Spazio biduale]
+		Ovviamente nulla ci impedisce di definire l'insieme dei funzionali lineari e continui $\varphi :\dual{V}\to\C$, che è detto spazio biduale e denotato con $\ddual{V}$, che è ancora uno spazio di Banach.
+		
+		Consideriamo il funzionale $F_X :\dual{V}\to\C$ tale che $F_x(\varphi)=\varphi(x)$, che è lineare e ha norma $\norm{F_x}\leq\norm{x}$. Poiché esiste sempre $\widetilde{\varphi}$ tale che $\abs{\widetilde{\varphi}}=\norm{x}$ e quindi la norma viene raggiunta, da cui $\norm{F_x}=\norm{x}$. L'applicazione $J :V\to\ddual{V}$ tale che $x\mapsto F_x$ è una isometria ed è iniettiva, quindi $V\cong J(V)\subset \ddual{V}$.
+	\end{definition}
+	
+	\begin{definition}
+		Uno spazio normato è detto riflessivo se l'immersione canonica $J$ è suriettiva, ossia se $J(V)=\ddual{V}$.
+	\end{definition}
+	
+	
+\end{document}
+
+
+
+
+
