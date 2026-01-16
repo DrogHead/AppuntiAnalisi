@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 
 \begin{document}
-	
+		
 	\begin{definition}[Topologia]
 		Sia $X$ un insieme non vuoto e sia $\tau$ una famiglia di sottoinsiemi di $X$. La coppia $(X,\tau)$ si dice ``spazio topologico'' e $\tau$ si dice ``topologia'' se:
 		\begin{enumerate}
@@ -17,28 +17,32 @@
 	\end{nota}
 	
 	\begin{definition}[Funzione continua]
-		Siano $(X,\tau)$ e $(Y,\sigma)$ spazi topologici. Una funzione $f : X\to Y$ si dice ``continua'' se $\forall V\in\sigma$ si ha $f^{-1}(V)\in\tau$. IN particolare, $f$ si dice continua nel punto $x_0\in X$ se per ogni intorno $V$ di $f(x_0)$ esiste un intorno $U$ di $x_0$ tale che $f(U)\subseteq V$.
+		Siano $(X,\tau)$ e $(Y,\gamma)$ spazi topologici. Una funzione $f : X\to Y$ si dice ``continua'' se $\forall V\in\gamma$ si ha $f^{-1}(V)\in\tau$. La funzione $f$ si dice continua nel punto $x_0\in X$ se per ogni intorno $V$ di $f(x_0)$ esiste un intorno $U$ di $x_0$ tale che $f(U)\subseteq V$.
 	\end{definition}
 	
-	\begin{definition}[$\sigma$--algebra]
-		Sia $X$ un insieme non vuoto e sia $\mathscr{M}$ una famiglia di sottoinsiemi di $X$. $\mathscr{M}$ si dice ``$\sigma$--algebra'' se:
+	\begin{exercise}
+		Una funzione $f$ tra spazi topologici è continua se e solo se è continua in ogni punto $x_0\in X$.
+	\end{exercise}
+	
+	\begin{definition}[$\sigma$-algebra]
+		Sia $X$ un insieme non vuoto e sia $\mathscr{M}$ una famiglia di sottoinsiemi di $X$. $\mathscr{M}$ si dice ``$\sigma$-algebra'' se:
 		\begin{enumerate}
 			\item $X\in\mathscr{M}$;
 			\item $A\in\mathscr{M} \implies A^C\in\mathscr{M}$;
 			\item $\suc{A}{i}{\N}\in\mathscr{M} \implies \bigcup_{i\in \N} A_i \in \mathscr{M}$.
 		\end{enumerate}
-		La coppia $(X,\mathscr{M})$ è detta ``spazio misurabile'', e gli elementi di $\mathscr{M}$ sono detti ``misurabili''.
+		La coppia $(X,\mathscr{M})$ è detta ``spazio misurabile'', e gli elementi di $\mathscr{M}$ sono detti ``insiemi misurabili''.
 	\end{definition}
 	
-	\begin{nota}
-		È immediato dedurre che le $\sigma$--algebre contengono le intersezioni numerabili dei propri elementi dato che
+	\begin{oss}
+		È immediato dedurre che le $\sigma$-algebre contengono le intersezioni numerabili dei propri elementi dato che
 		\begin{equation*}
-			\bigcap_{i\in I} A_i = \big(\bigcup_{i\in I} A_i^C \big)^C \,.
+			\bigcap_{i\in I} A_i = \left(\bigcup_{i\in I} A_i^C \right)^C \,.
 		\end{equation*}
-	\end{nota}
+	\end{oss}
 	
 	\begin{definition}[Funzione misurabile]
-		Dati uno spazio misurabile $(X,\mathscr{M})$ e uno spazio topologico $(Y,\sigma)$, una funzione $f : X\to Y$ si dice ``misurabile'' se $\forall V\in \sigma$ si ha $f^{-1}(V)\in\mathscr{M}$.
+		Dati uno spazio misurabile $(X,\mathscr{M})$ e uno spazio topologico $(Y,\gamma)$, una funzione $f : X\to Y$ si dice ``misurabile'' se $\forall V\in \gamma$ si ha $f^{-1}(V)\in\mathscr{M}$.
 	\end{definition}
 	
 	\begin{definition}[Spazio metrico]
@@ -54,7 +58,7 @@
 	\begin{nota}
 		Dato uno spazio metrico $(X,d)$, consideriamo gli insiemi della forma
 		\begin{equation*}
-			B_\eps (x_0) = \{ x\in X \vert c d(x,x_0)<\eps \}
+			B_\eps (x_0) = \left\{ x\in X \,\middle\vert\, d(x,x_0)<\eps \right\}
 		\end{equation*}
 		per ogni $\eps>0$ e $x_0\in X$, detti palle aperte di raggio $\eps$ centrate in $x_0$. Si dice ``topologia indotta'' su $X$ da $d$ e si indica con $\tau_d$ la famiglia di unioni qualsiasi e intersezioni finite di palle.
 	\end{nota}
@@ -63,63 +67,76 @@
 		Una $\sigma$-algebra è finita o più che numerabile.
 	\end{prop}
 	\begin{proof}
-		Sia $(X,\mathscr{M})$ uno spazio misurabile, e per assurdo sia $\mathscr{M}=\suc{A}{i}{\N}$ con $A_i\neq A_j$. Per ogni $x\in X$, definiamo l'insieme
+		Per assurdo sia $\#\mathscr{M}=\aleph_0$, che scriviamo come $\mathscr{M}=\suc{A}{n}{\N}$ insiemi distinti. Per ogni $x\in X$, definiamo l'insieme
 		\begin{equation*}
 			B_x = \bigcap_{x\in A\in \mathscr{M}} A \,,
 		\end{equation*}
-		ossia l'intersezione dei misurabili contenenti $x$. Presi $x,y\in X$ e considerati $B_x$ e $B_y$, sono possibili i seguenti casi:		
+		ossia l'intersezione dei misurabili contenenti $x$. Osservato che $B_x$ è il più piccolo misurabile contenente $x$, si dimostra facilmente che $\suc{B}{x}{X}$ è una partizione di $X$. Infatti, se presi $x,y\in X$ supponiamo che $B_x\cap B_y\ne \emptyset$, troviamo $z\in B_x\cap B_y$. Allora $B_z\subseteq B_x\cap B_y$. Se per assurdo $x\notin B_z$ allora $x\in B_x\setminus B_z$ che sarebbe un misurabile strettamente contenuto in $B_x$ contro la minimalità di quest'ultimo; analogamente se $y\notin B_z$. Concludiamo che
+		\begin{align*}
+			B_x \subseteq B_z \subseteq B_x \cap B_y \subseteq B_x \\
+			B_y \subseteq B_z \subseteq B_x \cap B_y \subseteq B_y
+		\end{align*}
+		da cui $B_x=B_y=B_z$. Chiamiamo quindi $\mathscr{B}=\suc{B}{x}{X}$, e mostriamo che $\#\mathscr{B}=\aleph_0$.
 		\begin{enumerate}
-			\item $B_x \bigcap B_y = \emptyset$;
-			\item $B_x = B_y$;
-			\item $B_x\bigcap B_y=C$.
+			\item Non può essere $\#\mathscr{B}>\aleph_0$ perché, dal momento che $\mathscr{B}\subseteq\mathscr{M}$, si avrebbe $\aleph_0 < \#\mathscr{B} \leq \#\mathscr{M} = \aleph_0$ che è assurdo;
+			\item Non può essere $\#\mathscr{B}=n\in\N$ perché, dal momento che ogni $A\in\mathscr{M}$ si scrive come $A=\bigcup_{x\in A} B_x$, avremmo che $\#\mathscr{M} \leq 2^n$, che è assurdo.
 		\end{enumerate}
-		Osservato che $B_x$ e $B_y$ sono i più piccoli insiemi misurabili contenenti rispettivamente $x$ e $y$, si conclude immediatamente che il terzo caso si riconduce al secondo. Dunque, la famiglia $\suc{B}{x}{X}$ forma una partizione di $X$. Inoltre, se $A\in\mathscr{M}$, si ha
+		Scritto quindi $\mathscr{B}=\suc{B}{{x_n}}{\N}$, sia $\mathscr{C}$ l'insieme di tutte le unioni finite o numerabili di elementi di $\mathscr{B}$, e consideriamo la funzione
 		\begin{equation*}
-			A = \bigcup_{x\in A} B_x \,,
+			\Phi : I \in \mathscr{P}(\N) \mapsto \bigcup_{i\in I} B_{x_i} \in \mathscr{C} \,,
 		\end{equation*}
-		e dunque si hanno due possibilità: se $B_x=B_y$ i $B_i$ sono finiti di numero allora esisterà un numero finito di possibili combinazioni di $B_x$ per formare gli elementi di $\mathscr{M}$, che quindi è finito, il che è assurdo. L'altra possibilità è che i $B_x$ siano tutti diversi tra loro, dunque si avrà un numero più che numerabile di possibili ricoprimenti, quindi assurdo.
-		
+		che risulta essere iniettiva. Infatti, sapendo che $B_{x_i}=B_{x_j}$ implica $i=j$, se abbiamo $I\ne J\subseteq \mathscr{P}(\N)$ allora sicuramente $\Phi(I)\ne\Phi(J)$. Allora concludiamo che
+		\begin{equation*}
+			\aleph_0 < \mathscr{P}(\N) \leq \#\mathscr{C} \leq \mathscr{M} = \aleph_0 \,,
+		\end{equation*}
+		che è assurdo.	
 	\end{proof}
 	
-	% DA QUI NON HO POTUTO STAMPARE NON SO COME VIENE
-	
 	\begin{prop}[Composizione funzioni continue su spazi topologici]
-		Siano $ (X,\tau _X), (Y,\tau _Y)$ e $ (Z,\tau_Z)$ spazi topologici, e siano $f: X\to Y$ e $g:Y\to Z$ funzioni, se $f$ e $g$ sono continue allora $g \circ f$ è continua
+		Siano $ (X,\tau _X), (Y,\tau _Y)$ e $ (Z,\tau_Z)$ spazi topologici, e siano $f: X\to Y$ e $g: Y\to Z$ funzioni, se $f$ e $g$ sono continue allora $g \circ f$ è continua.
 	\end{prop}
 	\begin{proof}
-		Sia $U\in \tau_Z$, si vuole mostrare che $ (g \circ f)^{-1} (U) \in \tau_X$. Data la continuità di $g$ si ha che $g^{-1}(U) \in \tau_Y$, dunque per la continuità di $f$ si ha $f^{-1}(g^{-1}(U)) = (g \circ f)^{-1} (U) \in \tau_X$.
+		Sia $W\in\tau_Z$. Per continuità di $g$ si ha $g^{-1}(W)\in\tau_Y$ e per continuità di $f$ si conclude che $f^{-1}(g^{-1}(W))=(g\circ f)^{-1}(W)\in\tau_X$.
 	\end{proof}
 	
 	\begin{prop}[Composizione di funzioni su spazi topologici e misurabili]
 		Siano $ (X,\tau_X, \mathscr{M}_X)$, $(Y,\tau_Y, \mathscr{M}_Y)$, $(Z,\tau_Z, \mathscr{M}_Z) $ spazi topologici misurabili, siano le funzioni  $f: X\to Y$ misurabile e $g:Y\to Z$ continua, allora $g \circ f$ è misurabile.
 	\end{prop}
 	\begin{proof}
-		Sia $U\in \tau_Z$, si vuole mostrare  che $ (g \circ f)^(-1) (U) \in \mathscr{M}_X$. Data la continuità di $g$ si ha che $g^(-1)(U) \in \tau_Y$, dunque per la misurabilità di $f$ si ha $f^(-1)(g^(-1)(U)) = (g \circ f)^(-1) (U) \in \mathscr{M}_X$.
+		Sia $W\in\tau_Z$. Per continuità di $g$ si ha $g^{-1}(W)\in\tau_Y$ e per misurabilità di $f$ si conclude che $f^{-1}(g^{-1}(W))=(g\circ f)^{-1}(W)\in\mathscr{M}_X$.
 	\end{proof}
 	
 	\begin{prop}[Composizione di funzioni misurabili]
-		Siano $u,v: X \to \mathbb{R}$ funzioni reali misurabili, sia $\Phi: \mathbb{R}^2\to Y$ continua; allora $\Phi(u(x),v(x))$ è misurabile.
+		Siano $u,v: X \to \R$ funzioni reali misurabili, sia $\Phi: \R^2\to Y$ continua; allora $\Phi(u(x),v(x))$ è misurabile.
 	\end{prop}
 	\begin{proof}
-		Per semplificare le notazioni si indica con $f: x\in X \to (u(x),v(x))\in \mathbb{R}^2$, dunque la tesi è mostrare la misurabilità di $\Phi ( f(x))$.\\
-		Si considera un sottoinsieme aperto di Y, $V \subseteq Y$ , $\Phi^(-1) (V) \coloneq W$ è un aperto di $\mathbb{R}^2$ data $\Phi$ continua, dunque è un unione numerabile di rettangoli aperti: $W= \bigcup_{i\in I} R_i $. Per mostrare che  $\Phi(u(x),v(x))$ è misurabile bisogna mostrare che l'antimagine di un aperto di Y è misurabile: $ (\Phi \circ f)^{-1} (V)= f^{-1}(\Phi^{-1}(V))=f^{-1}(W)=f^{-1}(\bigcup_{i\in I} R_i )=\bigcup_{i\in I} f^{-1}(R_i)\in \mathscr{M}$ dato che si tratta di antimmagini di intervalli aperti tramite $u$ e $v$ che sono misurabili per ipotesi.
+		Definiamo $f : x\in X \mapsto (u(x),v(x)) \in \R^2$. Dimostriamo che $\Phi\circ f$ è misurabile. Sia $V\subseteq Y$ aperto e sia $W\defeq \Phi^{-1}(Y)$ che per continuità è un aperto di $\R^2$. Possiamo quindi dire che
+		\begin{equation*}
+			W = \bigcup_{n\in\N} R_n \,,
+		\end{equation*}
+		dove gli $R_n$ sono rettangoli aperti. Dunque, abbiamo che
+		\begin{equation*}
+			(\Phi\circ f)^{-1}(V) = f^{-1}(\Phi^{-1}(V)) = f^{-1}(W) = f^{-1}\left( \bigcup_{n\in\N} R_n \right) = \bigcup_{n\in\N} f^{-1}(R_n) \,.
+		\end{equation*}
+		Un qualsiasi rettangolo si scrive come prodotto di due intervalli aperti, e l'antimmagine mediante $f$ si trova calcolando l'antimmagine mediante $u$ del primo intervallo aperto e l'antimmagine mediante $v$ del secondo. Essendo $u,v$ misurabili, anche $f^{-1}(R_n)$ è misurabile, da cui la misurabilità della composta.
 	\end{proof}
 	
-	\begin{corol}[Corollario-osservazione]
-		La funzione $f:\mathbb{R}\in \mathbb{C} $ complessa,  è misurabile se e soltanto se la sua parte immaginaria e quella reale sono misurabili.
+	\begin{corol}[Parte reale e parte immaginaria]
+		Una funzione $f : X \to \C$ è misurabile se e solo se sono misurabili la sua parte reale e la sua parte immaginaria.
 	\end{corol}
 	\begin{proof}
-		Si dimostra prima da destra verso sinistra.\\
-		Si tratta di un caso particolare della proposizione precedente: infatti considerando le funzioni  $ u,v: \mathbb{R}\to \mathbb{R}$, si esprime $f: x\in \mathbb{R} \to u(x)+iv(x)\in \mathbb{C}.$. Ovviamente f è una funzione continua, dunque per la proposizione precedente ogni volta che la parte reale $u$ e la parte immaginaria $v$ sono misurabili, f è misurabile
-		Per mostrare l'altra implicazione basta osservare che data $f$ misurabile , se la compongo con la funzione continua che individua la sua parte reale $u$ o con quella che individua la sua parte immaginaria $v$, allora il risultato, che è la parte reale o immaginaria, risulta misurabile per una proposizione precedente.
+		Dette $u : x\in X \mapsto \Re(f(x)) \in \R$ e $v : x\in X \mapsto \Im(f(x)) \in \R$, e detta $\Phi : (x,y) \in \R^2 \mapsto x+iy \in \C$, si trova per il teorema precedente l'implicazione ($\impliedby$).
 		
+		Supponendo $f$ misurabile, le funzioni parte reale e parte immaginaria sono continue. Dunque, la loro composizione è misurabile.
 	\end{proof}
 	
-	\begin{oss}
+	\begin{oss}[Modulo, somma, prodotto]
+		Usando i teoremi di composizione si mostrano facilmente le seguenti proprietà.
 		\begin{enumerate}
-			\item Il ragionamento fatto per la funzione complessa vale per la funzione valore assoluto: $|f|= \sqrt{u^2+v^2}$, il modulo è una funzione continua e se la compongo con f misurabile si ha che il modulo di f è misurabile.
-			\item La somma e il prodotto di $f,g$ funzioni complesse è misurabile, si mostra osservando che se sono misurabili lo sono anche le loro parti reali e immaginarie, ed effettuando la somma e il prodotto tra $f$ e $g$ si sommano e moltiplicano le parti immaginarie tra loro e lo stesso per quelle reali, ciò produce funzioni misurabili .
+			\item Se $f$ è misurabile allora $\abs{f}$ è misurabile. Basta considerare $\Phi(u,v) = \sqrt{u^2 + v^2}$.
+			\item Se $f$ e $g$ sono misurabili allora $f+g$ e $fg$ sono misurabili. Basta considerare $\Phi(u,v) = u+v$ e $\Phi(u,v) = uv$. 
 		\end{enumerate}
+		Se le funzioni considerate sono a valori complessi, si effettua un passaggio preliminare sfruttando la misurabilità di parte reale e parte immaginaria.
 	\end{oss}
 	
 	\begin{definition} [Funzione caratteristica]
@@ -131,30 +148,27 @@
 				0 & \textup{altrimenti}
 			\end{cases}
 		\end{equation*}
+		Osserviamo che $\rchi_E$ è misurabile se e solo se $E$ è misurabile.
 	\end{definition}
 	
-	\begin{oss}
-		Se l'insieme $E$ è misurabile, allora la sua funzione caratteristica è misurabile.
-	\end{oss}
-	
-	\maketitle
-	$\sigma$ - Algebra generata
 	\begin{theorem}
-		Sia $X\neq \emptyset$ insieme e $\mathscr{F}$ una collezione di suoi sottoinsiemi, allora esiste la più piccola $\sigma$-algebra in X  contente  $\mathscr{F}$.
+		Sia $X\neq \emptyset$ insieme e $\mathscr{F}$ una collezione di suoi sottoinsiemi, allora esiste la più piccola $\sigma$-algebra su $X$ contenente $\mathscr{F}$.
 	\end{theorem}
 	\begin{proof}
-		Sia U la famiglia di $\sigma$-algebre contenenti  $\mathscr{F}$, $U\neq \emptyset$ dato che la $\sigma$-algebra banale (tutti i sottoinsiemi di X) appartiene a U. Sia $\mathscr{M}^*=\bigcap_{\mathscr{M}\in U}\mathscr{M}$, l'obiettivo è mostrare che è una $\sigma$-algebra.
+		Sia $\Sigma$ la famiglia di $\sigma$-algebre su $X$ contenenti $\mathscr{F}$. Questo insieme è non vuoto perché $\mathscr{P}(X)$ è una $\sigma$-algebra e contiene banalmente $\mathscr{F}$. Consideriamo dunque
+		\begin{equation*}
+			\mathscr{M} \defeq \bigcap_{S\in\Sigma}S
+		\end{equation*}
+		e mostriamo che è una $\sigma$-algebra.
 		\begin{itemize}
-			\item $\mathscr{M}^*$ è chiusa per completamento? Sia $A \in \mathscr{M} \implies A\in \mathscr{M}^* \forall \mathscr{M} \in U \implies A^C \in \mathscr{M} \forall \mathscr{M} \in U \implies A^C \in \bigcap_{\mathscr{M}\in U} \mathscr{M}= \mathscr{M}^*$.
-			\item $\mathscr{M}$ è chiusa per uninione numerabile? Sia $\{A_i \}_{i\in \mathbb{N}} \in \mathscr{M}^* \implies A_i \in \mathscr{M} \forall \mathscr{M}\in U \forall i\in \mathbb{N} \implies \bigcup_{i\in\mathbb{N}}A_i \in \bigcap_{\mathscr{M}\in U } \mathscr{M}= \mathscr{M}^*$
-			\item $X \in \mathscr{M}\in U$ ? Ovvio.
+			\item Dal momento che per ogni $S\in\Sigma$ si ha $X\in S$, otteniamo $X\in\mathscr{M}$;
+			\item Se $E\in\mathscr{M}$ allora $\forall S\in \Sigma \, E\in S$ e quindi $\forall S\in \Sigma \, E^C\in S$, da cui $E^C \in \mathscr{M}$;
+			\item Se $\suc{E}{n}{\N}\subseteq\mathscr{M}$, allora ogni $E_n$ è in tutti gli $S\in\Sigma$, e quindi l'unione degli $E_n$ è in tutti gli $S\in\Sigma$, da cui $\bigcup_{n\in\N}E_n\in \mathscr{M}$.
 		\end{itemize}
 	\end{proof}
 	
-	La $\sigma$- algebra la cui esistenza è appena stata provata prende il nome di $\sigma$-algebra generata.
-	
-	\begin{definition}[ $\sigma$-algebra generata]
-		Sia $X\neq \emptyset$ insieme e $\mathscr{F}$ una collezione di suoi sottoinsiemi, la più piccola $\sigma$-algebra in X  contente  $\mathscr{F}$ si dice $\sigma$-algebra generata da $\mathscr{F}$.
+	\begin{definition}[$\sigma$-algebra generata]
+		Sia $X\neq \emptyset$ insieme e $\mathscr{F}$ una collezione di suoi sottoinsiemi, la più piccola $\sigma$-algebra in $X$ contenente $\mathscr{F}$ si dice $\sigma$-algebra generata da $\mathscr{F}$.
 	\end{definition}
 	
 	\begin{definition}
@@ -162,36 +176,41 @@
 	\end{definition}
 	
 	\begin{nota}
-		In $\R$ con la topologia naturale, tutti i boreliani sono misurabili secondo Lebesgue, ma esistono misurabili non boreliani per questioni di cardinalità. Tuttavia, per ogni insieme Lebesgue--misurabile $A$ esiste un boreliano $G$ tale che $A\setminus G$ ha misura nulla.\\
-		Essendo i boreliani la $\sigma$--algebra generata dagli aperti, la famiglia dei boreliani contiene i chiusi, la famiglia di insiemi ottenuti dall'unione qualsiasi di chiusi (detti insiemi di tipo $F_\sigma$) e la famiglia di insiemi ottenuti dall'intersezione qualsiasi di aperti (detti insiemi di tipo $G_\delta$).
+		In $\R$ con la topologia naturale, tutti i boreliani sono misurabili secondo Lebesgue, ma esistono misurabili non boreliani per questioni di cardinalità. Tuttavia, per ogni insieme Lebesgue-misurabile $A$ esiste un boreliano $G$ tale che $A\setminus G$ ha misura nulla.
+		
+		Essendo i boreliani la $\sigma$-algebra generata dagli aperti, la famiglia dei boreliani contiene i chiusi, la famiglia di insiemi ottenuti dall'unione qualsiasi di chiusi (detti insiemi di tipo $F_\sigma$) e la famiglia di insiemi ottenuti dall'intersezione qualsiasi di aperti (detti insiemi di tipo $G_\delta$).
 	\end{nota}
 	
 	\begin{prop}
-		Sia $(X,\mathscr{B})$ uno spazio misurabile, con $\mathscr{B}$ generato dalla topologia $\tau$ e sia $(Y,\tau)$ uno spazio topologico, sia $f:X \to Y$ continua, allora $f$ è misurabile.
+		Siano $(X,\tau)$, $(Y,\gamma)$ spazi topologici, e consideriamo i boreliani $\mathscr{B}(X)$. Se una funzione $f: X\to Y$ è continua, allora $f$ è misurabile.
 	\end{prop}
 	\begin{proof}
 		L'antimmagine di un aperto è un aperto, quindi un boreliano, quindi misurabile.
 	\end{proof}
 	
 	\begin{prop}
-		Siano $(X,\mathscr{M})$ spazio misurabile, $(Y,\tau)$ spazio topologico e $f:X \to Y$ funzione, si ha che:
+		Siano $(X,\mathscr{M})$ spazio misurabile, $(Y,\tau)$ spazio topologico. Data una funzione $f:X \to Y$, si ha che:
 		\begin{enumerate}
-			\item La collezione di tutti i sottoinsiemi $E\subseteq Y | f^{-1} (E) \in \mathscr{M}$ è una $\sigma$-algebra in $Y$.
-			\item Se $f$ è misurabile e $E$ è di Borel in $Y$ , si ha che $f^{-1} \in \mathscr{M}$;
-			\item Sia $Y=[-\infty,+\infty]$, $f$ è misurabile $ \forall a\in \mathbb{R} f^{-1}([a,+\infty])\in \mathscr{M}$;
+			\item La collezione di tutti i sottoinsiemi $\left\{ E\subseteq Y \,\middle\vert\, f^{-1}(E)\in\mathscr{M} \right\}$ è una $\sigma$-algebra in $Y$.
+			\item Se $f$ è misurabile e $E\in\mathscr{B}(Y)$, si ha che $f^{-1}(E) \in \mathscr{M}$;
+			\item Sia $Y=[-\infty,+\infty]$. Allora $f$ è misurabile se e solo se $\forall a\in [-\infty,+\infty)$ si ha $f^{-1}\left( [a,+\infty] \right) \in \mathscr{M}$.
 		\end{enumerate}
 	\end{prop}
 	\begin{proof}
+		Mostriamo la prima. Sia $\mathscr{U}=\left\{ E\subseteq Y \,\middle\vert\, f^{-1}(E)\in\mathscr{M} \right\}$ e mostriamo che verifica la definizione di $\sigma$-algebra:
 		\begin{itemize}
-			\item Sia $U$ la collezione dei sottoinsiemi, si verifica dunque  la definizione di $\sigma$-algebra: $Y\in U$ dato che $f^{-1}(Y)=X$\\
-			Sia $E\subseteq Y $ , se $E\in U$ l'obiettivo è mostrare che $f^{-1}(E^C) \in U$: dato che $f^{-1}(E)\in \mathscr{M} \implies X/ f^{-1}(E)=f^{-1}(Y/E)=E^XC\in \mathscr{M}$.\\
-			Sia $E_i \in U \forall i \in \mathbb{N}$ l'obiettivo è mostrare che $\bigcup_{i\in \mathbb{N}}E_i \in U$. ma dato che  $ f^{-1}(E_i)\in \mathscr{M} \forall i \in \mathbb{N} \implies \bigcup_{i\in \mathbb{N}}E_i \in \mathscr{M} \implies f^{-1}( \bigcup_{i\in \mathbb{N}}E_i )\in \mathscr{M}. $\\
-			
-			\item SI consideri U la collezione definita nel punto precendete, la misurabilità di $f$ implica che $U$ contiene tutti gli aperti di $\tau$, ma dato che $U$ è anche una $\sigma$-algebra per il punto precedente, si ha che deve necessariamente contenere la $\sigma$-algebra di Borel. Quindi dato un boreliano, questo verifica la tesi in quento appartente ad $U$.
-			
-			\item Sia $U$ una collezione dei sottoinsiemi $ E \subseteq [-\infty,\infty]$ tali che $f^{-1}(E)\in \mathscr{M} $. Sia $a\in \mathbb{R}$, considero $\{a-\frac{1}{n} \}_n \to a $ successione. Dato che $[-\infty,a]=\bigcup_n]-\infty,a_n] = \bigcup_n [a_n, \infty[^C$ si ha	$] a-\frac{1}{n},\infty[\in U \ \forall n$. Dunque si può dedurre che questi intervalli aperti possono generare la $\sigma$-algebra dei boreliani: per ogni intervallo $(\alpha, \beta) = ]-\infty,\beta] \cap ]\alpha, \infty[$.
-			%% HO COSì DIMOSTRATO DA SX VERSO DX, IL VICEVERSA è OVVIO , LUI HA PERSINO ENU]NCIATO DIVERSO
+			\item Dal momento che $f^{-1}(Y)=X\in\mathscr{M}$ si ha che $Y\in\mathscr{U}$.
+			\item Sia $E\in\mathscr{U}$, da cui $f^{-1}(E)\in\mathscr{M}$. Allora anche $\left(f^{-1}(E)\right)^C\in\mathscr{M}$, quindi
+			\begin{equation*}
+				X\setminus f^{-1}(E) = f^{-1}(Y)\setminus f^{-1}(E) = f^{-1}(Y\setminus E) = f^{-1}(E^C) \,,
+			\end{equation*}
+			da cui si trova $E^C\in\mathscr{U}$
+			\item Siano $\suc{E}{n}{\N}\subseteq \mathscr{U}$. Allora per ogni $n\in\N$ si ha $f^{-1}(E_n)\in\mathscr{M}$ e quindi l'unione di queste antimmagini, che è l'antimmagine dell'unione, è ancora in $\mathscr{M}$, da cui $\bigcup_{n\in\N}E_n\in\mathscr{U}$.
 		\end{itemize}
+		
+		Mostriamo la seconda. La collezione $\mathscr{U}$ relativa alla funzione misurabile $f$ contiene per definizione tutti gli aperti di $\tau$. Dunque, passando alla $\sigma$-algebra generata, si ha che $\tau\subseteq\mathscr{U}\implies \mathscr{B}(Y)\subseteq\mathscr{U}$, da cui $f^{-1}(E)\in\mathscr{M}$ per ogni boreliano $E\subseteq Y$.
+		
+		Mostriamo la terza. L'implicazione ($\implies$) è banale, dal momento che $[a,+\infty]$ è un boreliano. Viceversa, se per ogni $a\in[-\infty,+\infty)$ sono in $\mathscr{M}$, ogni aperto di $Y$ si può scrivere come unione o intersezione di questi insiemi, da cui si ha $\tau\subseteq\mathscr{U}$ e quindi $f^{-1}(V)\in\mathscr{M}$ per ogni aperto $V$.
 	\end{proof}
 	
 	

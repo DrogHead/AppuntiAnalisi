@@ -1,0 +1,149 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	\begin{definition}[Convergenza $L^1$]
+		Si dice che una successione $\suc{f}{n}{\N}$ converge $L^1$ o converge fortemente a una funzione $f$ se
+		\begin{equation*}
+			\lim_n \int_X \abs{f_n-f}\dmu = 0 \,.
+		\end{equation*}
+		Si scrive che $f_n \xrightarrow{L^1} f$.		
+	\end{definition}
+	
+	\begin{definition}[Convergenza in misura]
+		Si dice che una successione $\suc{f}{n}{\N}$ converge in misura a una funzione $f$ se, per ogni $\sigma>0$, si ha
+		\begin{equation*}
+			\lim_n \mu\left( \left\{ x\in X \,\middle\vert\, \abs{f_n-f}>\sigma \right\} \right) = 0 \,.
+		\end{equation*}
+		Si scrive che $f_n \xrightarrow{\mu} f$.
+	\end{definition}
+	
+	\begin{theorem}[Teorema di Egorov]
+		Sia $\suc{f}{n}{\N}$ una successione convergente quasi ovunque a $f$ su un insieme $E$ di misura finita. Allora per ogni $\delta>0$ esiste un insieme $E_\delta\subseteq E$ misurabile tale che $\mu(E_\delta)>\mu(E)-\delta$ e sul quale la convergenza $f_n\to f$ è uniforme.
+	\end{theorem}
+	\begin{proof}
+		Costruiamo gli insiemi
+		\begin{equation*}
+			S_{\ell,m} = \bigcap_{k>\ell} \left\{ x\in E \,\middle\vert\, \abs{f_k(x)-f(x)}<1/m \right\} \,,
+		\end{equation*}
+		ossia gli insiemi degli $x\in E$ tali che la distanza tra $f_k$ e $f$ è minore di $1/m$ per ogni $k>\ell$. Per questi insiemi vale, per ogni $m\in\N$, che
+		\begin{equation*}
+			S_{\ell,m} \subseteq S_{\ell+1,m} \quad\textup{e}\quad E = \bigcup_{\ell\in\N} S_{\ell,m} \,.
+		\end{equation*}
+		Consideriamo poi i complementari $T_{\ell,m}=S_{\ell,m}^C$, ossia quelli in cui la successione NON converge, che è una successione decrescente di insiemi di misura finita. Quindi, per ogni $m\in\N$, vale
+		\begin{equation*}
+			\bigcap_{\ell\in\N} T_{\ell,m} = \emptyset \implies \lim_{\ell} \mu(T_{\ell,m}) = 0 \,.
+		\end{equation*}
+		Allora, per ogni $m\in\N$ esiste un indice $\ell_m$ tale che $\mu(T_{\ell_m,m})<\eps2^{-m}$. Definiamo quindi l'insieme
+		\begin{equation*}
+			B = \bigcap_{m\in\N} S_{\ell_m,m} \,,
+		\end{equation*}
+		che è misurabile ed è un insieme in cui la convergenza è uniforme. Il complemento coincide con l'unione dei $T_{\ell_m,m}$, e quindi si trova che
+		\begin{equation*}
+			\mu(B^C) = \mu\left( \bigcup_{m\in\N} T_{\ell_m,m} \right) \leq \sum_{m\in\N}\mu(T_{\ell_m,m}) < \eps \,.
+		\end{equation*}
+		La condizione sulla misura degli insiemi si trova poiché
+		\begin{equation*}
+			\mu(E) = \mu(B^C)+\mu(B) < \eps+\mu(B) \implies \mu(B)>\mu(E)-\eps \,.
+		\end{equation*}
+	\end{proof}
+	
+	\begin{oss}
+		La convergenza uniforme implica la convergenza in misura e, su insiemi di misura finita, la convergenza forte.
+	\end{oss}
+	
+	\begin{prop}
+		La convergenza forte implica la convergenza in misura.
+	\end{prop}
+	\begin{proof}
+		Definiamo, per ogni $n\in\N$ e per ogni $\sigma>0$, gli insiemi
+		\begin{equation*}
+			E_\sigma^n =\left\{ x\in X \,\middle\vert\, \abs{f_n-f}>\sigma \right\} \,.
+		\end{equation*}
+		Si trova quindi che
+		\begin{equation*}
+			\int_X \abs{f_n-f}\dmu \geq \int_{E_\sigma^n} \abs{f_n-f}\dmu \geq \sigma\mu(E_\sigma^n) \,,
+		\end{equation*}
+		e passando al limite su $n$ si trova che $\mu(E_\sigma^n)\to 0$.
+	\end{proof}
+	
+	\begin{theorem}
+		La convergenza in misura implica, a meno di estratte, la convergenza quasi ovunque.
+	\end{theorem}
+	\begin{proof}
+		Definiamo, per ogni $n\in\N$ e per ogni $\sigma>0$, gli insiemi
+		\begin{equation*}
+			E_\sigma^n = \left\{ x\in X \,\middle\vert\, \abs{f_n-f}>\sigma \right\} \,,
+		\end{equation*}
+		ed esplicitiamo la definizione di limite.
+		\begin{equation*}
+			\forall\sigma>0 \,\forall \eps>0 \,\exists \nu\in\N \,: \,\forall n\geq\nu \,\mu(E_\sigma^n) <\eps \,.
+		\end{equation*}
+		Fissati $\sigma=1/k$ ed $\eps=2^{-k}$ per ogni $k\in\N$ e troviamo che
+		\begin{equation*}
+			\forall k\in\N \,\exists \nu_k\in\N \,: \,\forall n\geq\nu_k \,\mu(E_{2^{-k}}^{1/k}) < 2^{-k} \,.
+		\end{equation*}
+		WLOG possiamo considerare $\suc{\nu}{k}{\N}$ strettamente crescente e quindi $f_{n_k}$ è un'estratta di $f_n$. Per alleggerire la notazione, chiamiamo gli insiemi solo $E_k$. Per quasi ogni $x\in X$, il numero di $E_k$ in cui si trova $x$ è finito, e quindi per quasi ogni $x$ esiste $\nu\in\N$ tale che $\forall n\geq \nu$ si ha $x\notin E_k$. Dunque, per quasi ogni $x\in X$ si ha
+		\begin{equation*}
+			\lim_k \abs*{f_{n_k}(x)-f(x)} = 0 \,.
+		\end{equation*}
+	\end{proof}
+		
+	\begin{example}
+		La convergenza in misura non implica la convergenza quasi ovunque di tutta la successione.
+	\end{example}
+	\begin{proof}
+		Costruiamo una successione di funzioni $f_N$ nel seguente modo. Preso $N\geq 1$, sia $L_N=2^{\floor{\log_2(N)}}$ la più grande potenza di $2$ minore o uguale a $N$. Poi, definiamo gli intervalli
+		\begin{equation*}
+			I_N = \left[ \frac{N-L_N}{L_N} , \frac{N-L_N+1}{L_N} \right] \,.
+		\end{equation*}
+		Infine poniamo $f_N = \rchi_{I_N}$ per ogni $N\geq 1$. Ovviamente $f_N$ converge in misura a $0$. Consideriamo $x\in [0,1]$, e osserviamo che per ogni $\nu\in\N$ esiste $n>\nu$ tale che $x\in I_n$, quindi non è possibile che $\lim_n f_n(x) = 0$ e analogamente non è possibile che $\lim_n f_n(x) = 1$.
+	\end{proof}
+	
+	\begin{theorem}
+		La convergenza quasi ovunque implica la convergenza in misura su insiemi di misura finita.
+	\end{theorem}
+	\begin{proof}
+		Definiamo, per ogni $n\in\N$ e per ogni $\sigma>0$, gli insiemi
+		\begin{equation*}
+			E_\sigma^n = \left\{ x\in X \,\middle\vert\, \abs{f_n-f}>\sigma \right\} \,,
+		\end{equation*}
+		e definiamo poi gli insiemi
+		\begin{equation*}
+			R_\sigma^n = \bigcup_{k\geq n}E_\sigma^k \,\qquad M=\bigcap_{n\in\N} R_\sigma^n \,.
+		\end{equation*}
+		Osserviamo che $R_\sigma^n$ è una successione decrescente in $n$ di insiemi di misura finita, e quindi abbiamo che
+		\begin{equation*}
+			\mu(M) = \lim_n \mu(R_\sigma^n) \,.
+		\end{equation*}
+		Ragionando come nel teorema precedente, si trova che $x\notin E_\sigma^k$ per ogni $k\geq\nu$ e quindi $x\notin R_\sigma^n$ per quasi ogni $x$. Allora, per ogni $\sigma>0$ si ha
+		\begin{equation*}
+			0 \leq \mu(E_\sigma^n) \leq \mu(R_\sigma^n) \implies f_n\xrightarrow{\mu} f \,.
+		\end{equation*}
+	\end{proof}
+	
+	\begin{example}
+		Se l'insieme non è di misura finita, la convergenza quasi ovunque non implica la convergenza in misura.
+	\end{example}
+	\begin{proof}
+		Consideriamo la successione di funzioni $f_n=\rchi_{[n,n+1]}$ in $\R^+$, che converge quasi ovunque a $0$. Tuttavia, abbiamo che
+		\begin{equation*}
+			\mu\left(\left\{ x\in\R \,\middle\vert\, \abs{f_n(x)}>1/2 \right\}\right) = \mu([n,n+1]) = 1 \not\to 0\,.
+		\end{equation*}
+		Quindi per $\sigma=1/2$ non vale la convergenza in misura.
+	\end{proof}
+	
+	\begin{theorem}[Disuguaglianza di Chebychev]
+		Sia $f:X\to\R$ una funzione misurabile non negativa e sia $E\in\mathscr{M}$. Per ogni $\lambda\geq 0$ si ha che
+		\begin{equation*}
+			\mu\left(\left\{ x\in X \,\middle\vert\, f(x)\geq c\right\}\right) \leq \frac1\lambda \int_X f\dmu \,.
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		Posto $X_\lambda=\left\{ x\in X \,\middle\vert\, f(x)\geq c\right\}$ si ha che
+		\begin{equation*}
+			\mu(X_\lambda) \defeq \int_{X_\lambda}\dmu= \frac1\lambda\int_{X_\lambda}\lambda\dmu \leq \frac1\lambda\int_{X_\lambda}f\dmu \leq \int_Xf\dmu\,.
+		\end{equation*}
+	\end{proof}
+	
+\end{document}

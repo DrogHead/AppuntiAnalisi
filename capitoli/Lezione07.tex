@@ -1,0 +1,195 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	\begin{definition}[Partizione dell'unità]
+		Sia $X$ uno spazio di Hausdorff localmente compatto, sia $K$ un compatto e $\ennu{V}{N}$ aperti tali che $K\subseteq\bigcup_{i=1}^N V_i$. Si dice ``partizione dell'unità'' una famiglia di funzioni $\ennu{\eta}{N}$ tali che $\eta_i\prec V_i$ e $\sum_{i=1}^N \eta_i = 1$.
+	\end{definition}
+	
+	\begin{theorem}[Esistenza delle partizioni dell'unità]
+		Sia $X$ uno spazio di Hausdorff localmente compatto, sia $K$ un compatto e $\ennu{V}{N}$ aperti tali che $K\subseteq\bigcup_{i=1}^N V_i$. Allora esiste una partizione dell'unità.
+	\end{theorem}
+	\begin{proof}
+		Dato $x\in K$, esiste $W_x$ intorno precompatto di $X$, quindi $\suc{W}{x}{X}$ è un ricoprimento di $K$, da cui si estrae un sottoricoprimento finito $\{\ennu{W}{n}\}$, ognuno dei quali contenuto interamente in uno dei $V_i$, e definiamo
+		\begin{equation*}
+			H_i = \bigcup_{W_{x_j}\subseteq V_i} \overline{W_{x_j}} \subseteq V_i \,.
+		\end{equation*}
+		Per il lemma di Urysohn, esistono delle funzioni $\ennu{g}{N}$ tali che, per ogni $i=1,\dots,N$, si abbia $H_i\prec g_i\prec V_i$. Definiamo infine
+		\begin{equation*}
+			\eta_1 = g_1 \,,\quad \eta_2= g_2(1-g_1) \quad\dots\quad \eta_N = g_N(1-g_1)\cdots(1-g_{N-1}) \,,
+		\end{equation*}
+		e risulta che $\eta_i\prec V_i$. Infatti, il loro supporto è dato da
+		\begin{equation*}
+			\supp\eta_i \subseteq \{g_i\ne 0\} \cap \{g_{i-1}\ne 1\} \cap\cdots\cap\{g_1\ne 1\} \subseteq V_i \,.
+		\end{equation*}
+		Inoltre, essendo la loro somma
+		\begin{equation*}
+			\sum_{i=1}^N \eta_i = 1 - (1-g_1)\cdots(1-g_N) \,,
+		\end{equation*}
+		e che ogni punto di $K$ appartiene a uno dei $V_i$, si trova che $f=1$ su $K$.		
+	\end{proof}
+	
+	\begin{definition}[Funzionale lineare e positivo]
+		Un funzionale $F :C_c(X)\to\R$ si dice lineare se $F(\alpha f+\beta g) = \alpha F(f) + \beta F(g)$ e si dice positivo se $f\geq 0 \implies F(f)\geq 0$.
+	\end{definition}
+		
+	\begin{theorem}[Teorema di rappresentazione di Riesz]
+		Sia $X$ uno spazio di Hausdorff localmente compatto e sia $F :C_c(X)\to\R$ un funzionale lineare positivo. Allora esiste una $\sigma$-algebra $\mathscr{M}$ su $X$, che contiene i boreliani, ed esiste un'unica misura positiva $\mu$ su $\mathscr{M}$, tali che
+		\begin{equation*}
+			F(f) = \int_X f\dmu \,,\quad \forall f\in C_c(X) \,.
+		\end{equation*}
+		Inoltre, valgono le seguenti proprietà.
+		\begin{enumerate}
+			\item Per ogni compatto $K\subseteq X$, $\mu(K)<+\infty$. Si dice che $\mu$ è localmente finita.
+			\item Per ogni $E\in\mathscr{M}$ si ha
+			\begin{equation*}
+				\mu(E) = \inf\left\{\mu(V) \,\middle\vert\, E\subseteq V \textup{ aperto} \right\} \,.
+			\end{equation*}
+			Si dice che $\mu$ è regolare dall'esterno.
+			\item Per ogni $E\in\mathscr{M}$ di misura finita si ha
+			\begin{equation*}
+				\mu(E) = \sup\left\{\mu(K) \,\middle\vert\, K\subseteq E \textup{ compatto} \right\} \,.
+			\end{equation*}
+			\item Se $E\in\mathscr{M}$ ha misura nulla, ogni suo sottoinsieme è misurabile e ha misura nulla. Si dice che $\mu$ è completa.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		La dimostrazione procede per step successivi.\\
+		
+		\textsc{Step 1.} Unicità della misura.\\
+		Siano $\mu,\nu$ due misure che rappresentano il funzionale $F$. Sia $K$ compatto e sia $V$ un aperto contenente $K$ tale che $\mu(V)<\mu(K)+\eps$ che trovo per la proprietà (3). Per il lemma di Urysohn possiamo considerare una funzione $f\in C_c(X)$ tali che $K\prec f\prec V$. Allora
+		\begin{equation*}
+			\nu(K) = \int_X \rchi_K\dnu \leq \int_X f\dnu = F(f) = \int_X f\dmu \leq \int_X \rchi_V\dmu = \mu(V) < \mu(K) + \eps \,,
+		\end{equation*}
+		ossia che $\nu\leq\mu$. Analogamente si prova che $\mu\leq\nu$ e quindi l'uguaglianza.\\
+		
+		\textsc{Step 2.} Costruzione di una misura esterna.\\
+		Definiamo una funzione d'insieme su $\tau$
+		\begin{equation*}
+			\mu^* : V\in\tau \mapsto \sup\left\{ F(f) \,\middle\vert\, f\prec V \right\} \,,
+		\end{equation*}
+		che poi estendiamo a tutta $\mathscr{P}(X)$ come
+		\begin{equation*}
+			\mu^* : V\in\mathscr{P}(X) \mapsto \inf\left\{ \mu^*(V) \,\middle\vert\, E\subseteq V \textup{ aperto} \right\} \,.
+		\end{equation*}
+		Possiamo subito vedere che $\mu^*(\emptyset)=0$ e che $\mu^*(A)\leq\mu^*(B)$ se $A\subseteq B$. Mostriamo la $\sigma$-subadditività. Sia quindi $\suc{V}{n}{\N}$ una famiglia di aperti e sia $f\prec \bigcup_{n\in\N}V_n$. Essendo $\supp f$ compatto, a meno di riordinamenti esiste $N\in\N$ tale che $\supp f\subseteq\bigcup_{i=1}^N V_i$. e quindi per il teorema di esistenza delle partizioni dell'unità esistono delle funzioni $\eta_i\prec V_i$ tali che $f=\sum_{i=1}^N\eta_i$, da cui
+		\begin{equation*}
+			F(f) = \sum_{i=1}^N F(\eta_i) \leq \sum_{i=1}^N\mu^*(V_i) \leq \sum_{i=1}^\infty \mu^*(V_i) \,.
+		\end{equation*}
+		Passando all'estremo superiore sulle $f\prec \bigcup_{n\in\N}V_n$ si trova la subadditività sugli aperti. Sia quindi $\suc{E}{n}{\N}$ una famiglia di misurabili, e per la proprietà (2) esiste $V_n$ aperto tale che $E_n\subseteq V_n$ e che
+		\begin{equation*}
+			\mu(V_n) < \mu(E_n) + \epsilon2^{-n} \,,
+		\end{equation*}
+		da cui
+		\begin{equation*}
+			\mu^*\left( \bigcup_{n\in\N}E_n \right) \leq \mu^*\left( \bigcup_{n\in\N}V_n \right) \leq \sum_{n=1}^\infty\mu^*(V_n) < \sum_{n=1}^\infty\mu^*(E_n)+\eps \,,
+		\end{equation*}
+		e otteniamo la $\sigma$-subadditività.\\
+		
+		\textsc{Step 3.} Costruzione di una misura di Borel.\\
+		Se $E\subseteq X$, si dice che $E$ è misurabile per la misura esterna $\mu^*$ se spezza, ossia se per ogni $A\subseteq X$ risulta
+		\begin{equation*}
+			\mu^*(A) = \mu^*(A\cap E) + \mu^*(A\cap E^C) \,.
+		\end{equation*}
+		In realtà basta provare solo la disuguaglianza $\geq$ per insiemi $A\subseteq X$ di misura esterna finita. La misura esterna $\mu^*$ ristretta ai misurabili è una misura completa.
+		
+		Volendo mostrare che $\mu$ è di Borel, sia $U\in\tau$ e mostriamo che spezza. Preso $A\subseteq X$ di misura esterna finita, sia $V\in\tau$ tale che $\mu^*(V) < \mu^*(A) + \eps$ per la proprietà (2). Per definizione di $\mu^*$ possiamo trovare una funzione $f_1\in C_c(X)$ tale che
+		\begin{equation*}
+			f_1 \prec U\cap V \,,\quad F(f_1)>\mu^*(U\cap V)-\eps \,,
+		\end{equation*}
+		e detto $K=\supp f_1$ possiamo trovare una funzione $f_2\in C_c(X)$ tale che
+		\begin{equation*}
+			f_2 \prec V\cap K^C \,,\quad F(f_2)>\mu^*(V\cap K^C)-\eps \,.
+		\end{equation*}
+		Allora $f_1+f_2\prec V$. Inoltre $V\cap U^C\subseteq V\cap K^C$, da cui
+		\begin{align*}
+			\mu^*(A) &> \mu^*(V)-\eps \geq F(f_1+f_2)-\eps \\
+			&> \mu^*(U\cap V) + \mu^*(V\cap K^C) - \eps \\
+			&> \mu^*(U\cap A) + \mu^*(A\cap U^C) - 2\eps \,,
+		\end{align*}
+		e per $\eps\to 0$ si trova la misurabilità.\\
+		
+		\textsc{Step 4.} Dimostrazione di un lemma.\\
+		Sia $A\subseteq X$ e $f\in C_c(X)$. Allora
+		\begin{enumerate}
+			\item se $\rchi_A\leq f$ allora $\mu^*(A)\leq F(f)$
+			\item se $0\leq f\leq\rchi_A$ e $A$ è compatto allora $F(f)\leq\mu^*(A)$
+		\end{enumerate}
+		Nel primo caso, preso $c\in(0,1)$ sia $V_c=\{f>1-c\}$, che è un aperto e $A\subseteq V_c$. Allora
+		\begin{equation*}
+			\mu^*(A) \leq \mu^*(V_c) = \sup\left\{F(g) \,\middle\vert\, g\prec V_c \right\} \leq \frac{1}{1-c}F(f) \,,
+		\end{equation*}
+		dal momento che $g\prec V_c$ implica $g\leq \rchi_{V_c}$ e quindi $g\leq\frac{1}{1-c}f$, e per linearità di $F$ si trova la maggiorazione.
+		Nel secondo caso, sia $U$ un aperto tale che $A\subseteq U$, da cui $f\prec U$ e quindi $F(f)\leq\mu^*(U)$ per definizione. Passando all'estremo inferiore sugli aperti si trova, sempre per definizione, che $F(f)\leq\mu^*(A)$.\\
+		
+		\textsc{Step 5.} Mostrare le proprietà della misura.\\
+		Per la prima proprietà, sia $K$ compatto e sia $U$ un aperto che lo contiene, da cui per Urysohn esiste una funzione $f\in C_c(X)$ tale che $K\prec f\prec U$. Quindi $\rchi_K\leq f$ e per il lemma precedente, $\mu(K)\leq F(f)<\infty$.
+		
+		La seconda proprietà è vera per costruzione di $\mu$.
+		
+		Mostriamo la terza proprietà prima per gli aperti. Se $U\in\tau$, abbiamo
+		\begin{equation*}
+			\mu(U) = \sup\left\{ F(f) \,\middle\vert\, f\prec U \right\} \,.
+		\end{equation*}
+		Se $f\prec U$ allora $0\leq f\leq \rchi_{\supp f}$, e per il lemma precedente $F(f)\leq\mu(\supp f)$. Al variare di $f\prec U$ il supporto varia tra tutti i compatti contenuti in $U$, quindi si trova
+		\begin{align*}
+			\mu(U) &= \sup\left\{ F(f) \,\middle\vert\, f\prec U \right\} \\
+			&\leq \sup\left\{ \mu(\supp f) \,\middle\vert\, f\prec U \right\} \\
+			&= \sup\left\{\mu(K) \,\middle\vert\, K\subseteq U \textup{ compatto}\right\} \,.
+		\end{align*}
+		Visto che per monotonia $\mu(K)\leq \mu(U)$ abbiamo l'uguaglianza.\\
+		
+		\textsc{Step 6.} Mostrare la rappresentazione.\\
+		Dal momento che ogni funzione in $C_c(X)$ si scrive come differenza di parte positiva e parte negativa, restringiamo la nostra attenzione alle funzioni non negative. Sia quindi $f\in C_c(X)$ non negativa, sia $\eps>0$, e definiamo la successione di funzioni
+		\begin{equation*}
+			f_n(x) =
+			\begin{cases}
+				0 &\textup{se } f(x)\leq (n-1)\eps \\
+				f(x)-(n-1)\eps &\textup{se } (n-1)\eps<f(x)\leq n\eps \\
+				\eps &\textup{se } n\eps<f(x)
+			\end{cases}
+		\end{equation*}
+		che sono tutte a supporto compatto e sommano a $f$. Dal momento che $f$ è limitata, $f_n=0$ per ogni $n$ maggiore di un certo $N\in\N$ sufficientemente grande. Sia $K_0=\supp f$ e definiamo $K_n=\{f>n\eps\}$, che è una successione decrescente di compatti. Per ogni $n\in\N$ troviamo
+		\begin{equation*}
+			\eps\rchi_{K_{n+1}} \leq f_n(x) \leq \eps\rchi_{K_n} \,,
+		\end{equation*}
+		e usando il lemma precedente
+		\begin{equation*}
+			\eps\mu(K_{n+1}) \leq F(f_n) \leq \eps\mu(K_n) \,.
+		\end{equation*}
+		Per le proprietà degli integrali vale anche
+		\begin{equation*}
+			\eps\mu(K_{n+1}) \leq \int_X f_n\dmu \leq \eps\mu(K_n) \,.
+		\end{equation*}
+		Sommando e sfruttando la linearità per entrambe, si trova che
+		\begin{align*}
+			\eps\sum_{n=0}^{N-1}\mu(K_{n+1}) \leq F(f) &\leq \eps\sum_{n=0}^N\mu(K_n) \\
+			\eps\sum_{n=0}^{N-1}\mu(K_{n+1}) \leq \int_X f\dmu &\leq \eps\sum_{n=0}^N\mu(K_n) \,.
+		\end{align*}
+		Concludiamo che
+		\begin{equation*}
+			\abs*{\int_X f\dmu - F(f)} \leq \eps(\mu(K_0)-\mu(K_N)) \,,
+		\end{equation*}
+		e per $\eps\to 0$ si trova l'uguaglianza.
+		
+	\end{proof}
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

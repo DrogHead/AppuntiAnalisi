@@ -1,0 +1,158 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	\begin{definition}[Spazio $T_2$ localmente compatto]
+		$X$ si dice spazio topologico di Hausdorff localmente compatto se:
+		\begin{enumerate}
+			\item Vale la proprietà di Hausdorff (o secondo assioma di separazione)
+			\begin{equation*}
+				\forall x,y\in X \, x\ne y \implies \exists U_x,U_y\in\tau \,: x\in U_x \,, y\in U_y \,, U_x\cap U_y = \emptyset
+			\end{equation*}
+			\item Vale la proprietà di locale compattezza
+			\begin{equation*}
+				\forall x\in X \,\exists U_x\in\tau \,: x\in U_x \,, \overline{U_x} \textup{ compatto}
+			\end{equation*}
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{theorem}
+		Sia $X$ uno spazio di Hausdorff e $K\subseteq X$ compatto. Se $p\in K^C$ esistono due aperti disgiunti $U,V$ tali che $p\in U$ e $V\subseteq K$.
+	\end{theorem}
+	\begin{proof}
+		Usando la proprietà di Hausdorff, per ogni $q\in K$ esistono due aperti disgiunti $V_q$ intorno di $q$ e $U_{p,q}$ intorno di $p$. Allora $\suc{V}{q}{K}$ è un ricoprimento di $K$, da cui si estrae un sottoricoprimento finito $\{V_{q_1},\dots,V_{q_N}\}$. Allora $U=\bigcup_{i=1}^N U_{p,q_i}$ e $V=\bigcup_{i=1}^N V_{q_i}$ sono gli aperti della tesi.
+	\end{proof}
+	
+	\begin{corol}
+		Sottoinsiemi compatti di spazi di Hausdorff sono chiusi. In uno spazio di Hausdorff, intersezione di un compatto e di un chiuso è un compatto.
+	\end{corol}
+	
+	\begin{corol}
+		In uno spazio di Hausdorff, se l'intersezione di una famiglia di compatti è vuota, allora esiste una sottofamiglia finita di quei compatti a intersezione vuota.
+	\end{corol}
+	
+	\begin{theorem}
+		Sia $X$ uno spazio di Hausdorff localmente compatto, sia $U$ aperto e sia $K\subseteq U$ compatto. Allora esiste un aperto $V$ a chiusura compatta tale che $K\subseteq V\subseteq \overline{V}\subseteq U$.
+	\end{theorem}
+	\begin{proof}
+		Usando la condizione di locale compattezza troviamo un intorno $V_x$ a chiusura compatta per ogni $x\in K$. Allora $\suc{V}{x}{K}$ è un ricoprimento, da cui si estrae un sottoricoprimento finito $\{V_{x_1},\dots,V_{x_N}\}$. Detto $V=\bigcup_{i=1}^N V_{x_i}$, si trova che $K\subseteq V$. Vogliamo dimostrare che $V\subseteq U$.
+		\begin{enumerate}
+			\item Se $U=X$ allora il risultato è banale.
+			\item Se $U\ne X$, per ogni $p\in V^C$ esistono un intorno $U_p$ di $p$ e un aperto $W_p\supseteq K$ disgiunti. Quindi $V^C\cap \overline{U}\cap \overline{W_p}$ è una famiglia di compatti a intersezione vuota e quindi esiste una sottofamiglia finita di questi compatti a intersezione vuota. Quindi sappiamo che
+			\begin{equation*}
+				V^C\cap\overline{U}\cap \overline{W_{p_1}}\cap\cdots\cap\overline{W_{p_M}} = \emptyset \,,
+			\end{equation*}
+			e detto $W=U\cap W_{p_1}\cap\cdots\cap W_{p_M}$ abbiamo che $V^C\cap W=\emptyset$ e $V^C\cap\overline{W}=\emptyset$ da cui la tesi.
+		\end{enumerate}
+	\end{proof}
+	
+	\begin{definition}[Semicontinuità]
+		Sia $f$ una funzione reale su uno spazio topologico $X$.
+		\begin{enumerate}
+			\item $f$ si dice ``semicontinua inferiormente'' se per ogni $a\in\R$ l'insieme $\{f>a\}$ è un aperto di $\tau$.
+			\item $f$ si dice ``semicontinua superiormente'' se per ogni $a\in\R$ l'insieme $\{f<a\}$ è un aperto di $\tau$.
+		\end{enumerate}
+		Una funzione reale è continua se e solo se è contemporaneamente s.c.i. e s.c.s.
+	\end{definition}
+	
+	\begin{oss}
+		Si può caratterizzare la semicontinuità inferiore in un punto $x_0$ come
+		\begin{equation*}
+			f(x_0) \leq \liminf_{x\to x_0} f(x)
+		\end{equation*}
+		mentre la semicontinuità superiore come
+		\begin{equation*}
+			f(x_0) \geq \limsup_{x\to x_0} f(x)
+		\end{equation*}
+	\end{oss}
+	
+	\begin{example}
+		Le funzioni caratteristiche degli aperti (risp. dei chiusi) sono semicontinue inferiormente (risp. superiormente).
+	\end{example}
+	
+	\begin{oss}
+		Una funzione s.c.i. (risp. s.c.s.) su un compatto ammette minimo (risp. massimo) in esso.
+	\end{oss}
+	
+	\begin{definition}[Supporto di una funzione]
+		Il supporto di una funzione $f :X\to\C$ è la chiusura dell'insieme in cui $f\ne 0$.
+		
+		Con la notazione $C_c(X)$ indichiamo l'insieme delle funzioni continue a supporto compatto su $X$. Con le operazioni di somma e prodotto per uno scalare reale o complesso, $C_c(X)$ è uno spazio vettoriale, in quanto vale la relazione $\supp(f+g)\subseteq \supp f \cup \supp g$.
+	\end{definition}
+	
+	\begin{prop}
+		Una funzione continua tra spazi topologici manda compatti in compatti.
+	\end{prop}
+	\begin{proof}[Senza dimostrazione.]
+	\end{proof}
+	
+	\begin{definition}[Subordinazione]
+		Siano $f\in C_c(X)$, $K\subseteq X$ compatto, $V\subseteq X$ aperto.
+		\begin{enumerate}
+			\item Con la notazione $K\prec f$ si intende che $0\leq f\leq 1$ e $f(x)=1$ per ogni $x\in K$, e si dice che $K$ è subordinato a $f$.
+			\item Con la notazione $f\prec V$ si intende che $0\leq f\leq 1$ e $\supp f \subseteq V$, e si dice che $f$ è subordinata a $V$.
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{lemma}[Urysohn]
+		Sia $X$ uno spazio di Hausdorff localemnte compatto, sia $K\subseteq X$ compatto e $V$ un aperto contenente $K$. Allora esiste una funzione $f\in C_c(X)$ tale che $K\prec f\prec V$.
+	\end{lemma}
+	\begin{proof}
+		Sia $\Q\cap[0,1] = \suc{q}{i}{\N}$, con $q_0=0$ e $q_1=1$. Procediamo con la seguente costruzione.
+		\begin{itemize}
+			\item Sia $V_0$ un aperto precompatto tale che
+			\begin{equation*}
+				K\subseteq V_0 \subseteq \overline{V_0} \subseteq V
+			\end{equation*}
+			\item Sia $V_1$ un aperto precompatto tale che
+			\begin{equation*}
+				K\subseteq V_1\subseteq \overline{V_1} \subseteq V_0 \subseteq \overline{V_0} \subseteq V
+			\end{equation*}
+			\item Sia $n\geq 2$, e supponiamo di aver scelto già $V_0,\dots,V_n$ in modo tale che, se $q_i<q_j$ allora $\overline{V_j}\subseteq V_i$. Consideriamo poi $q_{n+1}$, che si troverà tra due razionali $q_i$ e $q_j$, in modo che $q_i$ sia il massimo razionale tra $\ennu{q}{n}$ minore di $q_{n+1}$ e che $q_j$ sia il minimo razionale tra $\ennu{q}{n}$ maggiore di $q_{n+1}$, e inseriamo l'aperto $V_{n+1}$ in modo che
+			\begin{equation*}
+				K \subseteq\cdots\subseteq \overline{V_j} \subseteq  V_{n+1} \subseteq \overline{V_{n+1}} \subseteq V_i \subseteq\cdots\subseteq V
+			\end{equation*}
+		\end{itemize}
+		Consideriamo le funzioni
+		\begin{equation*}
+			f_i(x) =
+			\begin{cases}
+				q_i & \textup{se } x\in V_i\\
+				0 & \textup{altrimenti}
+			\end{cases}
+			\quad\textup{e}\quad
+			g_i(x) = 
+			\begin{cases}
+				1 & \textup{se } x\notin V_i\\
+				q_i & \textup{altrimenti}
+			\end{cases}
+		\end{equation*}
+		e definiamo $f=\sup_i f_i$ e $g=\inf_i g_i$. La funzione $f$ è semicontinua inferiormente dal momento che
+		\begin{enumerate}
+			\item Se $a>1$ si ha $\{f>a\}=\emptyset$ che è aperto
+			\item Se $0<a\leq 1$ si ha $\{f>a\}=\bigcup_i V_i$ che è aperto
+			\item Se $a\leq 0$ si ha $\{f>a\}=X$ che è aperto
+		\end{enumerate}
+		Analogamente si mostra che $g$ è semicontinua superiormente. Inoltre, troviamo che $0\leq f\leq 1$, che $f=1$ su $K$ e che $\supp f\subseteq V_0$. Se mostrassimo che $f$ è continua avremmo $K\prec f\prec V$, e per fare ciò mostriamo che $f=g$.
+		
+		Per definizione si ha $f_i(x)>g_j(x)$ se e solo se $q_i>q_j$, e quindi se $x\in V_i\setminus\overline{V_j}$. Tuttavia, abbiamo che $q_i>q_j$, da cui segue che $V_i\subseteq V_j$, che è assurdo, da cui $f_i\leq g_j$ per ogni $i,j$, e quindi $f\leq g$. Se per assurdo $f<g$ allora per la densità di $\Q$ in $\R$ si ha $f<q_i<q_j<g$, ossia che $x\in\overline{V_j}\setminus V_i$ che è assurdo, in quanto $q_j>q_i$ implica che $\overline{V_j}\subseteq V_i$. Allora $f=g$ e abbiamo concluso.
+	\end{proof}
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
