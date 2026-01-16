@@ -75,20 +75,20 @@
 % Numerazione distinta
 \theoremstyle{teoremi}
 \newtheorem{theorem}{Teorema}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{corol}{Corollario}[chapter]
-\newtheorem{prop}{Proposizione}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corol}[theorem]{Corollario}
+\newtheorem{prop}[theorem]{Proposizione}
 
 \theoremstyle{definizioni}
 \newtheorem{definition}{Definizione}[chapter]
 
 \theoremstyle{esempi}
 \newtheorem{example}{Esempio}[chapter]
-\newtheorem{exercise}{Esercizio}[chapter]
+\newtheorem{exercise}[example]{Esercizio}
 
 \theoremstyle{osservazioni}
 \newtheorem{oss}{Osservazione}[chapter]
-\newtheorem{nota}{Nota}[chapter]
+\newtheorem{nota}[oss]{Nota}
 
 
 % LETTERE
@@ -163,10 +163,18 @@
 % INTERNO
 \DeclareMathOperator{\interno}{int}
 \DeclareMathOperator{\linspan}{span}
+\DeclareMathOperator{\supp}{supp}
 
 % DUALE
 \newcommand{\dual}[1]{{#1}^{\star}}
 \newcommand{\ddual}[1]{{#1}^{\star\star}}
+
+% MISURA
+\newcommand{\dmu}{\,d\mu}
+\newcommand{\dnu}{\,d\mu}
+\newcommand{\dla}{\,d\lambda}
+\newcommand{\dph}{\,d\varphi}
+\newcommand{\dmabs}{\,d\abs{\mu}}
 
 
 \title{Istituzioni di Analisi Matematica}
@@ -189,6 +197,13 @@
 	\subfile{capitoli/Lezione03}
 	\subfile{capitoli/Lezione04}
 	
+	\chapter{Convergenze}
+	\subfile{capitoli/Lezione05}
+	
+	\chapter{Spazi di Hausdorff localmente compatti}
+	\subfile{capitoli/Lezione06}
+	\subfile{capitoli/Lezione07}
+	\subfile{capitoli/Lezione08}
 	
 	\subfile{capitoli/Lezione20}
 	\subfile{capitoli/Lezione21}

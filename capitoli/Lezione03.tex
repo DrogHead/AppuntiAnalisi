@@ -2,21 +2,103 @@
 
 \begin{document}
 	
-	\begin{theorem}
-		Sia $(X,\mathscr(M), \mu)$ uno spazio di misura, sia $f_n$ una successione di funzioni tale che $f_n : X \to [0,\infty]$ misurabili $ \forall n \in \N$, allora $ \sum_{n=1}^\infty \int_X f_n(x) \ d\mu = \int_X  \sum_{n=1}^\infty f_n(x) \ d\mu  $  .
-	\end{theorem}
+	\begin{corol}[Serie di funzioni]
+		Dato uno spazio di misura $(X,\mathscr{M},\mu)$ e una successione di funzioni $\suc{f}{n}{\N}$ misurabili non negative, per il teorema di convergenza monotona si ha
+		\begin{equation*}
+			\sum_{n=1}^\infty \int_X f_n\dmu = \int_X \sum_{n=1}^\infty f_n \dmu \,.
+		\end{equation*}
+	\end{corol}
 	
+	\begin{theorem}[Lemma di Fatou]
+		Dato uno spazio di misura $(X,\mathscr{M},\mu)$ e una successione di funzioni $\suc{f}{n}{\N}$ misurabili non negative, si ha
+		\begin{equation*}
+			\int_X \liminf_n f_n \dmu \leq \liminf_n \int_X f_n\dmu
+		\end{equation*}
+	\end{theorem}
 	\begin{proof}
-		L'asserto è immediata conseguenza del teorema di convergenza monotona: considero $s_n (x) \coloneq \sum_{k=1}^n f_k(x)$ successione misurabile e monotona rispetto a n, applicando il teorema di convergenza monotona $\lim_n \int_X  \sum_{k=1}^n f_k(x) \ d\mu = \lim_n \int_X s_n(x) \ d\mu = \int_X lim_n s_n(x) \ d\mu = \int_X  \sum_{n=1}^\infty \int_X f_n(x) $.
+		Dalla definizione di $\liminf$, consideriamo la successione $g_n = \inf_{k\geq n}f_k$, per cui $g_n \leq f_k$ per ogni $k\geq n$ e il limite per $n\to\infty$ delle $g_n$ è $\liminf_n f_n$. Ovviamente anche $\suc{g}{n}{\N}$ è una successione di funzioni misurabili non negative, ed è crescente in $n$. Usando il teorema di convergenza monotona si ha
+		\begin{equation*}
+			\lim_n \int_X g_n \dmu = \int_X \lim_n g_n d\mu \,.
+		\end{equation*}
+		Usando la monotonia dell'integrale si trova
+		\begin{equation*}
+			\int_X g_n \dmu \leq \inf_{k\geq n} \int_X f_k \dmu \,,
+		\end{equation*}
+		e quindi passando al limite per $n\to\infty$ si ha
+		\begin{equation*}
+			\int_X \liminf_n f_n \dmu = \lim_n \int_X g_n \dmu \leq \lim_n \inf_{k\geq n} \int_X f_k \dmu = \liminf_n \int_X f_n \dmu \,.
+		\end{equation*}
 	\end{proof}
 	
-	\begin{theorem} [Lemma di Fatou]
-		Sia $(X,\mathscr(M), \mu)$ uno spazio di misura, sia $f_n$ una successione di funzioni tale che $f_n : X \to [0,\infty]$ misurabili $ \forall n \in \N$, allora $\lim inf_n \int_X f_n(x) \ d\mu \geq \int_X lim inf_n f_n(x) \ d\mu  $.
-	\end{theorem}
+	\begin{nota}
+		Il teorema di convergenza monotona vale anche nel caso in cui $\suc{f}{n}{\N}$ è una successione di funzioni misurabili non negativa e decrescente in $n$, aggiungendo l'ipotesi che una delle $f_k$ ha integrale finito.
+	\end{nota}
 	
+	\begin{definition}[Integrale di funzione misurabile non negativa]
+		Consideriamo uno spazio di misura $(X,\mathscr{M},\mu)$ e una funzione misurabile $f :X\to \R$. Si definisce l'integrale di $f$ su $X$ rispetto a $\mu$ come
+		\begin{equation*}
+			\int_X f\dmu \defeq \int_X f^+\dmu - \int_X f^-\dmu \,,
+		\end{equation*}
+		mentre se $f:X\to\C$ si definisce l'integrale come
+		\begin{equation*}
+			\int_X f\dmu \defeq \int_X \Re(f)\dmu + i\int_X \Im(f)\dmu \,.
+		\end{equation*}
+	\end{definition}
+	
+	\begin{definition}[Funzione sommabile]
+		Si dice che $f:X\to\C$ è una funzione sommabile se $\int_X\abs{f}\dmu < +\infty$. L'insieme delle funzioni sommabili è denotato con $L^1(X,\mu)$, talvolta omettendo $X$ e $\mu$. L'insieme $L^1(X,\mu)$ è uno spazio vettoriale con le operazioni di somma e prodotto per un numero reale o complesso.
+	\end{definition}
+	
+	\begin{prop}[Disuguaglianza triangolare]
+		Sia $E\in\mathscr{M}$ e $f$ una funzione misurabile. Allora $\abs*{\int_E f\dmu}\leq\int_E\abs{f}\dmu$.
+	\end{prop}
 	\begin{proof}
-		Sia $ g_n(x) = inf_{k\geq n} f_k(x)$, dunque $ g_n (x) \leq f_n(x) $, si ha che $\lim_n inf f_n(x)= \lim_n g_n(x)= sup_n g_n(x)$ dato che $g_n(x) \geq 0 $ crescente in n . Quindi, per il teorema di convergenza monotona si ha che: $ \lim_n \int_X g_n (x) \ d\mu = \int_X \lim_n g_n (x) \ d\mu $, ma da una parte $\int_X g_n(x) \ d\mu = \int_X \lim inf_n f_n(x) \ d\mu $, mentre d'altra parte( dato che se il limite di una successione esiste coincide con il lim inf ) $ \lim_n \int_X g_n(x) \ d\mu =  \lim inf_n \int_X g_n(x \ d\mu ) \geq \lim_n inf \int_X f_n (x) \ d\mu $.
+		Se $f$ non è sommabile la disuguaglianza è banale. Se $f:X\to\R$ si trova immediatamente che
+		\begin{equation*}
+			\abs*{\int_E f\dmu} \leq \abs*{\int_E f^+\dmu} + \abs*{\int_E f^-\dmu} = \int_E f^++f^- \dmu = \int_E\abs{f}\dmu \,.
+		\end{equation*}
+		Se $f:X\to\C$, invece, detto
+		\begin{equation*}
+			\alpha = \frac{ \overline{ \int_E f\dmu } }{ \abs*{ \int_E f\dmu } } \,,
+		\end{equation*}
+		che ha modulo $1$. Allora si ha
+		\begin{equation*}
+			\abs*{\int_E f\dmu} = \alpha \int_E f\dmu = \int_E \alpha f\dmu = \int_E \Re(\alpha f)\dmu \leq \int_E \abs{f}\dmu \,.
+		\end{equation*}
 	\end{proof}
 	
+	\begin{theorem}[Teorema di convergenza dominata di Lebesgue]
+		Sia $\suc{f}{n}{\N}$ una successione di funzioni misurabili su $X$, convergente puntualmente a $f$, e sia $g\in L^1(X,\mu)$ tale che per ogni $n\in\N$ si abbia $\abs{f_n}\leq g$ in $X$. Allora si ha
+		\begin{equation*}
+			\lim_n \int_X \abs{f_n-f}\dmu = 0 \,.
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		Dalla condizione su $g$ si trova che $-g \leq f_n \leq g$ per ogni $n\in\N$, da cui per permanenza del segno si trova anche $-g\leq f\leq g$. Usiamo il lemma di Fatou su $f_n+g\geq 0$ e troviamo
+		\begin{align*}
+			\int_X \liminf_n(f_n+g) \dmu &\leq \liminf_n \int_X (f_n+g)\dmu \\
+			\implies \int_X f+g\dmu & \leq \liminf_n \left( \int_X f_n\dmu \right) + \int_X g\dmu \\
+			\implies \int_X f\dmu &\leq \liminf_n \int_X f_n\dmu \,.
+		\end{align*}
+		Usiamo il lemma di Fatou su $g-f_n\geq 0$ e troviamo, ricordando che $\liminf_n -a_n = -\limsup_n a_n$, che
+		\begin{align*}
+			\int_X \liminf_n (g-f_n)\dmu &\leq \liminf_n \int_X (g-f_n)\dmu \\
+			\implies \int_X g-f \dmu &\leq \int_X g\dmu + \liminf_n \left(-\int_X f_n\dmu\right) \\
+			\implies \int_X f\dmu &\geq \limsup_n \int_X f_n \dmu \,.
+		\end{align*}
+		Unendo la due disuguaglianze si trova che il limite della successione $\int_Xf_n\dmu$ esiste e vale proprio $\int_X f\dmu$. La tesi si trova usando il teorema per la funzione $\varphi_n=\abs{f_n-f}$ che tende a $0$ e che è limitata da $2g\in L^1(X,\mu)$.
+	\end{proof}
 	
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+

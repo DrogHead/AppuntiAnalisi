@@ -2,24 +2,88 @@
 
 \begin{document}
 	
+	\begin{definition}
+		Lo spazio di misura $(X,\mathscr{M},\mu)$ si dice completo (o $\mu$ si dice completa) se tutti i sottoinsiemi degli insiemi di misura nulla hanno a loro volta misura nulla.
+	\end{definition}
+	
 	\begin{theorem}
-		Sia $(X,\mathscr(M), \mu)$ uno spazio di misura, sia $f_n$ una successione di funzioni tale che $f_n : X \to [0,\infty]$ misurabili $ \forall n \in \N$, allora $ \sum_{n=1}^\infty \int_X f_n(x) \ d\mu = \int_X  \sum_{n=1}^\infty f_n(x) \ d\mu  $  .
+		Per ogni spazio di misura $(X,\mathscr{M},\mu)$ esiste uno spazio di misura completo $(X,\mathscr{M}^*, \mu^*)$, tale che $\mathscr{M}\subseteq\mathscr{M}^*$ e che $\mu^*$ ristretta a $\mathscr{M}$ coincide con $\mu$.
 	\end{theorem}
-	
 	\begin{proof}
-		L'asserto è immediata conseguenza del teorema di convergenza monotona: considero $s_n (x) \coloneq \sum_{k=1}^n f_k(x)$ successione misurabile e monotona rispetto a n, applicando il teorema di convergenza monotona $\lim_n \int_X  \sum_{k=1}^n f_k(x) \ d\mu = \lim_n \int_X s_n(x) \ d\mu = \int_X lim_n s_n(x) \ d\mu = \int_X  \sum_{n=1}^\infty \int_X f_n(x) $.
+		La $\sigma$-algebra $\mathscr{M}^*$ si definisce come
+		\begin{equation*}
+			E\in\mathscr{M}^* \iff \exists A,B\in\mathscr{M} : A\subseteq E\subseteq B \,, \mu(B\setminus A) = 0 \,,
+		\end{equation*}
+		e si mostra che $\mathscr{M}^*$ rispetta la definizione. Inoltre, definita $\mu^*(E) = \mu(A) = \mu(B)$, si fa vedere che $\mu^*$ è una misura ed completa.
 	\end{proof}
 	
-	\begin{theorem} [Lemma di Fatou]
-		Sia $(X,\mathscr(M), \mu)$ uno spazio di misura, sia $f_n$ una successione di funzioni tale che $f_n : X \to [0,\infty]$ misurabili $ \forall n \in \N$, allora $\lim inf_n \int_X f_n(x) \ d\mu \geq \int_X lim inf_n f_n(x) \ d\mu  $.
-	\end{theorem}
-	
+	\begin{lemma}
+		Sia $f :X\to\R$ una funzione misurabile non negativa e sia $E\in\mathscr{M}$ tale che $\int_E f\dmu = 0$. Allora $f$ è quasi ovunque nulla in $E$.
+	\end{lemma}
 	\begin{proof}
-		Sia $ g_n(x) = inf_{k\geq n} f_k(x)$, dunque $ g_n (x) \leq f_n(x) $, si ha che $\lim_n inf f_n(x)= \lim_n g_n(x)= sup_n g_n(x)$ dato che $g_n(x) \geq 0 $ crescente in n . Quindi, per il teorema di convergenza monotona si ha che: $ \lim_n \int_X g_n (x) \ d\mu = \int_X \lim_n g_n (x) \ d\mu $, ma da una parte $\int_X g_n(x) \ d\mu = \int_X \lim inf_n f_n(x) \ d\mu $, mentre d'altra parte( dato che se il limite di una successione esiste coincide con il lim inf ) $ \lim_n \int_X g_n(x) \ d\mu =  \lim inf_n \int_X g_n(x \ d\mu ) \geq \lim_n inf \int_X f_n (x) \ d\mu $.
+		Sia $E_n = \left\{x\in E \,\middle\vert\, f>\frac1n \right\}$ per ogni $n\in\N$ e definiamo $E = \bigcup_n E_n = \{f\ne 0\}$. Allora per ogni $n\in\N$ si ha
+		\begin{equation*}
+			0\leq \frac1n \mu(E_n) \leq \int_{E_n}f\dmu \leq \int_E f\dmu = 0 \,,
+		\end{equation*}
+		da cui $\mu(E_n)=0$ per ogni $n\in\N$ e quindi $\mu(E)=0$, che è la tesi.
 	\end{proof}
 	
-	Ciau.
+	\begin{corol}
+		Il lemma che abbiamo appena dimostrato vale anche per le funzioni $L^1$.
+	\end{corol}
 	
+	\begin{prop}
+		Sia $\suc{E}{n}{\N}\subseteq\mathscr{M}$ tale che $\sum_n \mu(E_n)<+\infty$. Allora ogni $x\in X$ appartiene al più a un numero finito di $E_n$.
+	\end{prop}
+	\begin{proof}
+		Consideriamo le funzioni misurabili
+		\begin{equation*}
+			f_N = \sum_{n=1}^N \rchi_{E_n} \,\qquad f = \sum_{n=1}^\infty \rchi_{E_n}
+		\end{equation*}
+		e notiamo che $f(x)=+\infty$ se e soltanto se $x$ si trova in un numero infinito di insiemi $E_n$. Per il teorema di convergenza monotona, si trova che
+		\begin{equation*}
+			\lim_n \int_X f_n\dmu = \int_X f\dmu = \sum_{n=1}^\infty \mu(E_n) < +\infty
+		\end{equation*}
+		e quindi concludiamo che $f$ è quasi ovunque finita, ossia che quasi ogni $x\in X$ è in un numero finito di $E_n$.
+	\end{proof}
 	
+	\begin{theorem}[Teorema di derivazione sotto segno di integrale]
+		Sia $(X,\mathscr{M},\mu)$ uno spazio di misura e consideriamo una funzione $f :X\times(a,b)\to\R$ tale che
+		\begin{enumerate}
+			\item $f(\cdot,y) : X\to \R$ è sommabile per ogni $y\in(a,b)$;
+			\item $f(x,\cdot) : (a,b)\to \R$ è derivabile per quasi ogni $x\in X$;
+			\item $\exists g\in L^1(X,\mu)$ tale che $\abs{\partial_y f(x,y)}\leq g(x)$ per quasi ogni $x\in X$.
+		\end{enumerate}
+		Allora si ha che $y \mapsto \int_X f(x,y) \dmu_x$ è derivabile, e che
+		\begin{equation*}
+			\dfrac{\partial}{\partial y}\int_X (x,y)\dmu_x = \int_X \partial_yf(x,y) \dmu_x \,.
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		Definiamo la funzione ausiliaria
+		\begin{equation*}
+			F_h(x,y) = \frac{ f(x,y+h)-f(x,y) }{h} \,,
+		\end{equation*}
+		e osserviamo che il limite per $h\to 0$ di $F_h$ è proprio la derivata $\partial_y f$. Dal teorema di Lagrange, $\exists\theta\in\R$ dipendente da $x$ e da $y$, con $\abs{\theta}<h$ e tale che
+		\begin{equation*}
+			F_h(x,y) = \partial_y f(x,y+\theta) \,.
+		\end{equation*}
+		Usando il teorema di convergenza dominata (con parametro continuo, ma vale per ogni successione e quindi si può passare per il teorema ponte) e troviamo che
+		\begin{equation*}
+			\dfrac{\partial}{\partial y}\int_X F_h(x,y)\dmu_x = \lim_{h\to 0}\int_X F_h(x,y)\dmu_x = \int_X \lim_{h\to0} F_h(x,y) \dmu_x = \int_X \partial_y(x,y) \dmu_x \,.
+		\end{equation*}
+	\end{proof}
 	
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
