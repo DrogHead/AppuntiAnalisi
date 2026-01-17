@@ -1,0 +1,83 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	Enunciamo, senza dimostrazione, il teorema di Radon-Nikodym, che dimostreremo più avanti dopo aver affrontato la teoria degli spazi $L^p$, e vediamone alcuni corollari.
+	
+	\begin{theorem}[Radon-Nikodym]
+		Siano $\mu,\lambda$ misure finite sulla stessa $\sigma$-algebra $\mathscr{M}$. Allora esiste ed è unica la coppia di misure $\lambda_a,\lambda_s$ tali che $\lambda=\lambda_a+\lambda_s$, $\lambda_a\ll\mu$ e $\lambda_s\perp\mu$. Inoltre, esiste ed è unica $h\in L^1(\mu)$ tale che
+		\begin{equation*}
+			\int_E h\dmu = \lambda_a(E) \,,
+		\end{equation*}
+		ossia tale che $d\lambda_a = h\dmu$. La decomposizione ottenuta in questo modo è detta ``decomposizione di Lebesgue''.
+	\end{theorem}
+	
+	\begin{corol}
+		Sia $\mu$ una misura complessa su $\mathscr{M}$. Allora esiste una funzione $h$ a modulo quasi ovunque 1 tale che $d\mu=h\dmabs$.
+	\end{corol}
+	\begin{proof}
+		Per Radon-Nikodym, sapendo che $\mu\ll\abs{\mu}$, si ha che $d\mu=h\dmabs$, quindi occorre mostrare che $\abs{h}=1$ quasi ovunque. È evidente che $\abs{h}\leq 1$, poiché
+		\begin{equation*}
+			\abs*{ \frac1{\abs{\mu}(E)} \int_E h\dmabs } =
+			\frac1{\abs{\mu}(E)} \abs*{\int_E h\dmabs} =
+			\frac1{\abs{\mu}(E)} \abs*{\int_E \dmu} =
+			\frac{ \abs{\mu(E)} }{ \abs{\mu}(E) } \leq 1 \,.
+		\end{equation*}
+		Sia $r>0$ e sia $A_r=\{\abs{h}>r\}$. Consideriamo una sua partizione $\{E^k_r\}_{k\in\N}$. Allora
+		\begin{equation*}
+			\abs{\mu(A_r)} \leq \sum_k\abs{\mu(E_r^k)} = \sum_k\abs*{\int_{E^k_r}h\dmabs} \leq_k e\abs{\mu}(E_r^k) = r\abs{\mu}(A_r) \,,
+		\end{equation*}
+		da cui $\abs{\mu(A_r)}=0$, e in particolare per $r\in[0,1)$ si trova che $\abs{h}\geq r$ quasi ovunque e quindi $\abs{h}=1$ quasi ovunque.
+	\end{proof}
+	
+	\begin{corol}
+		Sia $\mu$ una misura positiva e sia $g\in L^1(\mu)$. Allora $d\abs{\lambda}=\abs{g}\dmu$.
+	\end{corol}
+	\begin{proof}
+		Per il corollario precedente esiste $h\in L^1(\lambda)$ tale che $d\lambda=h \, d\abs{\lambda}$, ossia
+		\begin{equation*}
+			g\dmu = h \, d\abs{\lambda} \implies \overline{h}g\dmu = d\abs{\lambda} \implies \overline{h}g\geq 0 \textup{ q.o.} \,,
+		\end{equation*}
+		da cui si conclude che $\overline{h}g=\abs{g}$ e quindi la tesi.
+	\end{proof}
+	
+	\begin{theorem}[Decomposizione di Hahn]
+		Data una misura reale su una $\sigma$-algebra $\mathscr{M}$, esistono due insiemi disgiunti $A,B\in\mathscr{M}$ tali che $A\cup B=X$ ed esistono due misure $\mu_A,\mu_B$ tali che
+		\begin{equation*}
+			\mu_A(E) = \mu(A\cap E) \quad\,\quad \mu_B(E) = \mu(B\cap E) \,.
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		Per Radon-Nikodym esiste $h$ di modulo 1 tale che $d\mu=h\dmabs$, per cui $h$ è una funzione reale e può essere solamente $\pm 1$. Definiamo allora
+		\begin{equation*}
+			A = \{h=1\} \quad\,\quad B=\{h=-1\} \,,
+		\end{equation*}
+		che sono disgiunti, e per ogni $E\in\mathscr{M}$ si ha
+		\begin{align*}
+			\mu^+(E) &= \frac12(\mu(E)+\abs{\mu}(E)) = \frac12\int_E\dmu + \frac12\int_E\dmabs \\
+			&= \frac12 \int_E h\dmabs + \frac12\int_E\dmabs \\
+			&= \frac12\int_E(h+1)\dmabs = \int_{E\cap A}h\dmabs = \mu(A\cap E) = \mu_A(E) \,.
+		\end{align*}
+		Analogamente si vede che $\mu^-(E)=-\mu(B\cap E)$ e si trova la decomposizione.
+	\end{proof}
+	
+	\begin{corol}
+		Se $\mu=\lambda_1-\lambda_2$ con $\lambda_1,\lambda_2$ misure positive, allora $\lambda_1\geq\mu^+$ e $\lambda_2\geq\mu^-$.
+	\end{corol}
+	\begin{proof}
+		Sia $A$ l'insieme dove è concentrata $\mu^+$ e $B$ l'insieme dov'è concentrata $\mu^-$. Allora
+		\begin{equation*}
+			\mu^+ = \restr{\mu}{A} = \restr{\lambda_1}{A} - \restr{\lambda_2}{A} \leq \restr{\lambda_1}{A} \leq \lambda_1 \,.
+		\end{equation*}
+		Da questo, si trova immediatamente che $\mu^-\leq\lambda_2$.
+	\end{proof}
+	
+\end{document}
+
+
+
+
+
+
+
+

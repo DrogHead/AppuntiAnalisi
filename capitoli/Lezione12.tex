@@ -1,0 +1,37 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	\begin{definition}[Spazi $L^p$]
+		Sia $(X,\mathscr{M},\mu)$ uno spazio di misura. Dato $p\in[1,+\infty)$, definiamo $L^p(X,\mu)$ l'insieme di tutte le funzioni $f:X\to\C$ a potenza $p$-esima sommabile ossia
+		\begin{equation*}
+			f\in L^p(X,\mu) \iff \int_X\abs{f}^p\dmu < \infty \,,
+		\end{equation*}
+		mentre chiamiamo $L^\infty(X,\mu)$ l'insieme di tutte le funzioni $f:X\to\C$ quasi ovunque limitate, ossia
+		\begin{equation*}
+			f\in L^\infty(X,\mu) \iff \exists C\in\R \,: \abs{f}<C \textup{ q.o.}
+		\end{equation*}
+		Per brevità, quando è chiaro il contesto, si scrive $L^p(X)$, $L^p(\mu)$ oppure $L^p$.
+	\end{definition}
+	
+	\begin{definition}[Norme $L^p$]
+		Se $1\leq p<+\infty$ e $f\in L^p$ si definisce la norma $L^p$ di $f$ come
+		\begin{equation*}
+			\norm{f}_p = \left(\int_X\abs{f}^p\dmu\right)^{\frac1p}
+		\end{equation*}
+	\end{definition}
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
