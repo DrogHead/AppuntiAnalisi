@@ -2,6 +2,190 @@
 
 \begin{document}
 	
+	\begin{theorem}[Riesz-Fischer]
+		Gli spazi $L^p$ per $p\in[1,+\infty]$ sono spazi di Banach.
+	\end{theorem}
+	\begin{proof}
+		L'unica cosa da provare è la completezza, e iniziamo dal caso $p\ne\infty$.
+		
+		Sia $\suc{f}{n}{\N}$ una successione di Cauchy in $L^p$, da cui possiamo trovare una sottosuccessione $\suc{{f_n}}{k}{\N}$ tale che per ogni $k\in\N$ si ha
+		\begin{equation*}
+			\norm{f_{n_{k+1}} - f_{n_k}} < 2^{-k} \,,
+		\end{equation*}
+		e quindi definiamo le funzioni
+		\begin{equation*}
+			g_N = \sum_{k=1}^N\abs*{f_{n_{k+1}} - f_{n_k}} \,,
+		\end{equation*}
+		che sono ancora in $L^p$ dal momento che
+		\begin{equation*}
+			\norm{g_N}_p \leq \sum_{k=1}^N\norm*{f_{n_{k+1}}-f_{n_k}}_p \leq \sum_{k=1}^N 2^{-k} \leq 1\,.
+		\end{equation*}
+		Il limite delle $g_N$, che chiamiamo $g$, è ancora in $L^p$, dal momento che
+		\begin{equation*}
+			\norm{g}_p^p = \int_X\abs{g}^p\dmu \leq \liminf_{N\to\infty}\int_X\abs{g_N}^p\dmu \leq \liminf_{N\to\infty}\sum_{k=1}^N 2^{-k} = 1 \,.
+		\end{equation*}
+		Dove abbiamo usato il lemma di Fatou. Inoltre, $g$ è quasi ovunque finita, e quindi la supponiamo finita in tutto $X$ senza ledere la generalità. Definiamo la funzione $f$ come
+		\begin{equation*}
+			f(x) = f_{n_1}(x) + \sum_{k=1}^\infty(f_{n_{k+1}}(x)-f_{n_k}(x)) \,,
+		\end{equation*}
+		dove la serie a secondo membro converge assolutamente. Anche la funzione $f$ è in $L^p$. Infatti, sappiamo dalla condizione di Cauchy che
+		\begin{equation*}
+			\forall \eps>0 \,\exists\nu\in\N \,\: \,\forall n,k\geq\nu \,\norm{f_n-f_{n_k}}_p<\eps \,,
+		\end{equation*}
+		e quindi applicando Fatou si trova, per ogni $n\geq\nu$, che
+		\begin{equation*}
+			\int_X\abs{f_n-f}^p\dmu \leq \liminf_{k\to\infty}\int_X\abs{f_n-f_{n_k}}^p\dmu < \eps^p \,.
+		\end{equation*}
+		Quindi, riscrivendo la condizione di Cauchy scritta in precedenza passando al limite su $k$, troviamo che
+		\begin{equation*}
+			\forall \eps>0 \,\exists\nu\in\N \,\: \,\forall n\geq\nu \,\norm{f_n-f}_p<\eps \,,
+		\end{equation*}
+		ossia la definizione di convergenza.
+		
+		Per il caso $p=+\infty$, definiamo gli insiemi
+		\begin{align*}
+			F_n &= \{\abs{f_n}\geq\norm{f_n}_\infty\} \\
+			G_{n,m} &= \{\abs{f_n-f_m}\geq\norm{f_n-f_m}_\infty\} \\
+			S &= \bigcup_{n=1}^\infty F_n \cup \bigcup_{n,m=1}^\infty G_{n,m} \,,
+		\end{align*}
+		che hanno tutti quanti misura nulla, da cui $\mu(S)=0$. In $X\setminus S$ la successione $f_n$ converge uniformemente perché è di Cauchy per la norma del sup, e su $S$ posso estendere a 0. Detta $f$ la funzione limite, si trova che
+		\begin{equation*}
+			\norm{f}_\infty \leq \norm{f_{n_k}}_\infty + \norm{f-f_{n_k}}_\infty < \norm{f_{n_k}}+\eps < +\infty \,,
+		\end{equation*}
+		da cui $f\in L^\infty$.
+	\end{proof}
 	
+	\begin{definition}[Spazi $\ell^p$]
+		Se consideriamo lo spazio di misura $(\N,\mathscr{P}(\N),\#)$, gli spazi $L^p$ prendono il nome di $\ell^p$, e corrispondono agli insiemi di successioni a potenza $p$-esima assolutamente convergente.
+		
+		Se invece vogliamo usare la misura cardinalità su un insieme generico $X$, una funzione $f :X\to\C$ si dice in $\ell^p(X)$ se
+		\begin{equation*}
+			\norm{f}_{\ell^p(X)} = \sup_{S\subseteq A \textup{ finito}}\left\{ \left( \sum_{x\in S}\abs{f(x)}^p \right)^{\frac1p} \right\}
+		\end{equation*}
+	\end{definition}
+	
+	\begin{theorem}[Lusin]
+		Sia $X$ uno spazio di Hausdorff localmente compatto, sia $\mu$ una misura di Borel regolare e finita sui compatti. Allora ogni $f:X\to\C$ misurabile e nulla fuori da un insieme di misura finita $E$. Allora
+		\begin{equation*}
+			\forall\eps>0 \,\exists g\in C_c(X) \,:\, \mu(\{f\ne g\})<\eps \,.
+		\end{equation*}
+		Inoltre, $g$ è limitata e $\sup_X\abs{g} \leq \sup_X\abs{f}$.
+	\end{theorem}
+	\begin{proof}
+		Dimostriamo prima il caso in cui $f$ è reale limitata e non negativa, e in cui $E$ è compatto.
+		
+		Dal teorema di approssimazione con funzioni semplici, sappiamo che esiste una successione crescente $\suc{s}{n}{\N}$ di funzioni semplici che converge uniformemente a $f$, e per costruzione $\abs{s_{n+1}-s_n}<2^{-n}$. Allora si può scrivere
+		\begin{equation*}
+			f = s_1 + \sum_{n=1}^\infty s_{n+1}-s_n = \sum_{k=1}^\infty 2^{-n}\rchi_{T_n} \,.
+		\end{equation*}
+		Sia $V$ un aperto precompatto tale che $E\subseteq V\subseteq\overline{V}\subseteq X$, e per ogni $n\in\N$ siano $V_n$ un aperto e $K_n$ un compatto tali che $K_n\subseteq T_n\subseteq V_n\subseteq V$ e che $\mu(V_n\setminus K_n)<\eps2^{-n}$. Inoltre, per ogni $n\in\N$ esiste una funzione $\eta_n$ tale che $K_n\prec\eta_n\prec V_n$, e quindi definiamo
+		\begin{equation*}
+			g = \sum_{n=1}^\infty2^{-n}\eta_n \in C_c(X) \,.
+		\end{equation*}
+		Sull'unione dei $K_n$ si ha che $g=f$ e abbiamo ovviamente $E\subseteq\bigcup_n V_n$, da cui
+		\begin{equation*}
+			\mu\left(\bigcup_{n=1}^\infty V_n \setminus \bigcup_{n=1}^\infty K_n\right) \leq \sum_{n=1}^\infty \mu(V_n\setminus K_n) < \eps \,.
+		\end{equation*}
+		
+		Per regolarità interna, se $E$ non è compatto allora esiste un compatto $K$ tale che $\mu(E\setminus K)<\eps$, il teorema su $K$ vale e quindi vale anche su $E$.
+		
+		Per una funzione $f$ complessa non limitata, consideriamo gli insiemi
+		\begin{equation*}
+			B_n = \{\abs{f}>n\} \,,
+		\end{equation*}
+		che hanno intersezione vuota e quindi $\mu(B_n)\to 0$. Notiamo che $f$ coincide con $(1-\rchi_{B_n})f$ su $X\setminus B_n$, e da ciò segue l'asserto perché scelto $n$ tale che $\mu(B_n)<\eps$ possiamo restringerci a un insieme su cui $f$ è limitata e rientrare nel caso precedente.
+		
+		Mostriamo la seconda parte dell'asserto, ossia $\norm{g}_\infty\leq\norm{f}_\infty$, e definiamo $R=\sup_X\abs{f}$ e successivamente la funzione ausiliaria
+		\begin{equation*}
+			\varphi_R(z) =
+			\begin{cases}
+				z &\textup{se }\abs{z}\leq R \\
+				\frac{Rz}{\abs{z}} &\textup{se } \abs{z}>R
+			\end{cases}
+		\end{equation*}
+		Sostituendo $g$ con $\varphi_R(g)$ si trova che $\sup_X\abs{\varphi_R(g)}\leq R$.
+	\end{proof}
+	
+	\begin{theorem}[Densità di $C_c(X)$ in $L^p$]
+		Sia $X$ uno spazio di Hausdorff localmente compatto, sia $\mu$ una misura di Borel regolare e finita sui compatti. Le funzioni continue a supporto compatto sono dense in $L^p$ per ogni $p$.
+	\end{theorem}
+	\begin{proof}
+		Dal momento che la densità è una proprietà transitiva, mostreremo che le funzioni $C_c(X)$ sono dense nelle funzioni semplici, e queste ultime sono dense in $L^p$.
+		
+		Possiamo semplificare ulteriormente la prima parte: dal momento che le funzioni semplici sono somma finita di funzioni caratteristiche, possiamo mostrare la densità di $C_c(X)$ nelle funzioni caratteristiche di insiemi misurabili. 
+		
+		Sia $E$ misurabile, e per regolarità sappiamo che esistono un aperto $V$ e un compatto $K$ tali che $K\subseteq E\subseteq V$ e $\mu(V\setminus K)<\eps$. Per il lemma di Urysohn, poi, troviamo una funzione $f\in C_c(X)$ tale che $K\prec f\prec V$ e tale che
+		\begin{equation*}
+			\int_X\abs{\rchi_E-f}^p\dmu = \int_{V\setminus K}\abs{\rchi_E-f}^p\dmu <\eps \,.
+		\end{equation*}
+		
+		Mostriamo quindi la prima parte. Separando $f=f^+-f^-$ possiamo supporre senza perdere di generalità che $f$ sia non negativa. Approssimiamo quindi $f$ con una successione crescente di funzioni semplici $\suc{s}{n}{\N}$. Per $1\leq p<\infty$ si ha
+		\begin{equation*}
+			\lim_{n\to\infty}\norm{f-s_n}_p^p = \lim_{n\to\infty}\int_X(f-s_n)^p\dmu= 0
+		\end{equation*}
+		dal teorema di convergenza dominata con $\abs{f-s_n}^p=(f-s_n)^p\leq f^p$ che è sommabile. Per $p=+\infty$, detto $A=\{\abs{f}>\norm{f}_\infty\}$ che ha misura nulla, si ha
+		\begin{equation*}
+			\norm{f-s_n}_\infty = \essup_X\abs{f-s_n} \leq \sup_{X\setminus A}\abs{f-s_n} \to 0 \,.
+		\end{equation*}
+	\end{proof}
+	
+	\begin{definition}[Funzioni $C_0(X)$]
+		Si dice che una funzione $f$ tende a zero all'infinito se per ogni $\eps>0$ esiste $K\subseteq X$ compatto tale che su $X\setminus K$ si abbia $\abs{f}<\eps$.
+	\end{definition}
+	
+	\begin{oss}
+		È evidente che $C_c(X)\subseteq C_0(X)$, e che $C_0$ sia uno spazio di Banach con la norma del sup.
+	\end{oss}
+	
+	\begin{prop}
+		$C_c$ è denso in $C_0$.
+	\end{prop}
+	\begin{proof}
+		Sia $f\in C_0(X)$ e $\eps>0$, e sia in $K$ il compatto tale che su $X\setminus K$ si abbia $\abs{f}<\eps/2$. Per il lemma di Urysohn esiste $\eta\in C_c(X)$ tale che $K\prec \eta \prec X$. La funzione $f\eta$ è in $C_c(X)$ e abbiamo
+		\begin{equation*}
+			\sup_X\abs{f\eta-f} = \sup_{X\setminus K}\abs{f\eta-f} \leq \sup_{X\setminus K} 2\abs{f} < \eps \,.
+		\end{equation*} 
+	\end{proof}
+	
+	\begin{definition}[Equiintegrabilità]
+		Una famiglia di funzioni $\mathcal{F}\subseteq L^1(\mu)$ si dice essere ``equiintegrabile'' se
+		\begin{equation*}
+			\forall\eps>0 \,\exists\delta>0 \,: \,\forall f\in\mathcal{F} \,,\forall E\in\mathcal{M} \,\mu(E)<\delta \implies \abs*{\int_X f\dmu}<\eps \,.
+		\end{equation*}
+	\end{definition}
+	
+	\begin{theorem}[Teorema di Vitali]
+		Sia $\suc{f}{n}{\N}$ una successione di funzioni equiintegrabili e convergente quasi ovunque. Allora il limite puntuale è in $L^1(\mu)$ e
+		\begin{equation*}
+			\lim_n\int_X\abs{f_n-f}\dmu = 0 \,.
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		Per il teorema di Egorov, per ogni $\delta>0$ esiste un misurabile $E_\delta$ con misura minore di $\delta$ e tale che $f_n\xrightarrow{\textup{unif.}}f$ in $X\setminus E_\delta$, quindi dalla definizione di equiintegrabilità, ogni $\eps>0$ esiste $\delta>0$ tale che
+		\begin{equation*}
+			\int_{E_\delta}\abs{f_n}\dmu < \eps \,.
+		\end{equation*}
+		Allora, su $X\setminus E_\delta$ vale il passaggio al limite sotto segno di integrale, dal momento che
+		\begin{equation*}
+			\lim_n\int_{X\setminus E_\delta}\abs{f_n}\dmu = \int_{X\setminus E_\delta}\abs{f}\dmu \,,
+		\end{equation*}
+		e quindi che $f\in L^1$. Inoltre
+		\begin{align*}
+			\norm{f_n-f}_1 &= \int_X\abs{f_n-f}\dmu = \int_{X\setminus E_\delta}\abs{f_n-f}\dmu + \int_{E_\delta}\abs{f_n-f}\dmu \\
+			&< \eps + \int_{E_\delta}\abs{f_n}\dmu + \int_{E_\delta}\abs{f}\dmu < 3\eps
+		\end{align*}
+	\end{proof}
 	
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+

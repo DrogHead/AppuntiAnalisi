@@ -157,13 +157,12 @@
 \DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
 \newcommand{\irchi}[2]{\raisebox{+1.7pt}{$#1\chi$}}
 
-% OSCILLAZIONE
+% Roba per operatori
 \DeclareMathOperator{\osc}{osc}
-
-% INTERNO
 \DeclareMathOperator{\interno}{int}
 \DeclareMathOperator{\linspan}{span}
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator*{\essup}{essup}
 
 % DUALE
 \newcommand{\dual}[1]{{#1}^{\star}}
@@ -190,6 +189,7 @@
 	\mainmatter
 	
 	\chapter*{Introduzione}
+	
 	
 	\chapter{Misura astratta}
 	\subfile{capitoli/Lezione01}
