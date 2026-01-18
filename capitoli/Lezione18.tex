@@ -2,6 +2,180 @@
 
 \begin{document}
 	
+	\begin{theorem}[Caratterizzazione delle basi di Hilbert ortonormali]
+		Sia $H$ uno spazio di Hilbert e sia $\suc{v}{n}{\N}$ un insieme ortonormale. Allora sono equivalenti
+		\begin{enumerate}
+			\item $\suc{v}{n}{\N}$ base di Hilbert
+			\item L'unico vettore $x\in H$ che ha $\widehat{x}_n=0$ per ogni $n$ è il vettore nullo
+			\item Per ogni $x\in H$ e detta $x_N=\sum_{n=1}^N\widehat{x}_nv_n$, si ha che $x_N\to x$ in $H$
+			\item Per ogni $x,y\in H$ si ha
+			\begin{equation*}
+				\scal{x}{y} = \sum_{n=1}^\infty \widehat{x}_n \overline{\widehat{y}_n}
+			\end{equation*}
+			\item Per ogni $x\in H$ si ha
+			\begin{equation*}
+				\norm{x}^2 = \sum_{n=1}^\infty \abs{\widehat{x}_n}^2
+			\end{equation*}
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		Mostriamo che (1)$\implies$(2). Supposta $\suc{v}{n}{\N}$ base di Hilbert e preso $x\in H$ tale che $\widehat{x}_n=0$ per ogni $n$, consideriamo una combinazione lineare finita $p=\sum_{n=1}^Nc_n v_n$ tale che $\norm{x-p}<\eps$ per un certo $\eps>0$. Se le costanti sono i coefficienti di Fourier la norma è minima, e per ipotesi è in realtà nulla. Allora
+		\begin{equation*}
+			\norm{x} = \norm{x-x_N} \leq \norm{x-p} < \eps \implies \norm{x}=0 \,.
+		\end{equation*}
+		
+		Mostriamo che (2)$\implies$(3). Sia $x\in H$. Dalla disuguaglianza di Bessel sappiamo che
+		\begin{equation*}
+			\sum_{n=1}^\infty \abs{\widehat{x}_n}^2 \leq \norm{x}^2 < +\infty \,,
+		\end{equation*}
+		da cui $\suc{\widehat{x}}{n}{\N}\in\ell^2(\N)$, e quindi esiste $y\in H$ tale che $x_N\to y$, ossia $\widehat{y}_n=\widehat{x}_n$, da cui $x-y$ ha coefficienti di Fourier tutti nulli, ossia $x=y$, da cui l'unicità.
+		
+		Mostriamo che (3)$\implies$(4). Siano $x,y\in H$. Allora
+		\begin{equation*}
+			\scal{x}{y} = \scal{x-x_N}{y}+\scal{x_N}{y} \,.
+		\end{equation*}
+		Il primo addendo è infinitesimo per Cauchy-Schwarz. Per il secondo addendo
+		\begin{equation*}
+			\scal{x_N}{y} = \sum_{n=1}^N\widehat{x}_n\scal*{v_n,y} = \sum_{n=1}^N\widehat{x}_n\overline{\widehat{y}_n} \,,
+		\end{equation*}
+		e per $N\to\infty$ converge al prodotto scalare di $\widehat{x}$ e $\widehat{y}$ in $\ell^2$.
+		
+		L'implicazione (4)$\implies$(5) segue direttamente dalla precedente.
+		
+		Mostriamo che (5)$\implies$(1). Sia $x\in H$. Visto che $x-x_N$ è ortogonale a $x_N$ per i teoremi precedenti, si ha
+		\begin{equation*}
+			\norm{x}^2 = \norm{x-x_N}^2 + \norm{x_N}^2 = \norm{x-x_N}^2 + \sum_{n=1}^N\abs{\widehat{x}_n}^2 \,.
+		\end{equation*}
+		Dal momento che $x_N\to x$ in $H$ si trova che $\sum_{n\in\N}\abs{\widehat{x}_n}^2=\norm{x}^2$ e quindi otteniamo che ogni elemento di $x$ è limite di combinazioni lineari finite di $v_n$.
+	\end{proof}
 	
+	\begin{definition}[Funzioni periodiche, polinomio trigonometrico]
+		Chiamo $L^2_T$ lo spazio delle funzioni periodiche su $\R$ di periodo $T$. In particolare per le serie di Fourier ci concentriamo su $T=2\pi$. Allora
+		\begin{equation*}
+			\norm{f}_2 = \int_{-\pi}^{\pi}\abs{f(x)}^2\dx \,.
+		\end{equation*}
+		Si definisce polinomio trigonometrico di ordine $N$ la somma
+		\begin{equation*}
+			a_0 + \sum_{n=1}^N a_n\cos(nx)+b_n\sin(nx) = \sum_{n=-N}^N c_n e^{inx} \,,
+		\end{equation*}
+		e la relazione tra $a,b,c$ è data da
+		\begin{equation*}
+			c_0 = \frac{a_0}2 \quad\,\quad c_n = \frac{a_n-ib_n}2 \,.
+		\end{equation*}
+	\end{definition}
+	
+	\begin{oss}
+		I polinomi trigonometrici sono densi nello spazio delle funzioni periodiche e continue su $\R$ di periodo $2\pi$, e questo spazio è denso in $L^2$. Allora i polinomi trigonometrici sono densi in $L^2_{2\pi}$.
+	\end{oss}
+	
+	\begin{oss}
+		L'insieme dei polinomi trigonometrici coincide con lo span della successione $\suc{e^{inx}}{n}{\N}$. Quindi, per ogni funzione $f\in L^2_T$ si ha
+		\begin{equation*}
+			f(x) = \sum_{n\in\Z}\scal{f(t)}{e^{int}}e^{inx} \,.
+		\end{equation*}
+	\end{oss}
+	
+	\chapter{Dimostrazione di Radon-Nikodym}
+	
+	\begin{proof}
+		
+		\textsc{Step 0.} Esistenza di una funzione.\\
+		Iniziamo mostrando che, se $\mu$ è una misura positiva $\sigma$-finita su $\mathscr{M}$ allora esiste $w\in L^1(\mu)$ tale che $0\leq w\leq 1$. Diviso $X$ in insiemi di misura finita $\suc{X}{n}{\N}$, e su ognuno di essi definiamo
+		\begin{equation*}
+			w_n = \frac1{2^n(1+\mu(X_n))}\rchi_{X_n} \,,
+		\end{equation*}
+		e sia $w=\sum_n w_n$, che è in $L^1$, è definita ovunque e assume valori solo in $[0,1]$. Essendo positiva, vale $\int_E w\dmu=0 \iff \mu(E)=0$.\\
+		
+		\textsc{Step 1.} Unicità della decomposizione di Lebesgue.\\
+		Consideriamo due coppie $(\lambda_a,\lambda_s)$ e $(\lambda'_a,\lambda'_s)$ tali che $\lambda_a,\lambda'_a\ll\mu$ e $\lambda_s,\lambda'_s\perp\mu$, con $\lambda=\lambda_a+\lambda_s=\lambda'_a+\lambda'_s$. Allora si trova che
+		\begin{equation*}
+			\lambda'_a-\lambda_a = \lambda_s-\lambda'_s
+		\end{equation*}
+		è una misura sia assolutamente continua rispetto a $\mu$, sia singolare rispetto a $\mu$, e quindi entrambe le differenze sono nulle.\\
+		
+		\textsc{Step 2.} Unicità della funzione $h$.\\
+		Consideriamo $h_1,h_2\in L^1(\mu)$ tali che per ogni $E\in\mathscr{M}$ si ha
+		\begin{equation*}
+			\int_E h_1\dmu = \lambda_a(E) = \int_E h_2\dmu \implies \int_E(h_1-h_2)\dmu = 0\,,
+		\end{equation*}
+		da cui $h_1=h_2$ quasi ovunque in $L^1$.\\
+		
+		\textsc{Step 3.} Definizione di un funzionale.\\
+		Definiamo la misura positiva e limitata $\varphi=\lambda+\mu$, e consideriamo il funzionale lineare
+		\begin{equation*}
+			\Lambda : f\in L^2(\varphi) \mapsto \int_X f\dla \in \R \,,
+		\end{equation*}
+		che è anche limitato (e quindi continuo) dal momento che
+		\begin{equation*}
+			\abs*{\int_X f\dla} \leq \int_X\abs{f}\dla \leq \int_X\abs{f}\dph \leq \varphi(X)^{1/2}\left(\int_X\abs{f}^2\dph\right)^2 \,.
+		\end{equation*}
+		Per il teorema di Riesz su spazi di Hilbert si trova una funzione $g\in L^2(\varphi)$ tale che $\Lambda f=\scal{f}{g}$.\\
+		
+		\textsc{Step 4.} Analisi delle proprietà di $g$.\\
+		Dalla definizione di $g$ otteniamo che
+		\begin{equation*}
+			\int_X f\dla = \int_X fg \dph \,.
+		\end{equation*}
+		Dato $E\in\mathscr{M}$ consideriamo $f=\rchi_E$, si ha
+		\begin{equation*}
+			\int_E g\dph = \int_E\dla = \lambda(E) \leq \varphi(E) \,,
+		\end{equation*}
+		da cui segue
+		\begin{equation*}
+			\frac1{\varphi(E)}\int_E g\dph \leq 1
+		\end{equation*}
+		e quindi $0\leq g\leq 1$ quasi ovunque.\\
+		
+		\textsc{Step 5.} Definizione di due insiemi e di due misure.\\
+		Per definizione di $g$ otteniamo che
+		\begin{equation*}
+			\int_X f\dla = \int_X fg\dph = \int_X fg\dla + \int_X fg\dmu \implies \int_X f(1-g)\dla = \int_X fg\dmu \,.
+		\end{equation*}
+		Definiamo $A=\{0\leq g<1\}$ e $B=\{g=1\}$, perché su $A$ gli integrali sono non nulli e su $B$ si annulla quello a primo membro, e quindi definiamo
+		\begin{equation*}
+			\lambda_a(E) = \lambda(E\cap A) \quad\,\quad \lambda_s(E)=\lambda(E\cap B) \,,
+		\end{equation*}
+		che sono le misure della decomposizione di Lebesgue.\\
+		
+		\textsc{Step 6.} Proprietà di $\lambda_a$ e $\lambda_s$.\\
+		Ponendo $f=\rchi_B$ risulta che
+		\begin{equation*}
+			\int_B (1-g)\dla = \int_B g\dmu \implies 0 = \mu(B) \,,
+		\end{equation*}
+		da cui segue che $\mu\perp\lambda_s$. Consideriamo la successione di funzioni
+		\begin{equation*}
+			f_k =
+			\begin{cases}
+				\frac{\chi_E}{1-g} &\textup{se } f\leq k \\
+				0 &\textup{altrimenti.}
+			\end{cases}
+		\end{equation*}
+		che è contenuta in $L^2$. Allora
+		\begin{equation*}
+			\int_A f_k(1-g)\dla = \int_A f_k g\dmu \,,
+		\end{equation*}
+		e per il teorema di Beppo-Levi deduco che $f_k\to\frac{\chi_E}{1-g}$ ossia che
+		\begin{equation*}
+			\lambda_a(E) = \int_{E\cap A} d\lambda= \int_{E\cap A}\frac{g}{1-g}\dmu \,,
+		\end{equation*}
+		e detta $h=\frac{g}{1-g}$ che è in $L^1$ si trova la rappresentazione e si vede facilmente che $\lambda_a\ll\mu$.
+	\end{proof}
 	
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
