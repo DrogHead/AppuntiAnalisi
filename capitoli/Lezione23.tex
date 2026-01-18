@@ -1,5 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 
+% PAGINA 99 appunti
+
 \begin{document}
 	
 	\begin{prop}
@@ -9,7 +11,7 @@
 		\end{equation*}
 	\end{prop}
 	\begin{proof}
-		Sia $U=\linspan{f}$, che è un sottospazio vettoriale di dimensione 1 di $V$. Sia $\psi\in\dual{U}$ tale che $\psi(\alpha f)=\alpha\norm{f}$. È evidente che la norma di $\psi$ è $1$. Usando il teorema di Hahn--Banach estendiamo $\psi$ a un funzionale $\varphi$ definito su tutto $V$, tale che $\norm{\varphi}=1$ e tale che $\abs{\varphi(f)}=\norm{f}$, che è la tesi.
+		Sia $U=\linspan{f}$, che è un sottospazio vettoriale di dimensione 1 di $V$. Sia $\psi\in\dual{U}$ tale che $\psi(\alpha f)=\alpha\norm{f}$. È evidente che la norma di $\psi$ è $1$. Usando il teorema di Hahn-Banach estendiamo $\psi$ a un funzionale $\varphi$ definito su tutto $V$, tale che $\norm{\varphi}=1$ e tale che $\abs{\varphi(f)}=\norm{f}$, che è la tesi.
 	\end{proof}
 	
 	\begin{corol}
@@ -39,7 +41,7 @@
 	\begin{proof}
 		Ovviamente, se $h\in\overline{U}$, esiste una successione $h_n$ definita in $U$ che converge ad $h$, si ha $\varphi(h_n)\to\varphi(h)=0$.
 		
-		Per il viceversa, se per assurdo $h\notin\overline{U}$, definiamo $\psi : [U,h]\to \C$ tale che $\psi(f+\alpha h)=\alpha$ per ogni $f\in U\,,\alpha\in\R$. Allora $\psi$ è lineare, vale 1 su $h$, e $U = \ker\psi$. Per l'esercizio precedente $\psi$ è limitato e quindi per Hahn--Banach si estende a un funzionale $\varphi$ definito su tutto V. Allora $\psi$ è zero su $U$, ma $\psi(h)\ne 0$
+		Per il viceversa, se per assurdo $h\notin\overline{U}$, definiamo $\psi : [U,h]\to \C$ tale che $\psi(f+\alpha h)=\alpha$ per ogni $f\in U\,,\alpha\in\R$. Allora $\psi$ è lineare, vale 1 su $h$, e $U = \ker\psi$. Per l'esercizio precedente $\psi$ è limitato e quindi per Hahn-Banach si estende a un funzionale $\varphi$ definito su tutto V. Allora $\psi$ è zero su $U$, ma $\psi(h)\ne 0$
 	\end{proof}
 	
 	\begin{theorem}
