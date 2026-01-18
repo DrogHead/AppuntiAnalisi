@@ -1,0 +1,210 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	\begin{definition}[Misura complessa]
+		Una misura complessa è una funzione d'insieme $\mu :\mathscr{M} \to \C$ tale che $\mu(\emptyset)=0$ e che, per ogni $E\in\mathscr{M}$, presa $\suc{E}{i}{I}$ partizione, si abbia
+		\begin{equation*}
+			\mu(E) = \sum_i \mu(E_i) \,.
+		\end{equation*}
+		Un caso particolare di misura complessa è una misura reale $\mu :\mathscr{M}\to\R$.
+	\end{definition}
+	
+	\begin{oss}
+		Osserviamo che una partizione rimane tale anche rinominando gli indici, e quindi $\mu(E)$ resta la somma delle misure degli $E_i$ della partizione anche riordinando. Valendo il teorema di Riemann-Dini, si ha che la somma delle misure degli $E_i$ è finita, e quindi una misura complessa $\mu$ è una misura finita.
+	\end{oss}
+	
+	\begin{definition}[Misura variazione totale]
+		Data una misura complessa $\mu$, il suo valore assoluto non è una misura. Definiamo quindi la misura variazione totale
+		\begin{equation*}
+			\abs{\mu}(E) = \sup\left\{ \sum_{i=1}^\infty \abs{\mu(E_i)} \,\middle\vert\, \suc{E}{i}{\N}\textup{ partizione di } E \right\}
+		\end{equation*}
+	\end{definition}
+	
+	\begin{prop}
+		$\abs{\mu}$ è una misura.
+	\end{prop}
+	\begin{proof}
+		Sia $E\in\mathscr{M}$ e sia $\suc{E}{i}{\N}$ una partizione di $E$. Allora, per ogni $\eps>0$ e per ogni $i$ consideriamo una partizione $\{E^j_i\}_{j\in\N}$ tale che
+		\begin{equation*}
+			\sum_j \abs{\mu(E_i^j)} \geq \abs{\mu}(E_i) - \eps2^{-i} \,,
+		\end{equation*}
+		da cui sommando abbiamo che
+		\begin{equation*}
+			\abs{\mu}(E) \geq \sum_{i,j}\abs{\mu(E_i^j)} \geq \sum_i \abs{\mu}(E_i) - \eps \implies \abs{\mu}(E) \geq \sum_i \abs{\mu}(E_i) \,.
+		\end{equation*}
+		Per l'altro verso della disuguaglianza osserviamo che per ogni $\eps>0$ esiste una partizione $\suc{A}{k}{\N}$ tale che
+		\begin{equation*}
+			\abs{\mu}(E) \leq \sum_k \abs{\mu(A_k)} + \eps \,,
+		\end{equation*}
+		da cui si trova che
+		\begin{align*}
+			\sum_i \abs{\mu}(E_i) &\geq \sum_{i,k}\abs{\mu(A_k\cap E_i)}
+			= \sum_k \sum_i \abs{\mu(A_k\cap E_i)} \\
+			&\geq \sum_k \abs*{\sum_i \mu(A_k\cap E_i)}
+			= \sum_k \abs{\mu(A_k)} \geq \abs{\mu}(E)-\eps \,.
+		\end{align*}
+	\end{proof}
+	
+	\begin{oss}
+		Date due misure complesse $\mu$ e $\nu$, e due scalari $\alpha,\beta\in\C$, si ha che $\lambda = \alpha\mu+\beta\nu$ è ancora una misura complessa. Dunque, l'insieme delle misure complesse su una stessa $\sigma$-algebra è uno spazio vettoriale, e $\norm{\mu} = \abs{\mu}(X)$ è una norma.
+	\end{oss}
+	
+	\begin{lemma}
+		Siano $\ennu{z}{n}\in\C$. Allora esiste un sottoinsieme $S\subseteq\{1,\dots,n\}$ tale che
+		\begin{equation*}
+			\abs*{\sum_i z_i} \geq \frac16 \sum_{i=1}^n \abs{z_i}
+		\end{equation*}
+	\end{lemma}
+	\begin{proof}
+		Suddividiamo il piano complesso in quattro quadranti usando le due bisettrici $\Re(z)=\Im(z)$ e $\Re(z)=-\Im(z)$, che chiamiamo $Q_1,Q_2,Q_3,Q_4$. Allora
+		\begin{equation*}
+			\sum_{i=1}^n\abs{z_i} = \sum_{Q_1,Q_2,Q_3,Q_4}\abs{z_i} \,,
+		\end{equation*}
+		e quindi senza perdere di generalità sia $Q_1$ il quadrante tale che
+		\begin{equation*}
+			\sum_{z_i\in Q_1} \abs{z_i} \geq \frac14 \sum_{i=1}^n \abs{z_i} \,.
+		\end{equation*}
+		Allora si trova che
+		\begin{equation*}
+			\abs*{\sum_{Q_1}z} \geq \sum_{Q_1} \Re(z) \geq \frac1{\sqrt2}\sum_{Q_1}\abs{z} \geq \frac1{4\sqrt2}\sum_{i=1}^n\abs{z} \,.
+		\end{equation*}
+	\end{proof}
+	
+	\begin{prop}
+		La misura $\abs{\mu}$ è una misura finita.
+	\end{prop}
+	\begin{proof}
+		Supponiamo che esista un misurabile $E\in\mathscr{M}$ con variazione totale infinita. Mostriamo che esistono due insiemi disgiunti $A,B$ tali che $E=A\cup B$, con $\abs{\mu(A)}>1$ e $\abs{\mu}(B)=+\infty$. Per definizione di variazione totale, per ogni $t\in[0,+\infty)$ esiste una partizione $\suc{E}{i}{\N}$ di $E$ tale che
+		\begin{equation*}
+			\sum_i \abs{\mu(E_i)} > t \,.
+		\end{equation*}
+		Fissiamo $t=6(1+\abs{\mu(E)})$ e consideriamo $N\in\N$ tale che
+		\begin{equation*}
+			\sum_{i=1}^N \abs{\mu(E_i)} > t \,.
+		\end{equation*}
+		Per il lemma precedente esiste un sottoinsieme $S$ che rispetta la disuguaglianza
+		\begin{equation*}
+			\abs*{\sum_{i\in S}\mu(E_i)} \geq \frac16 \sum_{i=1}^N \abs{\mu(E_i)} \,.
+		\end{equation*}
+		Sia $A=\bigcup_{i\in S}E_i$, da cui
+		\begin{equation*}
+			\abs{\mu(A)} \geq \frac16 \sum_{i=1}^N \abs{\mu(E_i)} > \frac{t}6 \geq 1 \,.
+		\end{equation*}
+		Detto $B=E\setminus A$, si ha che
+		\begin{equation*}
+			\abs{\mu(B)} = \abs{\mu(E)-\mu(A)} \geq \abs{\mu(A)}-\abs{\mu(E)} > \frac{t}6 - \abs{\mu(E)} = 1 \,.
+		\end{equation*}
+		Dal momento che $E$ ha variazione totale infinita e $\abs{\mu}$ è una misura positiva, allora almeno uno tra $A$ e $B$ deve avere variazione totale infinita.
+		
+		Supponiamo quindi che $\abs{\mu}(X)=+\infty$, e applicando il ragionamento precedente possiamo costruire due successioni $\suc{A}{n}{\N}$ e $\suc{B}{n}{\N}$ tali che $\abs{\mu(A_n)}>1$ e $\abs{\mu}(B_n)=+\infty$, dove $A_n$ sono a due a due disgiunti. Posto $C=\bigcup_{n\in\N} A_n$ abbiamo che
+		\begin{equation*}
+			\mu(C) = \sum_{i=1}^\infty \mu(A_i) \,,
+		\end{equation*}
+		che è assurdo perché questa serie non può convergere assolutamente, contro quanto osservato subito dopo la definizione di misura complessa.
+	\end{proof}
+	
+	\begin{theorem}
+		L'insieme delle misure complesse su una stessa $\sigma$-algebra è uno spazio di Banach, con norma $\norm{\mu} = \abs{\mu}(X)$.
+	\end{theorem}
+	\begin{proof}
+		Sia $\suc{\mu}{n}{\N}$ una successione di Cauchy di misure complesse, e sia $E\in\mathscr{M}$, da cui si ha, per ogni $n,m\geq\nu$,
+		\begin{equation*}
+			\abs{\mu_n(E)-\mu_m(E)} = \abs{(\mu_n-\mu_m)(E)} \leq \abs{\mu_n-\mu_m}(E) \leq \abs{\mu_n-\mu_m}(X) \leq \norm{\mu_n-\mu_m} < \eps \,.
+		\end{equation*}
+		Dunque, per ogni insieme la successione $\{\mu_n(E)\}_{n\in\N}$ è una successione di Cauchy e quindi converge, a un numero complesso che chiamiamo $\mu(E)$. Mostriamo che è una misura complessa. Sia $\suc{E}{i}{\N}$ una partizione di $E$. Allora esiste $\ell\in\N$ tale che
+		\begin{equation*}
+			\sum_{i=\ell}^\infty\abs{\mu_\nu(E_i)} < \eps \,.
+		\end{equation*}
+		Dunque è evidente che
+		\begin{align*}
+			\abs*{\mu(E) - \sum_{i=1}^{\ell-1}\mu(E_i)} &= \abs*{\lim_j \mu_j(E_i) - \lim_j\sum_{i=1}^{\ell-1}\mu(E_i)} \\
+			&= \abs*{\lim_j \sum_{i=1}^\infty \mu_j(E_i) - \lim_j\sum_{i=1}^{\ell-1}\mu(E_i) } \\
+			&= \lim_j\abs*{\sum_{i=\ell}^\infty\mu_j(E_i)} \leq \lim_j\sum_{i=\ell}^\infty\abs{\mu_j(E_i)} = 0 \,.
+		\end{align*}
+		Si vede poi facilmente che $\lim_n\abs{\mu_n-\mu}(X) = \lim_n\norm{\mu_n-\mu} = 0$.
+	\end{proof}
+	
+	
+	\begin{theorem}
+		Dato uno spazio di misura $(X,\mathscr{M},\mu)$ con $\mu$ misura positiva e una funzione $f:X\to\C$, se per ogni $E\in\mathscr{M}$ vale
+		\begin{equation*}
+			\abs*{ \frac1{\mu(E)}\int_Ef\dmu } \leq 1 \,,
+		\end{equation*}
+		allora $\abs{f}\leq 1$ quasi ovunque.
+	\end{theorem}
+	\begin{proof}
+		Sia per assurdo $\mu(\{\abs{f}>1\})>0$.
+		
+		Sia $\theta\in[0,2\pi]$, e consideriamo sulla circonferenza unitaria sul piano complesso il punto $P=\cos(\theta)+i\sin(\theta)$. Definiamo quindi l'insieme $T_\theta$ come la tangente alla circonferenza unitaria in $P$, e definiamo $H_\theta$ come il semipiano individuato da $T_\theta$ che non contiene la circonferenza unitaria. Allora abbiamo
+		\begin{equation*}
+			\{\abs{f}>1\} = \bigcup_{0\leq\theta\leq2\pi} f^{-1}(H_\theta) \,,
+		\end{equation*}
+		da cui esiste $\theta\in[0,2\pi]$ tale che $\mu(f^{-1}(H_\theta))>0$, e possiamo prendere senza ledere la generalità $\theta=0$, ossia
+		\begin{equation*}
+			\mu(\mathscr{E}) = \mu(f^{-1}(\Re f>1)) > 0 \,.
+		\end{equation*}
+		Allora usando l'ipotesi troviamo
+		\begin{equation*}
+			\abs*{ \frac1{\mu(\mathscr{E})} \int_{\mathscr{E}}f\dmu } >
+			\abs*{ \Re \frac1{\mu(\mathscr{E})} \int_{\mathscr{E}}f\dmu } =
+			\abs*{ \frac1{\mu(\mathscr{E})} \int_{\mathscr{E}}\Re f\dmu } >
+			\abs*{ \frac1{\mu(\mathscr{E})} \int_{\mathscr{E}}\dmu } = 1 \,,
+		\end{equation*}
+		che è assurdo.
+	\end{proof}
+	
+	\begin{definition}[Decomposizione di Jordan]
+		Sia $\mu :\mathscr{M}\to\R$ una misura reale. Allora definiamo la variazione positiva e la variazione negativa di $\mu$ come
+		\begin{align*}
+			\mu^+ &= \frac12(\abs{\mu}+\mu) \\
+			\mu^- &= \frac12(\abs{\mu}-\mu) \,.
+		\end{align*}
+		In particolare $\mu=\mu^+-\mu^-$ e $\abs{\mu}=\mu^++\mu^-$. La stessa decomposizione si fa anche per la parte reale e per la parte immaginaria di una misura complessa.
+	\end{definition}
+	
+	\begin{definition}[Misure assolutamente continue]
+		Sia $\mu$ una misura positiva e sia $\lambda$ una misura complessa sulla stessa $\sigma$-algebra. Si dice che $\lambda$ è assolutamente continua rispetto a $\mu$ e si scrive $\lambda\ll\mu$ se $\mu(E)=0\implies\lambda(E)=0$.
+	\end{definition}
+	
+	\begin{oss}
+		Il termine ``continuità'' non è usato a caso nella definizione precedente. Infatti, si mostra che $\lambda\ll\mu$ se e solo se
+		\begin{equation*}
+			\forall\eps>0 \,\exists\delta>0 \,: \forall E\in\mathscr{M} \mu(E)<\delta \implies \abs{\lambda(E)}<\eps \,.
+		\end{equation*}
+		Se anche $\lambda$ è una misura positiva (e quindi può assumere un valore $+\infty$), questa equivalenza non è vera.
+	\end{oss}
+	
+	\begin{definition}[Misura concentrata su un insieme]
+		Una misura $\lambda$ su una $\sigma$-algebra $\mathscr{M}$ si dice ``concentrata'' su un insieme $A$ se per ogni $E\in\mathscr{M}$ si ha che $\lambda(E)=\lambda(E\cap A)$, ovvero se gli insiemi disgiunti da $A$ hanno misura nulla.
+	\end{definition}
+	
+	\begin{definition}[Misure singolari tra loro]
+		Due misure $\lambda_1,\lambda_2$ su una stessa $\sigma$-algebra si dicono ``singolari tra loro'', e si scrive $\lambda_1\perp\lambda_2$, se sono concentrate su insiemi disgiunti.
+	\end{definition}
+	
+	\begin{prop}[Proprietà di assoluta continuità e singolarità]
+		Siano $\mu,\lambda,\lambda_1,\lambda_2$ misure sulla stessa $\sigma$-algebra, con $\mu$ positiva. Allora valgono le seguenti proprietà.
+		\begin{enumerate}
+			\item Se $\lambda$ è concentrata su $A$, allora $\abs{\lambda}$ è concentrata su $A$.
+			\item Se $\lambda_1\perp\lambda_2$, allora $\abs{\lambda_1}\perp\abs{\lambda_2}$
+			\item Se $\lambda_1,\lambda_2\perp\mu$, allora $\lambda_1+\lambda_2\perp\mu$
+			\item Se $\lambda\ll\mu$, allora anche $abs{\lambda}\ll\mu$
+			\item Se $\lambda_1,\lambda_2\ll\mu$, allora $\lambda_1+\lambda_2\ll\mu$
+			\item Se $\lambda_1\ll\mu$ e $\lambda_2\perp\mu$, allora $\lambda_1\perp\lambda_2$
+			\item Se $\lambda\ll\mu$ e $\lambda\perp\mu$, allora $\lambda=0$
+		\end{enumerate}
+	\end{prop}
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+

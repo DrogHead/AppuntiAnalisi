@@ -2,6 +2,48 @@
 
 \begin{document}
 	
-	Ciao.
+	\begin{definition}
+		Un insieme $E\subseteq X$ si dice $\sigma$-compatto se si può scrivere come unione numerabile di compatti, mentre si dice $\sigma$-finito se si può scrivere come unione numerabile di insiemi di misura finita.
+	\end{definition}
+	
+	\begin{corol}
+		Se $X$ è $\sigma$-finito, allora la misura ottenuta dal teorema di Riesz è anche regolare dall'interno.
+	\end{corol}
+	\begin{proof}
+		Infatti, scritto $X$ come $\bigcup_{i\in\N}X_i$, con $\mu(X_i)<+\infty$. Allora per la proprietà (3) esiste un compatto $K_i$ tale che $K_i\subseteq X_i$ e per cui $\mu(K_i)\geq\mu(X_i)-\eps2^{-i}$. Definiamo allora
+		\begin{equation*}
+			H_N = \bigcup_{i=1}^N K_i \implies \mu\left(\bigcup_{i=1}^N X_i\right) - \eps \leq \mu(H_N) \leq \mu(X) \,.
+		\end{equation*}
+		Allora $H_N$ è una successione di compatti la cui misura converge a $\mu(X)$.
+	\end{proof}
+	
+	\begin{prop}
+		Sia $X$ uno spazio di Hausdorff localmente compatto e $\sigma$-compatto. Allora la misura $\mu$ ottenuta dal teorema di Riesz gode delle seguenti proprietà.
+		\begin{enumerate}
+			\item Per ogni $E\in\mathscr{M}$ e per ogni $\eps>0$ esistono $F$ chiuso e $V$ tali che $F\subseteq E\subseteq V$ e che $\mu(V\setminus F)<\eps$
+			\item $\mu$ è regolare
+			\item Per ogni $E\in\mathscr{M}$ esistono due boreliani $A,B$ tali che $A\subseteq E\subseteq B$ e che $\mu(B\setminus A)=0$.
+		\end{enumerate}
+	\end{prop}
+	\begin{proof}
+		Visto che $X$ è $\sigma$-compatto e che i compatti hanno misura finita, allora $X$ è $\sigma$-finito, dunque $\mu$ è regolare. Scriviamo $X=\bigcup_{i\in\N}K_i$, da cui $\mu(E\cap K_i)<+\infty$, e quindi si trova per ogni $i$ un aperto $V_i$ tale che
+		\begin{equation*}
+			\mu(V_i\setminus (E\cap K_i)) < \frac{\eps}{2^{i+1}} \,.
+		\end{equation*}
+		Chiamo quindi $V=\bigcup_i V_i$, da cui
+		\begin{equation*}
+			\mu(V\setminus E) \leq \sum_i \mu(V_i\setminus (E\cap K_i)) < \frac\eps2 \,.
+		\end{equation*}
+		Ripetendo lo stesso ragionamento con $E^C$ si trova un aperto $U$ tale che $\mu(U\setminus E^C) < \eps/2$ e quindi si trova che $\mu(V\setminus U^C)<\eps$. Per l'ultima proprietà, dato $n\in\N$ esistono un chiuso $F_n$ e un aperto $V_n$ tali che $\mu(V_n\setminus F_n)<1/n$. Considerando $V=\bigcap_{n\in\N}V_n$ che è un insieme $G_\delta$ e $F=\bigcup_{n\in\N}F_n$ che è un insieme $F_\sigma$, si ha che $\mu(V\setminus F)=0$.
+	\end{proof}
 	
 \end{document}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,159 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+	
+	\begin{definition}[Spazi $L^p$]
+		Sia $(X,\mathscr{M},\mu)$ uno spazio di misura. Dato $p\in[1,+\infty)$, definiamo $L^p(X,\mu)$ l'insieme di tutte le funzioni $f:X\to\C$ a potenza $p$-esima sommabile ossia
+		\begin{equation*}
+			f\in L^p(X,\mu) \iff \int_X\abs{f}^p\dmu < \infty \,,
+		\end{equation*}
+		mentre chiamiamo $L^\infty(X,\mu)$ l'insieme di tutte le funzioni $f:X\to\C$ quasi ovunque limitate, ossia
+		\begin{equation*}
+			f\in L^\infty(X,\mu) \iff \exists C\in\R \,: \abs{f}\leq C \textup{ q.o.}
+		\end{equation*}
+		Per brevità, quando è chiaro il contesto, si scrive $L^p(X)$, $L^p(\mu)$ oppure $L^p$.
+	\end{definition}
+	
+	\begin{definition}[Norme $L^p$]
+		Se $1\leq p<+\infty$ e $f\in L^p$ si definisce la norma $L^p$ di $f$ come
+		\begin{equation*}
+			\norm{f}_p = \left(\int_X\abs{f}^p\dmu\right)^{\frac1p} \,,
+		\end{equation*}
+		mentre se $f\in L^\infty$ si definisce la norma $L^\infty$ di $f$ come
+		\begin{equation*}
+			\norm{f}_\infty = \inf\left\{ M\in\R \,\middle\vert\, \abs{f}\leq M \textup{ q.o.} \right\} \,.
+		\end{equation*}
+	\end{definition}
+	
+	\begin{oss}
+		Le funzioni così definite sono in realtà seminorme. Infatti, non solo la funzione nulla ha norma nulla, ma tutte le funzioni quasi ovunque nulle. Per ovviare a ciò, si quozienta lo spazio $L^p$ con la relazione di equivalenza definita come
+		\begin{equation*}
+			f \sim_{\textup{q.o.}} g \iff \int_X\abs{f-g}\dmu = 0 \,.
+		\end{equation*}
+		In modo tale che due funzioni che differiscono su un insieme di misura nulla siano trattate effettivamente come la stessa funzione. Ciononostante, continueremo a usare la notazione $L^p$ senza esplicitare la relazione di equivalenza.
+	\end{oss}
+	
+	\begin{prop}[Disuguaglianza di Young]
+		Per ogni $A,B>0$ e per ogni $\alpha\in[0,1]$ si ha $A^\alpha B^{1-\alpha} \leq \alpha A+(1-\alpha)B$.
+	\end{prop}
+	\begin{proof}
+		La funzione logaritmo naturale è una funzione concava. Pertanto
+		\begin{equation*}
+			\log(\alpha A+(1-\alpha)B) \geq \alpha \log(A)+(1-\alpha)\log(B) = \log(A^\alpha B^{1-\alpha})\,.
+		\end{equation*}
+	\end{proof}
+	
+	\begin{prop}[Disuguaglianza di H\"older]
+		Siano $p,q$ coniugati secondo H\"older (ossia $\frac1p+\frac1q=1$) con $1<p<+\infty$. Sia $\mu$ una misura su $X$ e siano $f,g$ due funzioni misurabili. Allora
+		\begin{equation*}
+			\int_X\abs{fg}\dmu \leq \left(\int_X\abs{f}^p\dmu\right)^{\frac1p} \left(\int_X\abs{g}^q\dmu\right)^{\frac1q} \,.
+		\end{equation*}
+	\end{prop}
+	\begin{proof}
+		L'unico caso non banale è quello in cui $f\in L^p$ e $g\in L^q$ perché così il secondo membro è finito, e si può riscrivere come $\norm{f}_p\norm{g}_q$. Definiamo due funzioni ausiliarie
+		\begin{equation*}
+			\alpha = \frac{f}{\norm{f}_p} \quad\,\quad \beta = \frac{g}{\norm{g}_q} \,,
+		\end{equation*}
+		da cui si trova che $\alpha^p$ e $\beta^q$ hanno integrale finito su $X$. Per la disuguaglianza di Young troviamo che
+		\begin{equation*}
+			\alpha\beta \leq \frac1p \alpha^p + \frac1q \beta^q \,,
+		\end{equation*}
+		e integrando si trova
+		\begin{equation*}
+			\int_X \alpha\beta\dmu \leq \frac1p \int_X\alpha^p\dmu + \frac1q \int_X\beta^q\dmu = \frac1p+\frac1q = 1 \,.
+		\end{equation*}
+		Riscrivendo $\alpha$ e $\beta$ in termini di $f$ e $g$ si trova la tesi.
+	\end{proof}
+	
+	\begin{prop}[Disuguaglianza di Minkowski]
+		Sia $1<p<+\infty$ e sia $\mu$ una misura su $X$. Date $f,g$ due funzioni misurabili, vale
+		\begin{equation*}
+			\left( \int_X\abs{f+g}^p\dmu \right) \leq \left( \int_X\abs{f}^p\dmu \right)+\left( \int_X\abs{g}^p\dmu \right) \,.
+		\end{equation*}
+	\end{prop}
+	\begin{proof}
+		L'unico caso non banale è quello in cui $f,g\in L^p$, altrimenti il secondo membro sarebbe infinito. Osserviamo che
+		\begin{equation*}
+			\abs{f+g}^p = \abs{f+g}^{p-1}\abs{f+g} \leq \abs{f}\abs{f+g}^{p-1} + \abs{g}\abs{f+g}^{p-1} \,,
+		\end{equation*}
+		e quindi possiamo usare la disuguaglianza di H\"older con esponenti $p$ e $\frac{p}{p-1}$ per trovare
+		\begin{equation*}
+			\int_X\abs{f}\abs{f}^{p-1}\dmu \leq \left( \int_X\abs{f}^p\dmu \right)^{\frac1p} \left( \int_X\abs{f+g}^{(p-1)\frac{p}{p-1}} \right)^{\frac{p-1}{p}}
+		\end{equation*}
+		e analogamente per $g$. Sommando troviamo che
+		\begin{equation*}
+			\int_X\abs{f+g}^p\dmu \leq \left[ \left( \int_X\abs{f}^p\dmu \right)^{\frac1p} + \left( \int_X\abs{f}^p\dmu \right)^{\frac1p} \right]\left( \int_X\abs{f+g}^{(p-1)\frac{p}{p-1}} \right) \,,
+		\end{equation*}
+		da cui segue la tesi.
+	\end{proof}
+	
+	\begin{oss}
+		La disuguaglianza di Minkowski assicura che la norma $L^p$ sia effettivamente una norma per ogni $p$ finito. Le stesse disuguaglianze per $p=+\infty$ sono banali.
+	\end{oss}
+	
+	\begin{definition}
+		Data una funzione misurabile $f$, si dice ``estremo superiore essenziale'' di $f$ la quantità
+		\begin{equation*}
+			\essup_X\abs{f} = \inf\left\{ \alpha\in\R \,\middle\vert\, \mu(f^{-1}(\alpha,+\infty])=0 \right\} \,,
+		\end{equation*}
+		che coincide con la norma $\norm{f}_\infty$.
+	\end{definition}
+	
+	\begin{prop}
+		Sia $\mu$ una misura finita su $X$ e siano $p,q\in(1,+\infty)$ tali che $p\geq q$. Allora risulta
+		\begin{equation*}
+			L^1(X) \supseteq \cdots \supseteq L^q(X) \supseteq L^p(X) \supseteq L^\infty(X) \,.
+		\end{equation*}
+	\end{prop}
+	\begin{proof}
+		Si vede immediatamente che se $f\in L^\infty(X)$ allora ogni sua potenza è limitata e quindi appartiene a $L^p$ per ogni $p$ finito. Siano allora $p,q\in[1,+\infty)$ con $p\geq q$. Sia allora $f\in L^p$. Per certi esponenti $\alpha,\beta$ si ha, dalla disuguaglianza di H\"older, che
+		\begin{equation*}
+			\int_X\abs{f}^q\dmu \leq \left( \int_X\abs{f}^{q\alpha} \right)^{\frac1\alpha} \left( \int_X\dmu \right)^{\frac1\beta}\ ,.
+		\end{equation*}
+		Scegliamo $q\alpha=p$ per creare la norma $L^p$ nel primo integrale, e quindi abbiamo
+		\begin{equation*}
+			\alpha=\frac{p}{q} >1 \quad\,\quad \frac1\beta= 1-\frac1\alpha= 1-\frac{q}{p} = \frac{p-q}{p} \,.
+		\end{equation*} 
+		La disuguaglianza scritta in precedenza diventa quindi
+		\begin{equation*}
+			\int_X\abs{f}^q\dmu \leq \norm{f}_p^q \mu(X)^{\frac{p-q}{p}} \,,
+		\end{equation*}
+		che è finita e quindi $f\in L^q$.
+	\end{proof}
+	
+	\begin{prop}
+		Sia $\mu$ una misura finita e sia $f\in L^\infty$. Allora
+		\begin{equation*}
+			\lim_{p\to\infty}\norm{f}_p = \norm{f}_\infty \,.
+		\end{equation*} 
+	\end{prop}
+	\begin{proof}
+		Dalla proposizione precedente sappiamo che $f\in L^p$ per ogni $p$ e quindi il limite è ben posto. Possiamo limitare dall'alto il massimo limite delle norme $L^p$ in quanto
+		\begin{equation*}
+			\norm{f}_p = \left( \int_X\abs{f}^p\dmu \right)^{\frac1p} \leq \norm{f}_\infty \mu(X)^{\frac1p} \implies \limsup_{p\to\infty}\norm{f}_p \leq \norm{f}_\infty \,.
+		\end{equation*}
+		Per l'altra disuguaglianza definiamo per ogni $\eps>0$ l'insieme
+		\begin{equation*}
+			X_\eps = \{\abs{f}\geq\norm{f}-\eps\} \,,
+		\end{equation*}
+		che ha misura non nulla per definizione, e per cui vale
+		\begin{equation*}
+			\norm{f}_p^p = \int_X\abs{f}^p\dmu > \int_{X_\eps}\abs{f}^p\dmu \geq (\norm{f}_\infty-\eps)\mu(X) \implies \liminf_{p\to\infty}\norm{f}_p \geq \norm{f}_\infty \,,
+		\end{equation*}
+		da cui la tesi, dal momento che massimo e minimo limite coincidono.
+	\end{proof}
+	
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
