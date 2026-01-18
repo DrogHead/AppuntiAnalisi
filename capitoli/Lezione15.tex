@@ -2,6 +2,61 @@
 
 \begin{document}
 	
+	\begin{theorem}
+		Sia $X$ uno spazio di Banach e sia $Y$ un sottospazio proprio chiuso. Allora per ogni $\eps>0$ esiste $x\in X$ tale che $\norm{x}=1$ e $d(x,Y)>1-\eps$.
+	\end{theorem}
+	\begin{proof}
+		Se $x_0\notin Y$ allora $d(x_0,Y)=d>0$ e quindi e per ogni $\eps>0$ esiste un vettore $y_0\in Y$ tale che
+		\begin{equation*}
+			d\leq\norm{x_0-y_0}<\frac{d}{1-\eps} \,.
+		\end{equation*}
+		Detto $x$ il vettore $x_0-y_0$ normalizzato, che ha norma 1, si trova che
+		\begin{equation*}
+			\norm{x-y} = \norm*{\frac{x_0-y_0}{\norm{x_0-y_0}}-y} = \frac1{\norm{x_0-y_0}}\norm{x_0-y_0-y\norm{x_0-y_0}} \geq \frac{d}{\norm{x_0-y_0}} > \frac{d}{d}(1-\eps) \,.
+		\end{equation*}
+	\end{proof}
 	
+	\begin{example}
+		Sia $X$ lo spazio delle funzioni continue definite in $[0,1]$ tali che $f(0)=0$ è un Banach con la norma del massimo, e sia $Y$ il sottospazio delle funzioni definite in $[0,1]$ a integrale nullo. Sia $f\in X\setminus Y$ a norma 1 e tale che per ogni $g\in Y$ si abbia $\norm{f-g}\geq 1$. Allora
+		\begin{equation*}
+			\forall\eps>0 \,\exists h\in X\setminus Y \,: \norm{h}=1 \,, \abs*{\int_0^1 h(t)dt}>1-\eps \,.
+		\end{equation*}
+		Non si può scegliere $\eps=0$ perché la condizione $f(0)=0$ e la continuità non lo permettono. Allora sia
+		\begin{equation*}
+			c = \dfrac{\int_0^1 f(t)dt}{\int_0^1 h(t)dt} \,,
+		\end{equation*}
+		in modo tale che $f-ch$ abbia media nulla. Allora
+		\begin{equation*}
+			1\leq \norm{f-(f-ch)} = \norm{ch} = \abs{c}\norm{h} = \norm{h} \,,
+		\end{equation*}
+		e quindi per ogni $\eps>0$ vale
+		\begin{equation*}
+			1-\eps < \abs*{\int_0^1h(t)dt} = \frac1{\abs{c}}\abs*{\int_0^1f(t)dt} \leq \abs*{\int_0^1f(t)dt} \,,
+		\end{equation*}
+		che è assurdo, perché porterebbe alla conclusione che $f=1$ quasi ovunque, contro l'ipotesi che $f(0)=0$.
+	\end{example}
+	
+	\begin{theorem}
+		Sia $X$ uno spazio di Banach. La palla unitaria chiusa è compatta se e solo se $X$ ha dimensione finita.
+	\end{theorem}
+	\begin{proof}
+		Supponendo $\dim X=n\in\N$, possiamo scrivere $u=\sum_{i=1}^n c_i u_i$ per ogni $u$ in un unico modo. Data una successione $\{u^k\}_{k\in\N}$ contenuta in $\overline{B_X}$, scriviamo
+		\begin{equation*}
+			u^k = \sum_{i=1}^n c_i^k u_i \,,
+		\end{equation*}
+		e dalla successione $\{c_1^k,\dots,c_n^k\}_\{k\in\N\}$ contenuta nella palla unitaria di $\R^n$, da cui possiamo estrarre una sottosuccessione convergente in essa a $\{c_1,\dots,c_n\}$, da cui $\sum_{i=1}^n c_i u_i$ è il limite, in $B_X$.
+		
+		Per il viceversa, supponendo per assurdo $\dim X=+\infty$, consideriamo una successione $X_1\subseteq X_2\subseteq\cdots\subseteq X_n\subseteq X_{n+1}\subseteq\cdots$ di spazi a dimensione finita, ognuno contenuto strettamente nel precedente, e per ognuno un elemento $x_i\in X_i$, di norma 1 e tali che $d(x_n,X_{n-1})\geq1/2$. Questa successione è interamente contenuta in $B_X$, ma essendo che $\norm{x_n-x_m}\geq1/2$ la successione non è di Cauchy, quindi non ammette estratte convergenti.
+	\end{proof}
 	
 \end{document}
+
+
+
+
+
+
+
+
+
+

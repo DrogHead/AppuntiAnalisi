@@ -2,7 +2,171 @@
 
 \begin{document}
 	
+	\begin{definition}[Norme equivalenti]
+		Date due norme $\norm{\cdot}_1$ e $\norm{\cdot}_2$ su uno stesso spazio vettoriale $X$, queste si dicono ``equivalenti'' se esistono due costanti $c_1$ e $c_2$ tali che per ogni $x\in X$ si abbia
+		\begin{equation*}
+			c_1\norm{x}_1 \leq \norm{x}_2 \leq c_2\norm{x}_1 \,.
+		\end{equation*}
+	\end{definition}
 	
+	\begin{oss}
+		Se due norme sono equivalenti, le successioni convergenti in una norma convergono anche nell'altra.
+	\end{oss}
+	
+	\begin{definition}[Prodotto interno, spazio di Hilbert]
+		Un prodotto interno in uno spazio vettoriale $X$ è una funzione $\scal{\cdot}{\cdot} :X^2 \to \C$ tale che
+		\begin{enumerate}
+			\item per ogni $u,v\in X$ si ha $\scal{u}{v}=\overline{\scal{v}{u}}$
+			\item per ogni $u\in X$ si ha $\scal{u}{u}\geq 0$ e $\scal{u}{u}=0$ sse $u=0$
+			\item per ogni $u,v\in X,\alpha\in\C$ si ha $\scal{\alpha u}{v}=\alpha\scal{u}{v}$
+		\end{enumerate}
+		In particolare dalla seconda proprietà si trova una norma indotta su $X$ definita come $\norm{u}=\sqrt{\scal{u}{u}}$. Se $X$ è completo, allora si dice spazio di Hilbert.
+	\end{definition}
+	
+	\begin{definition}
+		Sia $X$ uno spazio vettoriale dotato di prodotto interno. Due elementi $u,v\in X$ si dicono ``ortogonali'' e si scrive $u\perp v$ se $\scal{u}{v}=0$.
+	\end{definition}
+	
+	\begin{prop}
+		Sia $X$ uno spazio vettoriale dotato di prodotto interno. Allora valgono
+		\begin{enumerate}
+			\item Teorema di Pitagora
+			\begin{equation*}
+				f\perp g \implies \norm{f+g}^2 = \norm{f}^2 + \norm{g}^2
+			\end{equation*}
+			\item Cauchy-Schwarz
+			\begin{equation*}
+				\abs{\scal{f}{g}} \leq \norm{f}\norm{g}
+			\end{equation*}
+			\item Disuguaglianza triangolare
+			\begin{equation*}
+				\norm{f+g}\leq\norm{f}+\norm{g}
+			\end{equation*}
+			\item Identità del parallelogramma
+			\begin{equation*}
+				\norm{f+g}^2+\norm{f-g}^2 = 2(\norm{f}^2+\norm{g}^2)
+			\end{equation*}
+		\end{enumerate}
+	\end{prop}
+	\begin{proof}
+		Per la prima, se $\scal{f}{g}=0$, troviamo
+		\begin{equation*}
+			\norm{f+g}^2 = \scal{f+g}{f+g} = \scal{f}{f}+\scal{f}{g}+\overline{\scal{f}{g}}+\scal{g}{g} = \norm{f}^2+\norm{g}^2 \,.
+		\end{equation*}
+		
+		Per la seconda, dati $f,g\in X$ e $\lambda = t+is\in \C$, e detto $\scal{f}{g}=a+ib$. Allora
+		\begin{align*}
+			0\leq\norm{f+\lambda g}^2 &= \scal{f}{f}+\scal{f}{\lambda g}+\scal{\lambda g}{f}+\scal{\lambda g}{\lambda g} \\
+			&= \norm{f}^2 + \overline{\lambda}\scal{f}{g} + \lambda\overline{\scal{f}{g}} + \abs{\lambda}^2\norm{g}^2 \\
+			&= \norm{f}^2 + 2(at+bs) +(t^2+s^2)\norm{g}^2 \,,
+		\end{align*}
+		e definiamo $\varphi(t,s)$ la quantità all'ultimo membro, che è sempre positiva. Se $\norm{g}\ne 0$ allora calcoliamo il gradiente e imponiamolo uguale a 0.
+		\begin{equation*}
+			\begin{cases}
+				\partial_s\varphi(t,s) = 2b+2s\norm{g}^2 = 0\\
+				\partial_t\varphi(t,s) = 2a+2t\norm{g}^2 = 0
+			\end{cases}
+			\implies
+			\begin{cases}
+				s_0 = -\frac{b}{\norm{g}^2} \\
+				t_0 = -\frac{a}{\norm{g}^2}
+			\end{cases}
+		\end{equation*}
+		Nel punto di minimo si trova
+		\begin{equation*}
+			\varphi(t_0,s_0) = \norm{f}^2-\frac{a^2+b^2}{\norm{g}^2} \,,
+		\end{equation*}
+		e quindi
+		\begin{equation*}
+			a^2+b^2 = \abs{\scal{f}{g}}^2\leq\norm{f}^2+\norm{g}^2 \,.
+		\end{equation*}
+		Se $\norm{g}=0$ allora $\varphi(t,s)=\norm{f}^2+2(at+bs)$ è sempre positiva, per $s=0$ si trova che $\norm{f}^2+2at\geq 0$ e quindi $a=0$, mentre per $t=0$ si trova che $\norm{f}^2+2bs\geq 0$ e quindi $b=0$, quindi $\scal{f}{g}=0$.
+		
+		Per la terza, abbiamo
+		\begin{equation*}
+			\norm{f+g}^2 = \norm{f}^2 + \scal{f}{g} + \overline{\scal{f}{g}} + \norm{g}^2 \,.
+		\end{equation*}
+		Allora, detto $\scal{f}{g}=a+ib$, abbiamo $\scal{f}{g} + \overline{\scal{f}{g}} = 2a\leq 2\abs{a}\leq2\abs{\scal{f}{g}}$ e quindi per Cauchy-Schwarz si trova
+		\begin{equation*}
+			\norm{f+g}^2 = \norm{f}^2+2\norm{f}\norm{g}+\norm{g}^2 = (\norm{f}+\norm{g})^2 \,.
+		\end{equation*}
+		
+		Per la quarta, abbiamo
+		\begin{equation*}
+			\norm{f+g}^2+\norm{f-g}^2 = \scal{f+g}{f+g}+\scal{f-g}{f-g} = 2(\norm{f}^2+\norm{g}^2) \,.
+		\end{equation*}
+	\end{proof}
+	
+	\begin{oss}
+		Se una norma rispetta la regola del parallelogramma allora si può definire un prodotto scalare sul campo reale come
+		\begin{equation*}
+			\scal{f}{g} = \frac14( \norm{f+g}^2 - \norm{f-g}^2 ) \,,
+		\end{equation*}
+		e sul campo complesso come
+		\begin{equation*}
+			\scal{f}{g} = \frac14( \norm{f+g}^2 - \norm{f-g}^2 + i\norm{u+iv}^2 - i\norm{u-iv}^2 ) \,.
+		\end{equation*}
+	\end{oss}
+	
+	\begin{example}
+		Lo spazio $L^2$ e lo spazio $\ell^2$ sono spazi di Hilbert. Il prodotto scalare nel primo caso è
+		\begin{equation*}
+			\scal{f}{g} = \int_X f\overline{g}\dmu \,,
+		\end{equation*}
+		che induce la norma $L^2$ che abbiamo già visto.
+	\end{example}
+	
+	\begin{definition}[Spazio separabile]
+		Uno spazio topologico $X$ è detto separabile se esiste un sottoinsieme denso numerabile. Gli spazi $L^p$ sono separabili se $p\ne+\infty$.
+	\end{definition}
+	
+	\begin{theorem}
+		Sia $X$ uno spazio di Hilbert e sia $Y\subseteq X$ un sottospazio vettoriale proprio. Se $x\notin Y$ esiste un unico $y_0\in Y$ tale che
+		\begin{equation*}
+			d(x,y_0) = \inf_{y\in Y}d(x,y) \,,
+		\end{equation*}
+		e che $x-y_0\perp Y$.
+	\end{theorem}
+	\begin{proof}
+		Consideriamo una successione $\suc{y}{n}{\N}$ tale che, detta $d=d(x,Y)$, si abbia $d = \lim_n\norm{x-y_n}$, ossia
+		\begin{equation*}
+			\forall\eps>0 \,\exists\nu\in\N \,: \,\forall n\geq\nu \, d\leq\norm{x-y_n}<d+\eps \,.
+		\end{equation*}
+		Verifichiamo che è di Cauchy.
+		\begin{align*}
+			\frac12\norm{y_n-y_m} &= \frac12\norm{(y_n-x)-(y_m-x)} = \norm{y_n-x}^2+\norm{y_m-x}^2-\frac12\norm{y_n+y_m-2x} \\
+			&= \norm{y_n-x}^2+\norm{y_m-x}^2-2\norm{\frac{y_n+y_m}2-2x} \\
+			&\leq 2(d+\eps)^2-2d^2 = 4d\eps+\eps^2 = C\eps \,.
+		\end{align*}
+		Chiamo $y_0$ il limite delle $y_n$ e trovo che intanto è in $Y$, e poi che
+		\begin{equation*}
+			d \leq \norm{x-y_0} \leq \norm{x-y_n}+\norm{y_n-y_0} <d+2\eps\ ,.
+		\end{equation*}
+		L'unicità si trova ragionando analogamente. L'ortogonalità si trova dal momento che
+		\begin{equation*}
+			\norm{x-y_0-y}^2 = \norm{x-y_0}^2 + \norm{y}^2 - 2\Re\scal{x-y_0}{y} \,,
+		\end{equation*}
+		e lo stesso ragionamento si ripete per la parte immaginaria. Quindi, per ogni $y\in Y$ si ha $\norm{y}^2-\scal{x-y_0}{y}\geq0$, che non può succedere se non quando il prodotto scalare è nullo.
+	\end{proof}
+	
+	\begin{corol}
+		Nelle stesse ipotesi del teorema precedente, esiste un unico vettore di norma 1 a distanza 1.
+	\end{corol}
+	\begin{proof}
+		Consideriamo il vettore $y_0$ del teorema precedente e sia
+		\begin{equation*}
+			z = \frac{x-y_0}{\norm{x-y_0}} \,,
+		\end{equation*}
+		che ovviamente ha norma 1 e da cui si trova
+		\begin{align*}
+			\norm*{z-y}^2 &= \norm*{\frac{x-y_0-y\norm{x-y_0}}{\norm{x-y_0}}}^2 \\
+			&= \frac1{\norm{x-y_0}^2}\norm{x-y_0-y\norm{x-y_0}}^2 \\
+			&= 2+2\norm{y}^2-\norm*{z+y}^2 \\
+			&\geq 2+2\norm{y}^2 - \norm{z}^2-\norm{y}^2 \\
+			&= 1+\norm{y}^2 \geq 1 \,,
+		\end{align*}
+		e per $y=0$ si trova il vettore che raggiunge la distanza 1.
+	\end{proof}
 	
 \end{document}
 
