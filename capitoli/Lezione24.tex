@@ -9,42 +9,57 @@
 	\end{theorem}
 	
 	\begin{proof}
-		Iniziamo supponendo che $\mu$ sia una misura finita. Definiamo allora una funzione di insieme
-		\begin{equation}
+		
+		\textsc{Step 1.} Mostriamo l'unicità.\\
+		Se $h,h'\in L^{p'}(\mu)$ tali che vale la rappresentazione. Allora per ogni $f\in L^p(\mu)$ vale
+		\begin{equation*}
+			\int_X f(h-h')\dmu = 0 \,,
+		\end{equation*}
+		e facendolo con le caratteristiche dei misurabili di misura finita si trova che $h=h'$ quasi ovunque.\\
+		
+		\textsc{Step 2.} Primo caso, misura finita e $p>1$\\
+		Definiamo una funzione di insieme
+		\begin{equation*}
 			\nu : E \in \mathcal{M} \mapsto \phi(\rchi_E) \in \R
-		\end{equation}
+		\end{equation*}
 		che è una misura. Infatti $\nu(\varnothing)=0$ e
-		\begin{equation}
-			\nu(\bigcup_i E_i) = \phi(\rchi_{\bigcup_i E_i}) = \phi(\sum_i \rchi_{E_i}) = \sum_i \phi(\rchi_{E_i}) = \sum_i \nu(E_i)
-		\end{equation}
-		In particolare, $\nu$ è una misura complessa ed è assolutamente continua rispetto a $\mu$. Per il teorema di Radon--Nikodym esiste unica $h\in L^1(\mu)$ tale che $d\nu=hd\mu$, ossia
-		\begin{equation}
+		\begin{equation*}
+			\nu\left(\bigcup_i E_i\right) = \phi\left(\rchi_{\bigcup_i E_i}\right) = \phi\left(\sum_i \rchi_{E_i}\right) = \sum_i \phi(\rchi_{E_i}) = \sum_i \nu(E_i)
+		\end{equation*}
+		In particolare, $\nu$ è una misura complessa ed è assolutamente continua rispetto a $\mu$. Per il teorema di Radon-Nikodym esiste unica $h\in L^1(\mu)$ tale che $d\nu=hd\mu$, ossia
+		\begin{equation*}
 			\phi(\rchi_E) = \nu(E) = \int_X h\rchi_E d\mu = \int_E hd\mu
-		\end{equation}
-		Si passa facilmente dalle funzioni caratteristiche alle funzioni semplici. Se $f$ è misurabile limitata allora esiste una successione di $f_n$ semplici uniformemente convergente ad essa, quindi si estende ancora il risultato. Considero allora:
-		\begin{equation}
+		\end{equation*}
+		Si passa facilmente dalle funzioni caratteristiche alle funzioni semplici. Se $f$ è misurabile limitata allora esiste una successione di $s_n$ semplici uniformemente convergente ad essa, quindi si estende ancora il risultato. Sullo spazio delle funzioni limitate, quindi, abbiamo
+		\begin{equation*}
+			\int_X hf\dmu = \phi(f) \,.
+		\end{equation*}
+		Considero allora la seguente successione di funzioni di $L^p$:
+		\begin{equation*}
 			f_k(x) = 
 			\begin{cases}
 				\abs{h}^{p'-2}h & \textup{se } x\in E_k \\
 				0 & \textup{altrimenti.}
 			\end{cases}
-		\end{equation}
-		Dove $E_k=\{x\in X \,\vert\, \abs{h}\leq x \}$. Per $p=1$ invece prendiamo $f=\rchi_A$. Allora
+		\end{equation*}
+		Dove $E_k=\{x\in X \,\vert\, \abs{h}\leq x \}$. Integrando, allora, si trova che
+		\begin{equation*}
+			\abs*{\int_X hf_k d\mu} = \abs*{\int_{E_k} \abs{h}^{p'} d\mu} = \abs{\phi(f_k)} \leq \norm{\phi} \norm{f_k}_p = \norm{\phi} \left( \int_X \abs{h}^{p'}\dmu \right)^{\frac1p} \,,
+		\end{equation*}
+		da cui		
+		\begin{equation*}
+			\norm{h \rchi_E}_{p'} = \Big( \int_E \abs{h}^{p'} \Big)^{1-\frac1p} \leq \norm{\phi} \,,
+		\end{equation*}
+		ossia la media di $h$ è minore di $\norm{\phi}$ indipendentemente dall'insieme misurabile scelto, quindi $\norm{h}\leq\norm{\phi}$ usando Beppo-Levi, e si trova anche $h\in L^{p'}$. Osserviamo poi che
+		\begin{align*}
+			\norm{\phi} &= \sup_{\norm{f}_p\leq 1}\abs{\phi(f)} = \sup_{\norm{f}_p\leq 1}\abs*{\int_X fh\dmu} \\
+			&\leq \sup \int_X\abs{fh}\dmu \leq \norm{f}_p\norm{h}_p \leq \norm{h} \,,
+		\end{align*}
+		e quindi vale l'uguaglianza.\\
 		
-		\begin{equation}
-			\abs*{\int_X hf_k d\mu} = \abs*{\int_{E_k} \abs{h}^{p'} d\mu} = \abs{\phi(f_k)} \leq \norm{\phi} \norm{f_k}_p = \norm{\phi} \Big( \int_X \abs{h}^{p'} \Big)^{\frac1p}
-		\end{equation}
-		
-		Da cui
-		
-		\begin{equation}
-			\norm{h \rchi_E}_{p'} = \Big( \int_E \abs{h}^{p'} \Big)^{1-\frac1p} \leq \norm{\phi}
-		\end{equation}
-		
-		Ossia la media di $h$ è minore di $\norm{\phi}$ indipendentemente dall'insieme misurabile scelto, quindi anche $h$ è minore di $\norm{\phi}$.
-		
+		\textsc{Step 3.} Casi rimanenti.\\
+		Se $p=1$ la costruzione è comunque valida, ma cambia la successione di funzioni.\\
+		Se lo spazio è solo $\sigma$-finito si procede singolarmente su ogni componente finita e poi si somma.
 	\end{proof}
-	
-	[RECUPERA]	
 	
 \end{document}
