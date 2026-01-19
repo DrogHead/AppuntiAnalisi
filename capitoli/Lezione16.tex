@@ -2,6 +2,111 @@
 
 \begin{document}
 	
+	\begin{definition}[Operatori limitati, continui]
+		Un operatore lineare tra spazi di Banach $A :U\to V$ si dice
+		\begin{enumerate}
+			\item limitato, se esiste $c>0$ tale che per ogni $u\in U$ si ha
+			\begin{equation*}
+				\norm{Au}_V \leq c\norm{u}_U \,.
+			\end{equation*} 
+			\item continuo, se per ogni $u_0\in U$ e per ogni successione $u_n\to u_0$ si ha
+			\begin{equation*}
+				\norm{u_n-u_0}_U \to 0 \implies \norm{Au_n-Au_0} \to 0
+			\end{equation*}
+		\end{enumerate}
+	\end{definition}
 	
+	\begin{definition}[Norma operatoriale]
+		Si definisce la norma operatoriale di un operatore lineare $A:U\to V$ tra spazi di Banach come
+		\begin{equation*}
+			\norm{A}_{op} = \sup\left\{ \norm{Au}_V \,\middle\vert\, \norm{u}_U=1 \right\} \,,
+		\end{equation*}
+		o, equivalentemente, come
+		\begin{equation*}
+			\sup\left\{ \norm{Au}_V \,\middle\vert\, \norm{u}_U\leq1 \right\} \quad\textup{e}\quad \sup\left\{ \frac{\norm{Au}_V}{\norm{u}_U} \,\middle\vert\, \norm{u}_U\ne0 \right\} \,.
+		\end{equation*}
+	\end{definition}
+	
+	\begin{oss}
+		Dalle definizioni segue subito che per ogni $u\in U$ vale
+		\begin{equation*}
+			\norm{Au}_V \leq \norm{A}_{op}\norm{u}_U \,.
+		\end{equation*}
+	\end{oss}
+	
+	\begin{theorem}
+		Sia $A:U\to V$ un operatore lineare tra spazi di Banach. Allora sono equivalenti
+		\begin{enumerate}
+			\item $A$ continuo
+			\item $A$ continuo in $0$
+			\item $A$ limitato
+			\item $A$ uniformemente continuo
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		È evidente che (4)$\implies$(1)$\implies$(2). Supponiamo che $A$ sia continuo in $0$, e siano $u\in U$ ed $\eps>0$. Allora abbiamo
+		\begin{equation*}
+			\norm{Au} = \norm*{A \frac{u}{\norm{u}} \delta \frac{\norm{u}}{\delta} } = \frac{\norm{u}}{\delta} \norm*{A \frac{u}{\norm{u}} \delta} \leq \frac{\eps}{\delta}\norm{u} \,.
+		\end{equation*}
+		Supponiamo che $A$ sia limitato, e siano $u_1,u_2\in U$ tali che $\norm{u_1-u_2}<\delta$. Allora
+		\begin{equation*}
+			\norm{Au_1-Au_2} \leq \norm{A}_{op}\norm{u_1-u_2} < \norm{A}_{op}\delta \eqdef \eps \,,
+		\end{equation*}
+		e dal momento che $\delta$ non dipende da $u_1,u_2$, la continuità è uniforme.
+	\end{proof}
+	
+	\begin{definition}[Spazio duale]
+		L'insieme degli operatori lineari e continui tra due spazi di Banach $U,V$ si denota con $\mathscr{L}(U,V)$ ed è a sua volta uno spazio di Banach con la norma operatoriale. In particolare, $\mathscr{L}(V,\R)$ prende il nome di ``spazio duale'' e si denota con $\dual{V}$.
+	\end{definition}
+	
+	\begin{theorem}[Riesz]
+		Sia $H$ uno spazio di Hilbert. Per ogni funzionale $f\in\dual{H}$ esiste unico $y_f\in H$ tale che per ogni $x\in H$ si ha $f(x)=\scal{x}{y_f}$. Inoltre, $\norm{f}_{op}=\norm{y_f}_H$.
+	\end{theorem}
+	\begin{proof}
+		Dato un qualsiasi $z\in H$ definiamo $f_z=\scal{x}{\cdot}$, da cui segue subito che $\norm{f_z}_{op}\leq \norm{z}_H$. Mostriamo la rappresentazione. Se $f\in\dual{H}$, consideriamo il suo nucleo $N_f$. Se $N_f=H$ allora $f=0$ e quindi banalmente $y=0$ e abbiamo finito. In caso contrario, $N_f=f^{-1}(\{0\})$ è un sottospazio vettoriale chiuso e proprio di $H$. Considero quindi $y\notin N_f$ e per il teorema di proiezione sia $\overline{y}\in N_f$ tale che $y_0=y-\overline{y}\perp N_f$. Definisco $\lambda = f(\overline{y})\ne 0$ e poi $y_1=\overline{y}/\lambda$, così che $f(y_1)=1$ e valga ancora che $y_1\perp N_f$. Trovo quindi che
+		\begin{gather*}
+			f(x) = 1f(x) = f(y_1)f(x) = f(y_1f(x)) \\
+			\implies f(x-y_1f(x)) = 0 \implies x-y_1f(x) \in N_f \,,
+		\end{gather*}
+		quindi posso scrivere $x$ come somma di un elemento $z$ di $N_f$ e di $y_1f(x)$ ortogonale a $N_f$, da cui
+		\begin{equation*}
+			\scal{x}{y_1} = \scal{z}{y_1}+f(x)\norm{y_1}^2 \,,
+		\end{equation*}
+		Riscalando per la norma di $y_1$ otteniamo un elemento $y_f$ tale che
+		\begin{equation*}
+			\scal{x}{y_f} = f(x) \,.
+		\end{equation*}
+		Per l'unicità, se $y,y'$ rappresentano $f$, allora per ogni $x\in H$ vale $\scal{x}{y-y'}=0$ e quindi $y-y'=0$. Per quanto riguarda la norma, sappiamo già che $\norm{f}_{op}\leq\norm{y_f}_H$ da quanto detto all'inizio della dimostrazione. Inoltre
+		\begin{equation*}
+			f(y_f) = \scal{y_f}{y_f} = \norm{y_f}^2 \implies f\left(\frac{y_f}{\norm{y_f}}\right) = \norm{y} \,,
+		\end{equation*}
+		Visto che il vettore tra parentesi ha norma 1, troviamo $\norm{y_f}\leq\norm{f}_{op}$ e quindi abbiamo l'uguaglianza.
+	\end{proof}
+	
+	\begin{definition}[Sistema ortonormale]
+		Sia $H$ uno spazio di Hilbert. Si dice sistema ortonormale di $H$ una famiglia di vettori $\suc{u}{\alpha}{A}$ tale che $\scal{u_\alpha}{u_\beta}=\delta_{\alpha\beta}$ (delta di Kronecker).
+	\end{definition}
+	
+	\begin{theorem}
+		In uno spazio di Hilbert separabile, ogni sistema ortonormale è al più numerabile.
+	\end{theorem}
+	\begin{proof}
+		Sia $D=\suc{v}{n}{\N}$ denso in $H$ e sia $\suc{u}{\alpha}{A}$ ortonormale. Per ogni $\alpha\in A$ definiamo la palla $B_\alpha = B_{1/2}(u_\alpha)$. Se $\alpha\ne\beta$ risulta
+		\begin{equation*}
+			\norm{u_\alpha-u_\beta}^2 = \norm{u_\alpha}^2 + \norm{u_\beta}^2 -2\scal{u_\alpha}{u_\beta} = 2 \,,
+		\end{equation*}
+		ossia che $d(u_\alpha,u_\beta)=\sqrt2$, da cui si trova $B_\alpha\cap B_\beta=\emptyset$. Consideriamo la funzione $\Phi$ che ad ogni $v_n$ associa la palla $B_\alpha$ a cui appartiene $v_n$. Per densità, in ogni palla ci dev'essere almeno un $v_n$ e quindi $\Phi$ è suriettiva, da cui $\aleph_0=\#\suc{v}{n}{\N}\geq\#\suc{B}{\alpha}{A}=\#\suc{u}{\alpha}{A}$.
+	\end{proof}
 	
 \end{document}
+
+
+
+
+
+
+
+
+
+
+

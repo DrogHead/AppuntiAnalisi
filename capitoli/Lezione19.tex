@@ -2,6 +2,46 @@
 
 \begin{document}
 	
+	\begin{theorem}[Baire]
+		Sia $X$ uno spazio metrico completo e siano $\suc{V}{n}{\N}$ una famiglia di aperti densi in $X$. Allora $\bigcap_n V_n$ è ancora denso.
+	\end{theorem}
+	\begin{proof}
+		Sia $W$ un aperto di $X$. Per densità $V_1\cap W$ è un aperto non vuoto e quindi esiste una palla $B_1=B_{r_1}(x_1)\subseteq V_1\cap W$ con $0\leq r_1\leq 1$. Per densità $V_2\cap B_1$ è un aperto non vuoto e quindi esiste una palla $B_2=B_{r_2}(x_2)\subseteq V_2\cap B_1$ con $0\leq r_2\leq 1/2$. Proseguendo in questo modo, per densità $V_n\cap B_{n-1}$ è un aperto non vuoto e quindi esiste una palla $B_n=B_{r_n}(x_n)\subseteq V_n\cap B_{n-1}$ con $0\leq r_n\leq 1/n$. La successione dei centri $\suc{x}{n}{\N}$ è di Cauchy e quindi converge a un certo $x\in X$. Dal momento che $x_n\in B_m$ per ogni $n\geq m$ si trova che $x\in \overline{B_n}$ per ogni $n\in\N$ e quindi che $x \in W\cap \bigcap_n V_n$.
+	\end{proof}
 	
+	\begin{corol}
+		Uno spazio metrico completo non può essere unione numerabile di chiusi con parte interna vuota.
+	\end{corol}
+	
+	\begin{theorem}[Banach-Steinhaus]
+		Sia $X$ uno spazio di Banach e sia $Y$ uno spazio vettoriale normato. Consideriamo la famiglia $\suc{\Lambda}{\alpha}{A}$ di applicazioni limitate di $X$ in $Y$. Allora vale una sola tra le seguenti:
+		\begin{enumerate}
+			\item $\exists M>0 \,: \norm{\Lambda_\alpha}\leq M$ per ogni $\alpha \in A$
+			\item Esiste un insieme $G\in G_\delta$ denso in $X$ tale che $\sup_{\alpha\in A}\norm{\Lambda_\alpha x}=+\infty$ per ogni $x\in G$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		Sia $\varphi(x)=\sup_{\alpha\in A}\norm{\Lambda_\alpha x}$, che è semicontinua inferiormente in quanto estremo superiore di funzioni continue. Definiamo gli insiemi $V_n=\{\varphi\geq n\}$ che sono aperti. Distinguiamo due casi
+		\begin{enumerate}
+			\item Se tutti i $V_n$ sono densi, allora per il lemma di Baire la loro intersezione è un $G_\delta$ denso per il lemma di Baire e su di esso $\varphi(x)=+\infty$ per definizione di $V_n$.
+			\item Se almeno uno dei $V_n$ non è denso, consideriamo una palla $B_r(x_0)$ disgiunta da esso. Allora $x_0+x\notin V_n$ ogni volta che $\norm{x}\leq r$, e quindi sulla palla $\varphi$ vale meno di $n$. Allora
+			\begin{equation*}
+				\norm{\Lambda_\alpha x} \leq \norm{\Lambda_\alpha(x_0+x)} + \norm{\Lambda_\alpha x_0} \leq 2n \,,
+			\end{equation*}
+			e se calcoliamo la norma
+			\begin{equation*}
+				\norm{\Lambda_\alpha}_{op} = \sup\left\{ \frac{\norm{\Lambda_\alpha x}}{r} \,\middle\vert\, \norm{x}\leq r \right\} \leq \frac{2n}{r} \eqdef M
+			\end{equation*}
+		\end{enumerate}
+	\end{proof}
 	
 \end{document}
+
+
+
+
+
+
+
+
+

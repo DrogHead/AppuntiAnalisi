@@ -2,6 +2,114 @@
 
 \begin{document}
 	
+	\begin{definition}[Base di Hilbert, base di Hamel]
+		Si dice base di Hilbert di uno spazio di Hilbert $H$ un sistema ortonormale massimale di $H$.
+		
+		Si dice base di Hamel di uno spazio vettoriale $V$ un sistema di vettori linearmente indipendenti tale che ogni altro vettore di $V$ si scrive come combinazione lineare di un insieme finito di vettori della base.
+	\end{definition}
 	
+	\begin{definition}[Span]
+		Dato uno spazio di Hilbert $H$ e un suo sottoinsieme $S$, si dice sottospazio lineare generato o ``span'' di $S$, e si denota con $[S]$ o $\linspan S$, l'insieme delle combinazioni lineari finite di elementi di $S$. Se la dimensione di $S$ è finita, $[S]$ è un chiuso.
+	\end{definition}
+	
+	\begin{definition}[Coefficiente di Fourier]
+		Sia $H$ uno spazio di Hilbert e sia $\suc{u}{\alpha}{A}$ un sistema ortonormale. La quantità $\widehat{x}_\alpha\defeq\scal{x}{u_\alpha}$ si dice coefficiente di Fourier di $x$ rispetto a $u_\alpha$.
+	\end{definition}
+	
+	\begin{theorem}
+		Sia $H$ uno spazio di Hilbert e sia $\ennu{u}{k}$ un sistema ortonormale. Se ogni $x\in H$ si scrive come $\sum_{i=1}^k c_iu_i$ allora $c_i=\scal{x}{u_i}=\widehat{x}_i$ e
+		\begin{equation*}
+			\norm{x}^2 = \sum_{i=1}^k\abs{c_i}^2 \,.
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		Per la proprietà sui coefficienti di Fourier
+		\begin{equation*}
+			\widehat{x}_j = \scal{x}{u_j} = \sum_{i=1}^k\scal{c_i u_i}{u_j} = c_j \,,
+		\end{equation*}
+		mentre per la norma
+		\begin{equation*}
+			\norm{x}^2 = \scal{x}{x} = \sum_{i,j=1}^k c_i\overline{c_j}\scal{u_i}{u_j} = \sum_{i,j}^k c_i\overline{c_j}\delta_{ij} = \sum_{i=1}^k c_i\overline{c_i} = \sum_{i=1}^k\abs{c_i}^2 \,.
+		\end{equation*}
+	\end{proof}
+	
+	\begin{lemma}
+		Sia $H$ uno spazio di Hilbert e sia $F\subseteq H$. Se $F$ è chiuso in $H$ allora per ogni $y\in H\setminus F$ si ha $[F,y]$ chiuso. 
+	\end{lemma}
+	\begin{proof}
+		Sia $\suc{z}{n}{\N}\subseteq[F,y]$ tale che $z_n\to z$. Possiamo scrivere il limite come
+		\begin{equation*}
+			z = \lim_n(x_n+\lambda_n y) \,,
+		\end{equation*}
+		e quindi per ogni $\eps>0$ esiste $\nu\in\N$ tale che per ogni $n\geq\nu$ risulti
+		\begin{equation*}
+			\norm{x_n+\lambda_n y}<\eps \,.
+		\end{equation*}
+		Non può essere che $\lambda_n\to\infty$ perché altrimenti
+		\begin{equation*}
+			\norm{\lambda_n^{-1}x_n+y}<\frac\eps{\abs{\lambda_n}} \to 0 \,,
+		\end{equation*}
+		da cui $y\in F$, che è assurdo. Essendo $x_n$ differenza di successioni di Cauchy è Cauchy a sua volta, e quindi converge a un $x\in F$ perché $F$ è chiuso. Quindi si ha $z=x+\lambda y \in [F,y]$.
+	\end{proof}
+	
+	\begin{prop}
+		Sia $H$ uno spazio di Hilbert e sia $\ennu{v}{k}$ un sistema di vettori linearmente indipendenti. Allora per ogni $x\in H$ la quantità
+		\begin{equation*}
+			\norm*{x-\sum_{i=1}^k c_i v_i}
+		\end{equation*}
+		è minima quando i coefficienti rispettano
+		\begin{equation*}
+			\scal{x}{v_i} = \sum_{i=1}^k c_j\scal{v_i}{v_j} \,.
+		\end{equation*}
+	\end{prop}
+	\begin{proof}
+		Chiamo $V=\linspan\{\ennu{v}{n}\}$. Sia $x_0=\sum_{i=1}^k c_i v_i$ l'elemento minimizzante. Allora deve essere $\scal{x-x_0}{v_i}=0$ per ogni $i=1,\dots,k$, da cui si trova che
+		\begin{equation*}
+			\scal{x}{v_i} = \sum_{i=1}^k c_j\scal{v_i}{v_j} \,.
+		\end{equation*}
+		Inoltre, calcolando la norma, si ha
+		\begin{equation*}
+			0 \leq \scal{x-x_0}{x-x_0} = \scal{x}{x-x_0} = \norm{x}^2-\sum_{i=1}^n \overline{c_i}\scal{x}{v_i} \,.
+		\end{equation*}
+	\end{proof}
+	
+	\begin{theorem}[Disuguaglianza di Bessel]
+		Sia $H$ uno spazio di Hilbert e sia $\suc{v}{n}{\N}$ un sistema ortonormale. Allora, per ogni $x\in H$, vale
+		\begin{equation*}
+			\sum_{n\in\N}\abs{\widehat{x}_n}^2 \leq \norm{x}^2 \,.
+		\end{equation*}
+	\end{theorem}
+	\begin{proof}
+		Dai teoremi precedenti sappiamo che, se $x_0$ è una combinazione lineare finita dei primi $N$ vettori del sistema, allora vale per ogni $N\in\N$ la seguente disuguaglianza.
+		\begin{equation*}
+			\norm{x} \geq \sum_{i=1}^N\overline{c_i}\scal{x}{v_i} \,.
+		\end{equation*}
+		Scegliamo allora $c_i = \scal{x}{v_i}$ e usiamo il teorema di permanenza del segno per ottenere che
+		\begin{equation*}
+			\norm{x} \geq \sum_{i=1}^\infty \abs{\scal{x}{v_i}}^2 \,.
+		\end{equation*}
+	\end{proof}
+	
+	\begin{theorem}[Riesz-Fischer]
+		Sia $H$ uno spazio di Hilbert e sia $\suc{v}{n}{\N}$ un sistema ortonormale di vettori. Per ogni successione $\suc{c}{n}{\N}\in\ell^2(\N)$, definito $\varphi_N=\sum_{n=1}^N c_n v_n$, esiste un'unica $\varphi\in H$ tale che $\varphi_N\to\varphi$ in $H$. Inoltre, $\scal{\varphi}{v_n}=c_n$.
+	\end{theorem}
+	\begin{proof}
+		Mostriamo che $\suc{\varphi}{N}{\N}$ è di Cauchy.
+		\begin{equation*}
+			\norm{\varphi_M-\varphi_N}^2 = \norm*{\sum_{n=N+1}^M c_n v_n}^2 \leq \sum_{n=N+1}^M \abs{c_n}^2 \,,
+		\end{equation*}
+		e dal momento che $\suc{c}{n}{\N}\in\ell^2$ sappiamo che la coda della serie $\sum_n\abs{c_n}^2$ è infinitesima. Allora
+		\begin{equation*}
+			\norm{\varphi_M-\varphi_N}^2 \leq \sum_{n=N+1}^M \abs{c_n}^2 \leq \sum_{n\geq N}\abs{c_n}^2 < \eps^2 \,,
+		\end{equation*}
+		e quindi la successione è di Cauchy, per cui converge a un certo $\varphi\in X$ nello spazio di Hilbert $H$. Calcoliamo i coefficienti di Fourier.
+		\begin{equation*}
+			\scal{\varphi}{v_n} = \scal{\varphi-\varphi_N}{v_n}+\scal{\varphi_N}{v_n} \,.
+		\end{equation*}
+		Il primo termine è infinitesimo per $N\to\infty$ per Cauchy-Schwarz, mentre il secondo coincide con $c_n$ per ortonormalità, da cui la tesi.
+	\end{proof}
 	
 \end{document}
+
+
+
